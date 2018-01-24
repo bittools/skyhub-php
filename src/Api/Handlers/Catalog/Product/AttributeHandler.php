@@ -18,7 +18,17 @@ use SkyHub\Api\Handlers\AbstractHandler;
 
 class AttributeHandler extends AbstractHandler
 {
-
-
+    
+    public function createAttribute($code, $label, array $options = [])
+    {
+    
+    }
+    
+    
+    
+    public function updateAttribute($code, $label, array $options = [])
+    {
+    
+    }
 
 }
