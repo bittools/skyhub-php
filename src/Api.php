@@ -11,15 +11,20 @@
  *
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
  */
+
 namespace SkyHub;
 
+use SkyHub\Api\Handlers\Getters as HandlerGetters;
 use SkyHub\Api\Service;
 
 class Api
 {
     
+    use HandlerGetters;
+    
+    
     /** @var Service */
-    protected $_connection = null;
+    protected $_service = null;
     
     
     /**
@@ -31,8 +36,27 @@ class Api
      */
     public function __construct($email, $apiKey, $apiToken)
     {
-        $this->getService()
-             ->init($email, $apiKey, $apiToken);
+        $options = ['timeout' => 15];
+        $headers = [
+            'X-User-Email'         => $email,
+            'X-Api-Key'            => $apiKey,
+            'X-Accountmanager-Key' => $apiToken,
+            'Accept'               => 'application/json',
+            'Content-Type'         => 'application/json',
+        ];
+        
+        $this->_service = Service::getInstance();
+        
+        $this->getService()->init($this->getBaseUri(), $headers, $options);
+    }
+    
+    
+    /**
+     * @return string
+     */
+    protected function getBaseUri()
+    {
+        return 'https://api.skyhub.com.br';
     }
     
     
@@ -53,11 +77,11 @@ class Api
      */
     public function getService()
     {
-        if (null === $this->_connection) {
-            $this->_connection = Service::getInstance();
+        if (null === $this->_service) {
+            $this->_service = Service::getInstance();
         }
-    
-        return $this->_connection;
+        
+        return $this->_service;
     }
-
+    
 }

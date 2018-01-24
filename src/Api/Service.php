@@ -16,17 +16,11 @@ namespace SkyHub\Api;
 
 use GuzzleHttp\Client as HttpClient;
 
-class Service
+class Service implements ServiceInterface
 {
     
     /** @var HttpClient */
     protected $_client = null;
-    
-    /** @var array */
-    protected $_options = [];
-    
-    /** @var array */
-    protected $_headers = [];
     
     /** @var self */
     private static $_instance = null;
@@ -37,7 +31,6 @@ class Service
      */
     protected function __construct()
     {
-        $this->_options['timeout'] = 15;
     }
     
     
@@ -68,25 +61,17 @@ class Service
      *
      * @return $this
      */
-    public function init($email, $apiKey, $token, array $headers = [], array $options = [])
+    public function init($baseUri, array $headers = [], array $options = [])
     {
-        foreach ($headers as $key => $value) {
-            $this->_headers[$key] = $value;
-        }
+        $defaults = [
+            'headers' => $headers,
+        ];
         
         foreach ($options as $key => $value) {
-            $this->_options[$key] = $value;
+            $defaults[$key] = $value;
         }
         
-        $this->_headers['X-User-Email'] = $email;
-        $this->_headers['X-Api-Key'] = $apiKey;
-        $this->_headers['X-Accountmanager-Key'] = $token;
-        $this->_headers['Accept'] = 'application/json';
-        $this->_headers['Content-Type'] = 'application/json';
-        
-        $baseUri = 'https://api.skyhub.com.br';
-        
-        $this->getClient($baseUri);
+        $this->getHttpClient($baseUri, $defaults);
         
         return $this;
     }
@@ -118,25 +103,18 @@ class Service
     
     
     /**
-     * @return array
-     */
-    protected function getDefaultOptions()
-    {
-        return $this->_options;
-    }
-    
-    
-    /**
      * @param null|string $uri
      * @param array|null  $options
      *
      * @return HttpClient
      */
-    protected function getClient($baseUri = null, $options = null)
+    protected function getHttpClient($baseUri = null, array $defaults = [])
     {
         if (null === $this->_client) {
             $this->_client = new HttpClient([
+                'base_uri' => $baseUri,
                 'base_url' => $baseUri,
+                'defaults' => $defaults
             ]);
         }
         
