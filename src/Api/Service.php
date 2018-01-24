@@ -16,7 +16,7 @@ namespace SkyHub\Api;
 
 use GuzzleHttp\Client as HttpClient;
 
-class Connection
+class Service
 {
     
     /** @var HttpClient */
@@ -24,6 +24,9 @@ class Connection
     
     /** @var array */
     protected $_options = [];
+    
+    /** @var array */
+    protected $_headers = [];
     
     /** @var self */
     private static $_instance = null;
@@ -65,28 +68,32 @@ class Connection
      *
      * @return $this
      */
-    public function init($email, $apiKey, $token, array $options = [])
+    public function init($email, $apiKey, $token, array $headers = [], array $options = [])
     {
-        $headers = $this->getDefaultOptions();
-        
-        foreach ($options as $key => $value) {
-            $headers[$key] = $value;
+        foreach ($headers as $key => $value) {
+            $this->_headers[$key] = $value;
         }
         
-        $headers['X-User-Email']         = $email;
-        $headers['X-Api-Key']            = $apiKey;
-        $headers['X-Accountmanager-Key'] = $token;
-        $headers['Accept']               = 'application/json';
-        $headers['Content-Type']         = 'application/json';
+        foreach ($options as $key => $value) {
+            $this->_options[$key] = $value;
+        }
         
-        $this->getClient()->setHeaders($headers);
+        $this->_headers['X-User-Email'] = $email;
+        $this->_headers['X-Api-Key'] = $apiKey;
+        $this->_headers['X-Accountmanager-Key'] = $token;
+        $this->_headers['Accept'] = 'application/json';
+        $this->_headers['Content-Type'] = 'application/json';
+        
+        $baseUri = 'https://api.skyhub.com.br';
+        
+        $this->getClient($baseUri);
         
         return $this;
     }
     
     
     /**
-     * @return Connection
+     * @return Service
      */
     public static function getInstance()
     {
@@ -101,7 +108,7 @@ class Connection
     /**
      * @return bool
      */
-    public function checkConnection()
+    public function checkService()
     {
         /**
          * @todo Create the logic to verify if the connection is working.
@@ -125,10 +132,12 @@ class Connection
      *
      * @return HttpClient
      */
-    protected function getClient($uri = null, $options = null)
+    protected function getClient($baseUri = null, $options = null)
     {
         if (null === $this->_client) {
-            $this->_client = new HttpClient();
+            $this->_client = new HttpClient([
+                'base_url' => $baseUri,
+            ]);
         }
         
         return $this->_client;

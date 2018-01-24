@@ -13,12 +13,12 @@
  */
 namespace SkyHub;
 
-use SkyHub\Api\Connection;
+use SkyHub\Api\Service;
 
 class Api
 {
     
-    /** @var Connection */
+    /** @var Service */
     protected $_connection = null;
     
     
@@ -27,34 +27,34 @@ class Api
      *
      * @param string $email
      * @param string $apiKey
-     * @param string $token
+     * @param string $apiToken
      */
-    public function __construct($email, $apiKey, $token)
+    public function __construct($email, $apiKey, $apiToken)
     {
-        $this->getConnection()
-             ->init($email, $apiKey, $token);
+        $this->getService()
+             ->init($email, $apiKey, $apiToken);
     }
     
     
     /**
      * @return bool
      */
-    public function hasConnection()
+    public function checkService()
     {
-        return $this->getConnection()
-                    ->checkConnection();
+        return $this->getService()
+                    ->checkService();
     }
     
     
     /**
      * Gets a single connection instance.
      *
-     * @return Connection
+     * @return Service
      */
-    protected function getConnection()
+    public function getService()
     {
         if (null === $this->_connection) {
-            $this->_connection = Connection::getInstance();
+            $this->_connection = Service::getInstance();
         }
     
         return $this->_connection;

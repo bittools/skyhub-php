@@ -16,13 +16,20 @@ namespace SkyHub\Api;
 
 use SkyHub\Api;
 
-class ConnectionTest extends \PHPUnit\Framework\TestCase
+class ServiceTest extends \PHPUnit\Framework\TestCase
 {
     
-    public function testHasConnection()
+    /**
+     * @test
+     */
+    public function checkService()
     {
-        $api = new Api('test@teste.com.br', '', '');
-        $this->assertTrue($api->hasConnection());
+        $email    = 'valdir.calixto@e-smart.com.br';
+        $apiKey   = 'wxVMVTkf_csx17LioTjY';
+        $apiToken = 'bZa6Ml0zgS';
+        
+        $api = new Api($email, $apiKey, $apiToken);
+        $this->assertTrue($api->checkService());
     }
 
 }
