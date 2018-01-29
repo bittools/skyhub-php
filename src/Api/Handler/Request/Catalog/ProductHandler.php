@@ -12,9 +12,29 @@
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
  */
 
-namespace SkyHub\Api\Handlers;
+namespace SkyHub\Api\Handler\Request\Catalog;
 
-interface HandlerInterface
+use SkyHub\Api\Handler\Request\AbstractHandler;
+
+class ProductHandler extends AbstractHandler
 {
+    
+    public function create()
+    {
+    
+    }
+    
+    
+    
+    public function update()
+    {
+    
+    }
+    
+    
+    public function products()
+    {
+    
+    }
 
 }

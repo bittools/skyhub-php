@@ -1,11 +1,19 @@
 <?php
 
-namespace SkyHub\Api;
+namespace SkyHub\Api\Service;
 
 use GuzzleHttp\Client as HttpClient;
+use SkyHub\Api\Handlers\Response\DefaultHandler;
+use SkyHub\Api\Handlers\Response\HandlerInterface;
 
 abstract class ServiceAbstract implements ServiceInterface
 {
+    
+    CONST REQUEST_METHOD_GET  = 'GET';
+    CONST REQUEST_METHOD_POST = 'POST';
+    CONST REQUEST_METHOD_PUT  = 'PUT';
+    CONST REQUEST_METHOD_HEAD = 'HEAD';
+    
     
     /** @var HttpClient */
     protected $_client = null;
@@ -43,21 +51,40 @@ abstract class ServiceAbstract implements ServiceInterface
     
     
     /**
-     * @param       $method
-     * @param       $uri
-     * @param array $options
+     * @param string $method
+     * @param string $uri
+     * @param null   $body
+     * @param array  $options
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return HandlerInterface
      */
-    public function request($method, $uri, $options = [])
+    public function request($method, $uri, $body = null, $options = [])
     {
         $options[\GuzzleHttp\RequestOptions::TIMEOUT] = $this->getTimeout();
         $options[\GuzzleHttp\RequestOptions::HEADERS] = $this->_headers;
         
+        $options = $this->prepareRequestBody($body, $options);
+        
         /** @var \Psr\Http\Message\ResponseInterface $response */
         $response = $this->httpClient()->request($method, $uri, $options);
         
-        return $response;
+        /** @var HandlerInterface $responseHandler */
+        $responseHandler = new DefaultHandler($response);
+        
+        return $responseHandler;
+    }
+    
+    
+    /**
+     * @param string|array $bodyData
+     * @param array        $options
+     *
+     * @return array
+     */
+    protected function prepareRequestBody($bodyData, array &$options = [])
+    {
+        $options[\GuzzleHttp\RequestOptions::BODY] = $bodyData;
+        return $options;
     }
     
     

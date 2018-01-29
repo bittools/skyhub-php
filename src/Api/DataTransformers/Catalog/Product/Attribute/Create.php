@@ -1,14 +1,11 @@
 <?php
 
-namespace SkyHub\Api\DataTransformers\Catalog\Product;
+namespace SkyHub\Api\DataTransformers\Catalog\Product\Attribute;
 
 use SkyHub\Api\DataTransformers\DataTransformerAbstract;
 
-class Attribute extends DataTransformerAbstract
+class Create extends DataTransformerAbstract
 {
-    
-    protected $_outputData = [];
-    
     
     /**
      * Attribute constructor.
@@ -25,7 +22,7 @@ class Attribute extends DataTransformerAbstract
             'options' => $options
         ];
         
-        $this->prepareData();
+        $this->prepareOutput();
     }
     
     

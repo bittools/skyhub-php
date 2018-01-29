@@ -3,9 +3,9 @@
     "description": "This is the official PHP SDK for integration with SkyHub.",
     "type": "library",
     "require": {
-        "zendframework/zend-http": "^2.7",
         "symfony/console": "^4.0",
-        "guzzlehttp/guzzle": "^6.2@dev"
+        "guzzlehttp/guzzle": "^6.2@dev",
+        "monolog/monolog": "^2.0@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.5"
