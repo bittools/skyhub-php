@@ -14,14 +14,21 @@
 
 namespace SkyHub\Api\Handlers\Catalog\Product;
 
+use SkyHub\Api\DataTransformers\Catalog\Product\Attribute;
 use SkyHub\Api\Handlers\AbstractHandler;
 
 class AttributeHandler extends AbstractHandler
 {
     
+    protected $_transformerClass = Attribute::class;
+    
+    
     public function createAttribute($code, $label, array $options = [])
     {
-    
+        $transformer = new Attribute($code, $label, $options);
+        $body        = $transformer->output();
+        
+        $this->service()->post('/attributes', $body, $options);
     }
     
     

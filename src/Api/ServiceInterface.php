@@ -18,8 +18,22 @@ interface ServiceInterface
 {
     
     /**
-     * @return $this
+     * ServiceInterface constructor.
+     *
+     * @param string $baseUri
+     * @param array  $headers
+     * @param array  $options
      */
-    public static function getInstance();
+    public function __construct($baseUri, array $headers = [], array $options = []);
+    
+    
+    /**
+     * @param string $uri
+     * @param string $body
+     * @param array  $options
+     *
+     * @return mixed
+     */
+    public function post($uri, $body, array $options = []);
     
 }

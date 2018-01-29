@@ -13,7 +13,9 @@
  */
 namespace SkyHub\Api\Handlers;
 
+use SkyHub\Api\Handlers\Catalog\CategoryHandler;
 use SkyHub\Api\Handlers\Catalog\Product\AttributeHandler;
+use SkyHub\Api\Handlers\Catalog\ProductHandler;
 
 trait Getters
 {
@@ -21,9 +23,27 @@ trait Getters
     /**
      * @return AttributeHandler
      */
-    public function catalogProductAttribute()
+    public function productAttribute()
     {
-        return new AttributeHandler($this->getService());
+        return new AttributeHandler($this);
+    }
+    
+    
+    /**
+     * @return ProductHandler
+     */
+    public function product()
+    {
+        return new ProductHandler($this);
+    }
+    
+    
+    /**
+     * @return CategoryHandler
+     */
+    public function category()
+    {
+        return new CategoryHandler($this);
     }
     
 }

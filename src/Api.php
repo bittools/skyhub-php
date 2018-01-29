@@ -16,8 +16,10 @@ namespace SkyHub;
 
 use SkyHub\Api\Handlers\Getters as HandlerGetters;
 use SkyHub\Api\Service;
+use SkyHub\Api\ServiceInterface;
+use SkyHub\Api\ServiceJson;
 
-class Api
+class Api implements ApiInterface
 {
     
     use HandlerGetters;
@@ -30,13 +32,14 @@ class Api
     /**
      * Api constructor.
      *
+     * @param string $baseUri
      * @param string $email
      * @param string $apiKey
      * @param string $apiToken
+     * @param ServiceInterface $apiService
      */
-    public function __construct($email, $apiKey, $apiToken)
+    public function __construct($baseUri, $email, $apiKey, $apiToken, ServiceInterface $apiService = null)
     {
-        $options = ['timeout' => 15];
         $headers = [
             'X-User-Email'         => $email,
             'X-Api-Key'            => $apiKey,
@@ -45,18 +48,13 @@ class Api
             'Content-Type'         => 'application/json',
         ];
         
-        $this->_service = Service::getInstance();
+        if (empty($apiServiceClass)) {
+            $this->_service = new ServiceJson($baseUri, $headers);
+            
+            return;
+        }
         
-        $this->getService()->init($this->getBaseUri(), $headers, $options);
-    }
-    
-    
-    /**
-     * @return string
-     */
-    protected function getBaseUri()
-    {
-        return 'https://api.skyhub.com.br';
+        $this->_service = $apiService;
     }
     
     
@@ -65,7 +63,7 @@ class Api
      */
     public function checkService()
     {
-        return $this->getService()
+        return $this->service()
                     ->checkService();
     }
     
@@ -75,12 +73,8 @@ class Api
      *
      * @return Service
      */
-    public function getService()
+    public function service()
     {
-        if (null === $this->_service) {
-            $this->_service = Service::getInstance();
-        }
-        
         return $this->_service;
     }
     

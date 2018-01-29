@@ -14,24 +14,62 @@
 
 namespace SkyHub\Api\Handlers;
 
-use SkyHub\Api\Service;
+use SkyHub\Api\DataTransformers\DataTransformerInterface;
 use SkyHub\Api\ServiceInterface;
+use SkyHub\ApiInterface;
 
 abstract class AbstractHandler implements HandlerInterface
 {
-
-    /** @var Service */
-    protected $service;
+    
+    /** @var ApiInterface */
+    private $api;
+    
+    /** @var DataTransformerInterface */
+    protected $_transformer = null;
+    
+    /** @var string */
+    protected $_transformerClass = null;
     
     
     /**
      * AbstractHandler constructor.
      *
-     * @param ServiceInterface $service
+     * @param ApiInterface $api
      */
-    public function __construct(ServiceInterface $service)
+    public function __construct(ApiInterface $api)
     {
-        $this->service = $service;
+        $this->api = $api;
+    }
+    
+    
+    /**
+     * @return DataTransformerInterface
+     */
+    protected function transformer()
+    {
+        if (empty($this->_transformerClass)) {
+            $this->_transformer = new $this->_transformerClass();
+        }
+        
+        return $this->_transformer;
+    }
+    
+    
+    /**
+     * @return ServiceInterface
+     */
+    protected function service()
+    {
+        return $this->api->service();
+    }
+    
+    
+    /**
+     * @return ApiInterface
+     */
+    public function api()
+    {
+        return $this->api;
     }
 
 }
