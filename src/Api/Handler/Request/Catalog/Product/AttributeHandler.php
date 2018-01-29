@@ -15,23 +15,29 @@
 namespace SkyHub\Api\Handler\Request\Catalog\Product;
 
 use SkyHub\Api\DataTransformers\Catalog\Product\Attribute\Create as CreateHandler;
-use SkyHub\Api\Handler\Request\AbstractHandler;
+use SkyHub\Api\DataTransformers\Catalog\Product\Attribute\Update as UpdateHandler;
+use SkyHub\Api\Handler\Request\HandlerAbstract;
+use SkyHub\Api\Handler\Response\HandlerInterface;
 
-class AttributeHandler extends AbstractHandler
+class AttributeHandler extends HandlerAbstract
 {
     
     /**
      * @param string $code
      * @param string $label
      * @param array  $options
+     *
+     * @return HandlerInterface
      */
     public function create($code, $label, array $options = [])
     {
         $transformer = new CreateHandler($code, $label, $options);
         $body        = $transformer->output();
         
-         /** @var  $response */
+         /** @var HandlerInterface $response */
         $response = $this->service()->post($this->baseUrlPath(), $body, $options);
+        
+        return $response;
     }
     
     
@@ -39,14 +45,18 @@ class AttributeHandler extends AbstractHandler
      * @param string $code
      * @param string $label
      * @param array  $options
+     *
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
     public function update($code, $label, array $options = [])
     {
-        $transformer = new CreateHandler($code, $label, $options);
+        $transformer = new UpdateHandler($code, $label, $options);
         $body        = $transformer->output();
-        
-        /** @var \GuzzleHttp\Psr7\Response $response */
-        $response = $this->service()->put($this->baseUrlPath($code), $body, $options);
+    
+        /** @var HandlerInterface $response */
+        $this->service()->put($this->baseUrlPath($code), $body, $options);
+    
+        return $response;
     }
     
     

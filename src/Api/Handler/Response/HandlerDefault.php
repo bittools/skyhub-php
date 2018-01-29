@@ -1,10 +1,10 @@
 <?php
 
-namespace SkyHub\Api\Handlers\Response;
+namespace SkyHub\Api\Handler\Response;
 
 use Psr\Http\Message\ResponseInterface;
 
-class DefaultHandler extends AbstractHandler
+class HandlerDefault extends HandlerAbstract
 {
     
     /** @var ResponseInterface */

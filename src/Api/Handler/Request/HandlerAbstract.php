@@ -6,7 +6,7 @@ use SkyHub\Api\DataTransformers\DataTransformerInterface;
 use SkyHub\Api\Service\ServiceInterface;
 use SkyHub\ApiInterface;
 
-abstract class AbstractHandler implements HandlerInterface
+abstract class HandlerAbstract implements HandlerInterface
 {
     
     /** @var ApiInterface */

@@ -2,9 +2,9 @@
 
 namespace SkyHub\Api\Handler\Request\Catalog;
 
-use SkyHub\Api\Handler\Request\AbstractHandler;
+use SkyHub\Api\Handler\Request\HandlerAbstract;
 
-class CategoryHandler extends AbstractHandler
+class CategoryHandler extends HandlerAbstract
 {
     
     public function create()

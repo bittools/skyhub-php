@@ -14,7 +14,7 @@
 
 namespace SkyHub\Api\Service;
 
-use SkyHub\Api\Handlers\Response\HandlerInterface;
+use SkyHub\Api\Handler\Response\HandlerInterface;
 
 interface ServiceInterface
 {

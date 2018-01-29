@@ -3,11 +3,15 @@
 namespace SkyHub\Api\Service;
 
 use GuzzleHttp\Client as HttpClient;
-use SkyHub\Api\Handlers\Response\DefaultHandler;
+use SkyHub\Api\Handlers\Response\HandlerDefault;
 use SkyHub\Api\Handlers\Response\HandlerInterface;
+use SkyHub\Api\Log\Getter;
 
 abstract class ServiceAbstract implements ServiceInterface
 {
+    
+    use Getter;
+    
     
     CONST REQUEST_METHOD_GET  = 'GET';
     CONST REQUEST_METHOD_POST = 'POST';
@@ -43,7 +47,7 @@ abstract class ServiceAbstract implements ServiceInterface
         foreach ($options as $key => $value) {
             $defaults[$key] = $value;
         }
-    
+        
         $this->prepareHttpClient($baseUri, $defaults);
     
         return $this;
@@ -68,8 +72,14 @@ abstract class ServiceAbstract implements ServiceInterface
         /** @var \Psr\Http\Message\ResponseInterface $response */
         $response = $this->httpClient()->request($method, $uri, $options);
         
+        /** @todo Log the request before send it to service. */
+        // $this->logger()->info();
+        
         /** @var HandlerInterface $responseHandler */
-        $responseHandler = new DefaultHandler($response);
+        $responseHandler = new HandlerDefault($response);
+    
+        /** @todo Log the request before send it to service. */
+        // $this->logger()->info();
         
         return $responseHandler;
     }
