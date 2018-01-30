@@ -22,5 +22,5 @@ $apiToken = 'bZa6Ml0zgS';
 /** @var \SkyHub\Api $api */
 $api = new SkyHub\Api($baseUri, $email, $apiKey, $apiToken);
 
-$api->productAttribute()->create('color', 'Color', ['Blue', 'White', 'Green', 'Yellow']);
-$api->productAttribute()->update('color', 'Color', ['Blue', 'White', 'Green', 'Yellow', 'Orange']);
+$responseCreate = $api->productAttribute()->create('color', 'Color', ['Blue', 'White', 'Green', 'Yellow']);
+$responseUpdate = $api->productAttribute()->update('color', 'Color', ['Blue', 'White', 'Green', 'Yellow', 'Orange']);

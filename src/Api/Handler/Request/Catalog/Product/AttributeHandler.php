@@ -34,10 +34,10 @@ class AttributeHandler extends HandlerAbstract
         $transformer = new CreateHandler($code, $label, $options);
         $body        = $transformer->output();
         
-         /** @var HandlerInterface $response */
-        $response = $this->service()->post($this->baseUrlPath(), $body, $options);
+         /** @var HandlerInterface $responseHandler */
+        $responseHandler = $this->service()->post($this->baseUrlPath(), $body);
         
-        return $response;
+        return $responseHandler;
     }
     
     
@@ -53,10 +53,10 @@ class AttributeHandler extends HandlerAbstract
         $transformer = new UpdateHandler($code, $label, $options);
         $body        = $transformer->output();
     
-        /** @var HandlerInterface $response */
-        $this->service()->put($this->baseUrlPath($code), $body, $options);
+        /** @var HandlerInterface $responseHandler */
+        $responseHandler = $this->service()->put($this->baseUrlPath($code), $body);
     
-        return $response;
+        return $responseHandler;
     }
     
     

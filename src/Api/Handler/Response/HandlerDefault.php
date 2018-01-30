@@ -21,4 +21,13 @@ class HandlerDefault extends HandlerAbstract
         $this->httpResponse = $response;
     }
 
+
+    /**
+     * @return ResponseInterface
+     */
+    public function getHttpResponse()
+    {
+        return $this->httpResponse;
+    }
+
 }

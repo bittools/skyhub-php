@@ -3,8 +3,8 @@
 namespace SkyHub\Api\Service;
 
 use GuzzleHttp\Client as HttpClient;
-use SkyHub\Api\Handlers\Response\HandlerDefault;
-use SkyHub\Api\Handlers\Response\HandlerInterface;
+use SkyHub\Api\Handler\Response\HandlerDefault;
+use SkyHub\Api\Handler\Response\HandlerInterface;
 use SkyHub\Api\Log\Getter;
 
 abstract class ServiceAbstract implements ServiceInterface
