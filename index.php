@@ -131,7 +131,8 @@ $varAttr = [
 /**
  * Orders List and Delete
  */
-$orders = $api->order()->orders();
+// $orders = $api->order()->orders();
 
+$statusTypes = json_decode($api->orderStatus()->types()->body());
 
 echo '200 OK';

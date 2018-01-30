@@ -2,15 +2,16 @@
 
 namespace SkyHub\Api\Handler\Request;
 
-use SkyHub\Api\Handler\Request\Catalog\CategoryHandler;
-use SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler;
-use SkyHub\Api\Handler\Request\Catalog\ProductHandler;
-use SkyHub\Api\Handler\Request\Sales\Order\QueueHandler;
-use SkyHub\Api\Handler\Request\Sales\OrderHandler;
+use SkyHub\Api\Handler\Request\Catalog\CategoryHandler,
+    SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler,
+    SkyHub\Api\Handler\Request\Catalog\ProductHandler,
+    SkyHub\Api\Handler\Request\Sales\Order\QueueHandler,
+    SkyHub\Api\Handler\Request\Sales\Order\StatusHandler,
+    SkyHub\Api\Handler\Request\Sales\OrderHandler;
 
 trait Getters
 {
-    
+
     /**
      * @return AttributeHandler
      */
@@ -18,8 +19,8 @@ trait Getters
     {
         return new AttributeHandler($this);
     }
-    
-    
+
+
     /**
      * @return ProductHandler
      */
@@ -27,8 +28,8 @@ trait Getters
     {
         return new ProductHandler($this);
     }
-    
-    
+
+
     /**
      * @return CategoryHandler
      */
@@ -54,5 +55,14 @@ trait Getters
     {
         return new OrderHandler($this);
     }
-    
+
+
+    /**
+     * @return StatusHandler
+     */
+    public function orderStatus()
+    {
+        return new StatusHandler($this);
+    }
+
 }

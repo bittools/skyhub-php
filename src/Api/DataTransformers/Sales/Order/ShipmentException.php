@@ -10,9 +10,9 @@ class ShipmentException extends DataTransformerAbstract
     /**
      * ShipmentException constructor.
      *
-     * @param string   $orderId
-     * @param datetime $datetime
-     * @param string   $observation
+     * @param string $orderId
+     * @param string $datetime
+     * @param string $observation
      */
     public function __construct($orderId, $datetime, $observation)
     {
