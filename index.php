@@ -1,6 +1,6 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/src/bootstrap.php';
 
 $baseUri  = 'https://api.skyhub.com.br';
 $email    = 'valdir.calixto@e-smart.com.br';
@@ -9,6 +9,8 @@ $apiToken = 'bZa6Ml0zgS';
 
 /** @var \SkyHub\Api $api */
 $api = new SkyHub\Api($baseUri, $email, $apiKey, $apiToken);
+
+$test = (array) false;
 
 /**
  * Attribute Creation and Update.
