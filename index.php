@@ -133,6 +133,21 @@ $varAttr = [
  */
 // $orders = $api->order()->orders();
 
-$statusTypes = json_decode($api->orderStatus()->types()->body());
+/**
+ * Orders Status Types
+ */
+//$statusTypes = json_decode($api->orderStatus()->types()->body());
+
+/**
+ * Sync Errors
+ */
+//$api->syncErrors()->ignoreOrderErrors();
+
+/**
+ * Product Variation
+ */
+// $api->productVariations()->get();
+// $api->productVariations()->delete();
+// $api->productVariations()->update();
 
 echo '200 OK';

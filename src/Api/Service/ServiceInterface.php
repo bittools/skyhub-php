@@ -47,6 +47,16 @@ interface ServiceInterface
      * @return HandlerInterface
      */
     public function put($uri, $body = null, array $options = []);
+
+
+    /**
+     * @param string $uri
+     * @param string $body
+     * @param array  $options
+     *
+     * @return HandlerInterface
+     */
+    public function patch($uri, $body = null, array $options = []);
     
     
     /**

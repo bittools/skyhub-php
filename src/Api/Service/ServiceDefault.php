@@ -30,6 +30,19 @@ class ServiceDefault extends ServiceAbstract
     {
         return $this->request(self::REQUEST_METHOD_PUT, $uri, $body, $options);
     }
+
+
+    /**
+     * @param string $uri
+     * @param string $body
+     * @param array  $options
+     *
+     * @return HandlerInterface
+     */
+    public function patch($uri, $body = null, array $options = [])
+    {
+        return $this->request(self::REQUEST_METHOD_PATCH, $uri, $body, $options);
+    }
     
     
     /**

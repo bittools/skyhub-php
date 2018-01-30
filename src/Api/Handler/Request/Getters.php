@@ -7,7 +7,10 @@ use SkyHub\Api\Handler\Request\Catalog\CategoryHandler,
     SkyHub\Api\Handler\Request\Catalog\ProductHandler,
     SkyHub\Api\Handler\Request\Sales\Order\QueueHandler,
     SkyHub\Api\Handler\Request\Sales\Order\StatusHandler,
-    SkyHub\Api\Handler\Request\Sales\OrderHandler;
+    SkyHub\Api\Handler\Request\Sales\OrderHandler,
+    SkyHub\Api\Handler\Request\Sales\SystemHandler,
+    SkyHub\Api\Handler\Request\Sync\ErrorsHandler,
+    SkyHub\Api\Handler\Request\Catalog\Product\VariationHandler;
 
 trait Getters
 {
@@ -27,6 +30,15 @@ trait Getters
     public function product()
     {
         return new ProductHandler($this);
+    }
+
+
+    /**
+     * @return VariationHandler
+     */
+    public function productVariations()
+    {
+        return new VariationHandler($this);
     }
 
 
@@ -63,6 +75,24 @@ trait Getters
     public function orderStatus()
     {
         return new StatusHandler($this);
+    }
+
+
+    /**
+     * @return SystemHandler
+     */
+    public function saleSystems()
+    {
+        return new SystemHandler($this);
+    }
+
+
+    /**
+     * @return ErrorsHandler
+     */
+    public function syncErrors()
+    {
+        return new ErrorsHandler($this);
     }
 
 }

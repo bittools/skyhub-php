@@ -18,6 +18,7 @@ abstract class ServiceAbstract implements ServiceInterface
     CONST REQUEST_METHOD_PUT    = 'PUT';
     CONST REQUEST_METHOD_HEAD   = 'HEAD';
     CONST REQUEST_METHOD_DELETE = 'DELETE';
+    CONST REQUEST_METHOD_PATCH  = 'PATCH';
 
     
     /** @var HttpClient */

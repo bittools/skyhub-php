@@ -2,7 +2,7 @@
 
 namespace SkyHub\Api\DataTransformers;
 
-use SkyHub\Api\DataTransformers\Catalog\Product\CreateVariation;
+use SkyHub\Api\DataTransformers\Catalog\Product\Variation\Create;
 
 trait Builders
 {
@@ -101,13 +101,12 @@ trait Builders
         array $specifications = []
     )
     {
-        $transformer = new CreateVariation($sku, $qty, $ean, $images, $specifications);
+        $transformer = new Create($sku, $qty, $ean, $images, $specifications);
         $output      = $transformer->output();
 
         $productData['variations'][] = $output['variation'];
 
         return $productData;
     }
-
 
 }

@@ -49,7 +49,7 @@ abstract class HandlerAbstract implements HandlerInterface
     /**
      * @return ApiInterface
      */
-    public function api()
+    protected function api()
     {
         return $this->api;
     }

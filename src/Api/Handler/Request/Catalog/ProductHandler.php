@@ -2,11 +2,10 @@
 
 namespace SkyHub\Api\Handler\Request\Catalog;
 
-use SkyHub\Api\DataTransformers\Catalog\Product\CreateVariation;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
-use SkyHub\Api\DataTransformers\Catalog\Product\Create as CreateTransformer;
-use SkyHub\Api\DataTransformers\Catalog\Product\CreateVariation as CreateVariationTransformer;
-use SkyHub\Api\DataTransformers\Catalog\Product\Update as UpdateTransformer;
+use SkyHub\Api\DataTransformers\Catalog\Product\Variation\Create as CreateVariationTransformer,
+    SkyHub\Api\DataTransformers\Catalog\Product\Create as CreateTransformer,
+    SkyHub\Api\DataTransformers\Catalog\Product\Update as UpdateTransformer;
 
 class ProductHandler extends HandlerAbstract
 {
