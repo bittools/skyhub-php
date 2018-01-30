@@ -1,6 +1,6 @@
 <?php
 
-namespace SkyHub\Api\Handlers\Request;
+namespace SkyHub\Api\Handler\Request;
 
 use SkyHub\Api\Handler\Request\Catalog\CategoryHandler;
 use SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler;

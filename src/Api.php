@@ -2,7 +2,7 @@
 
 namespace SkyHub;
 
-use SkyHub\Api\Handlers\Request\Getters as HandlerGetters;
+use SkyHub\Api\Handler\Request\Getters as HandlerGetters;
 use SkyHub\Api\Service\ServiceInterface;
 use SkyHub\Api\Service\ServiceJson;
 

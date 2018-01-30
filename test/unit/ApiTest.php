@@ -4,13 +4,16 @@ namespace SkyHub;
 
 use PHPUnit\Framework\TestCase;
 use SkyHub\Api;
-use SkyHub\Api\Handlers\Catalog\Product\AttributeHandler;
+use SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler;
 
 class ApiTest extends TestCase
 {
     
     /** @var Api */
     protected $api       = null;
+
+    /** @var string */
+    protected $baseUri   = 'https://api.skyhub.com.br';
 
     /** @var string */
     protected $email     = 'test@e-smart.com.br';
@@ -24,7 +27,7 @@ class ApiTest extends TestCase
     
     public function setUp()
     {
-        $this->api = new Api($this->email, $this->apiKey, $this->apiToken);
+        $this->api = new Api($this->baseUri, $this->email, $this->apiKey, $this->apiToken);
     }
     
     
@@ -33,7 +36,7 @@ class ApiTest extends TestCase
      */
     public function getNewInstanceOfApiModel()
     {
-        $this->assertInstanceOf(Api::class, new Api($this->email, $this->apiKey, $this->apiToken));
+        $this->assertInstanceOf(Api::class, $this->api);
     }
     
     
@@ -42,7 +45,7 @@ class ApiTest extends TestCase
      */
     public function getServiceInstance()
     {
-        $this->assertInstanceOf(Api\Service::class, $this->api->getService());
+        $this->assertInstanceOf(Api\Service\ServiceJson::class, $this->api->service());
     }
     
     
@@ -51,7 +54,7 @@ class ApiTest extends TestCase
      */
     public function createNewInstanceOfCatalogProductAttributeHandler()
     {
-        $this->assertInstanceOf(AttributeHandler::class, $this->api->catalogProductAttribute());
+        $this->assertInstanceOf(AttributeHandler::class, $this->api->productAttribute());
     }
     
 }

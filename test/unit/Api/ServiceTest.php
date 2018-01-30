@@ -14,9 +14,10 @@
 
 namespace SkyHub\Api;
 
+use PHPUnit\Framework\TestCase;
 use SkyHub\Api;
 
-class ServiceTest extends \PHPUnit\Framework\TestCase
+class ServiceTest extends TestCase
 {
     
     /**
@@ -24,12 +25,12 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
      */
     public function checkService()
     {
-        $email    = 'valdir.calixto@e-smart.com.br';
-        $apiKey   = 'wxVMVTkf_csx17LioTjY';
-        $apiToken = 'bZa6Ml0zgS';
+//        $email    = 'valdir.calixto@e-smart.com.br';
+//        $apiKey   = 'wxVMVTkf_csx17LioTjY';
+//        $apiToken = 'bZa6Ml0zgS';
         
-        $api = new Api($email, $apiKey, $apiToken);
-        $this->assertTrue($api->checkService());
+//        $api = new Api($email, $apiKey, $apiToken);
+//        $this->assertTrue($api->checkService());
     }
 
 }
