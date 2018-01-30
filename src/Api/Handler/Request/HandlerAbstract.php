@@ -17,6 +17,9 @@ abstract class HandlerAbstract implements HandlerInterface
     
     /** @var string */
     protected $_transformerClass = null;
+
+    /** @var string */
+    protected $baseUrlPath = null;
     
     
     /**
@@ -44,20 +47,38 @@ abstract class HandlerAbstract implements HandlerInterface
     
     
     /**
+     * @return ApiInterface
+     */
+    public function api()
+    {
+        return $this->api;
+    }
+
+
+    /**
      * @return ServiceInterface
      */
     protected function service()
     {
         return $this->api->service();
     }
-    
-    
+
+
     /**
-     * @return ApiInterface
+     * @param string $suffix
+     *
+     * @return string
      */
-    public function api()
+    protected function baseUrlPath($suffix = null)
     {
-        return $this->api;
+        /** @var string $baseUrlPath */
+        $baseUrlPath = $this->baseUrlPath;
+
+        if (!empty($suffix)) {
+            $baseUrlPath .= '/' . $suffix;
+        }
+
+        return $baseUrlPath;
     }
 
 }

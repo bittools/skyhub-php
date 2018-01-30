@@ -42,6 +42,19 @@ class ServiceDefault extends ServiceAbstract
     {
         return $this->request(self::REQUEST_METHOD_GET, $uri, $options);
     }
+
+
+    /**
+     * @param string $uri
+     * @param string $body
+     * @param array  $options
+     *
+     * @return HandlerInterface
+     */
+    public function delete($uri, $body = null, array $options = [])
+    {
+        return $this->request(self::REQUEST_METHOD_DELETE, $uri, $options);
+    }
     
     
     /**

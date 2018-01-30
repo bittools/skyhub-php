@@ -56,6 +56,16 @@ interface ServiceInterface
      * @return HandlerInterface
      */
     public function get($uri, array $options = []);
+
+
+    /**
+     * @param string $uri
+     * @param string $body
+     * @param array  $options
+     *
+     * @return HandlerInterface
+     */
+    public function delete($uri, $body = null, array $options = []);
     
     
     /**

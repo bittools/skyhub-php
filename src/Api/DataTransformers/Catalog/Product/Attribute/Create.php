@@ -24,14 +24,5 @@ class Create extends DataTransformerAbstract
         
         $this->prepareOutput();
     }
-    
-    
-    /**
-     * @return array|mixed
-     */
-    public function output()
-    {
-        return $this->_outputData;
-    }
 
 }

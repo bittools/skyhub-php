@@ -13,11 +13,12 @@ abstract class ServiceAbstract implements ServiceInterface
     use Getter;
     
     
-    CONST REQUEST_METHOD_GET  = 'GET';
-    CONST REQUEST_METHOD_POST = 'POST';
-    CONST REQUEST_METHOD_PUT  = 'PUT';
-    CONST REQUEST_METHOD_HEAD = 'HEAD';
-    
+    CONST REQUEST_METHOD_GET    = 'GET';
+    CONST REQUEST_METHOD_POST   = 'POST';
+    CONST REQUEST_METHOD_PUT    = 'PUT';
+    CONST REQUEST_METHOD_HEAD   = 'HEAD';
+    CONST REQUEST_METHOD_DELETE = 'DELETE';
+
     
     /** @var HttpClient */
     protected $_client = null;
@@ -68,17 +69,17 @@ abstract class ServiceAbstract implements ServiceInterface
         $options[\GuzzleHttp\RequestOptions::HEADERS] = $this->_headers;
         
         $options = $this->prepareRequestBody($body, $options);
-        
-        /** @var \Psr\Http\Message\ResponseInterface $response */
-        $response = $this->httpClient()->request($method, $uri, $options);
-        
+
         /** @todo Log the request before send it to service. */
         // $this->logger()->info();
+
+        /** @var \Psr\Http\Message\ResponseInterface $response */
+        $response = $this->httpClient()->request($method, $uri, $options);
         
         /** @var HandlerInterface $responseHandler */
         $responseHandler = new HandlerDefault($response);
     
-        /** @todo Log the request before send it to service. */
+        /** @todo Log the response after send it to service. */
         // $this->logger()->info();
         
         return $responseHandler;

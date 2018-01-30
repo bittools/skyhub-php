@@ -25,9 +25,18 @@ class HandlerDefault extends HandlerAbstract
     /**
      * @return ResponseInterface
      */
-    public function getHttpResponse()
+    public function httpResponse()
     {
         return $this->httpResponse;
+    }
+
+
+    /**
+     * @return \Psr\Http\Message\StreamInterface
+     */
+    public function body()
+    {
+        return $this->httpResponse()->getBody();
     }
 
 }
