@@ -20,17 +20,6 @@ use SkyHub\Api;
 class ServiceTest extends TestCase
 {
     
-    /**
-     * @test
-     */
-    public function checkService()
-    {
-//        $email    = 'valdir.calixto@e-smart.com.br';
-//        $apiKey   = 'wxVMVTkf_csx17LioTjY';
-//        $apiToken = 'bZa6Ml0zgS';
-        
-//        $api = new Api($email, $apiKey, $apiToken);
-//        $this->assertTrue($api->checkService());
-    }
+
 
 }

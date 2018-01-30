@@ -3,8 +3,9 @@
 namespace SkyHub;
 
 use PHPUnit\Framework\TestCase;
-use SkyHub\Api;
+use SkyHub\Api\Handler\Request\Catalog\CategoryHandler;
 use SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler;
+use SkyHub\Api\Handler\Request\Catalog\ProductHandler;
 
 class ApiTest extends TestCase
 {
@@ -36,7 +37,7 @@ class ApiTest extends TestCase
      */
     public function getNewInstanceOfApiModel()
     {
-        $this->assertInstanceOf(Api::class, $this->api);
+        $this->assertInstanceOf(ApiInterface::class, $this->api);
     }
     
     
@@ -45,16 +46,34 @@ class ApiTest extends TestCase
      */
     public function getServiceInstance()
     {
-        $this->assertInstanceOf(Api\Service\ServiceJson::class, $this->api->service());
+        $this->assertInstanceOf(Api\Service\ServiceInterface::class, $this->api->service());
     }
     
     
     /**
      * @test
      */
-    public function createNewInstanceOfCatalogProductAttributeHandler()
+    public function createNewInstanceOfProductAttributeHandler()
     {
         $this->assertInstanceOf(AttributeHandler::class, $this->api->productAttribute());
+    }
+
+
+    /**
+     * @test
+     */
+    public function createNewInstanceOfProductHandler()
+    {
+        $this->assertInstanceOf(ProductHandler::class, $this->api->product());
+    }
+
+
+    /**
+     * @test
+     */
+    public function createNewInstanceOfCategoryHandler()
+    {
+        $this->assertInstanceOf(CategoryHandler::class, $this->api->category());
     }
     
 }
