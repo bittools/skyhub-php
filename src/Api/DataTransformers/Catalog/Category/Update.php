@@ -21,7 +21,7 @@ class Update extends DataTransformerAbstract
             ]
         ];
 
-        $this->prepareOutput();
+        parent::__construct();
     }
 
 }

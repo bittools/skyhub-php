@@ -18,8 +18,8 @@ class Update extends Create
             'label'   => $label,
             'options' => $options
         ];
-        
-        $this->prepareOutput();
+
+        parent::__construct();
     }
 
 }

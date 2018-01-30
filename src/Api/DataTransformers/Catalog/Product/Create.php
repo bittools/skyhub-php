@@ -75,7 +75,7 @@ class Create extends DataTransformerAbstract
 
         $this->_outputData['product'] = $product;
 
-        $this->prepareOutput();
+        parent::__construct();
     }
 
 }

@@ -21,8 +21,8 @@ class Create extends DataTransformerAbstract
             'label'   => $label,
             'options' => $options
         ];
-        
-        $this->prepareOutput();
+
+        parent::__construct();
     }
 
 }

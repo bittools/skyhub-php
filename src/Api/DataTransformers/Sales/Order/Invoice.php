@@ -22,7 +22,7 @@ class Invoice extends DataTransformerAbstract
             ],
         ];
 
-        $this->prepareOutput();
+        parent::__construct();
     }
 
 }

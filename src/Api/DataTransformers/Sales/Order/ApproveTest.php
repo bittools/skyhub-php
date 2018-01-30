@@ -16,7 +16,7 @@ class ApproveTest extends DataTransformerAbstract
     public function __construct($orderId, $status)
     {
         $this->_outputData['status'] = $status;
-        $this->prepareOutput();
+        parent::__construct();
     }
 
 }

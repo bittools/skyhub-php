@@ -22,7 +22,7 @@ class Create extends DataTransformerAbstract
             ]
         ];
 
-        $this->prepareOutput();
+        parent::__construct();
     }
 
 }

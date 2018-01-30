@@ -40,7 +40,7 @@ class Create extends DataTransformerAbstract
 
         $this->_outputData['variation'] = $variation;
 
-        $this->prepareOutput();
+        parent::__construct();
     }
 
 }

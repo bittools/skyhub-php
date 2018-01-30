@@ -43,7 +43,7 @@ class Shipment extends DataTransformerAbstract
 
         $this->_outputData = $shipment;
 
-        $this->prepareOutput();
+        parent::__construct();
     }
 
 }

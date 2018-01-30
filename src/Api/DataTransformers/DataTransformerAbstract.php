@@ -7,6 +7,12 @@ abstract class DataTransformerAbstract implements DataTransformerInterface
     
     /** @var array */
     protected $_outputData = [];
+
+
+    public function __construct()
+    {
+        $this->prepareOutput();
+    }
     
     
     /**

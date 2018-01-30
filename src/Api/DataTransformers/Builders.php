@@ -83,12 +83,12 @@ trait Builders
 
 
     /**
-     * @param array $productData
-     * @param       $sku
-     * @param       $qty
-     * @param       $ean
-     * @param array $images
-     * @param array $specifications
+     * @param array  $productData
+     * @param string $sku
+     * @param string $qty
+     * @param string $ean
+     * @param array  $images
+     * @param array  $specifications
      *
      * @return array
      */
