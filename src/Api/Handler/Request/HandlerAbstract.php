@@ -75,7 +75,7 @@ abstract class HandlerAbstract implements HandlerInterface
         $baseUrlPath = $this->baseUrlPath;
 
         if (!empty($suffix)) {
-            $baseUrlPath .= '/' . $suffix;
+            $baseUrlPath .= '/' . trim($suffix);
         }
 
         return $baseUrlPath;

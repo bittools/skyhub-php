@@ -2,18 +2,35 @@
 
 namespace SkyHub\Api\DataTransformers\Catalog\Product;
 
+use SkyHub\Api\DataTransformers\Builders;
 use SkyHub\Api\DataTransformers\DataTransformerAbstract;
 
 class Create extends DataTransformerAbstract
 {
+
+    use Builders;
+
 
     /**
      * Attribute constructor.
      *
      * @param string $sku
      * @param array  $data
+     * @param array  $images
+     * @param array  $categories
+     * @param array  $specifications
+     * @param array  $variations
+     * @param array  $variationAttributes
      */
-    public function __construct($sku, array $data = [])
+    public function __construct(
+        $sku,
+        array $data = [],
+        array $images = [],
+        array $categories = [],
+        array $specifications = [],
+        array $variations = [],
+        array $variationAttributes = []
+    )
     {
         $product = [
             'sku'               => (string) $sku,
@@ -33,136 +50,32 @@ class Create extends DataTransformerAbstract
             'nbm'               => (string) arrayExtract($data, 'nbm', ''),
         ];
 
-        /** Setup categories. */
-        $categories = (array) arrayExtract($data, 'categories', []);
-        $this->buildProductCategories($product, $categories);
-
         /** Setup images. */
-        $images = (array) arrayExtract($data, 'images', []);
         $this->buildProductImages($product, $images);
 
+        /** Setup categories. */
+        $this->buildProductCategories($product, $categories);
+
         /** Setup specifications. */
-        $specifications = (array) arrayExtract($data, 'specifications', []);
         $this->buildProductSpecifications($product, $specifications);
 
-        /** Setup product variation attributes. */
-        $variationAttributes = (array) arrayExtract($data, 'variation_attributes', []);
-        $this->buildProductVariationAttributes($product, (array) $variationAttributes);
-
         /** Setup product variations. */
-        $variations = (array) arrayExtract($data, 'variations', []);
-        $this->buildProductVariation($product, $variations);
+        foreach ($variations as $variation) {
+            $_sku            = arrayExtract($variation, 'sku', '');
+            $_qty            = arrayExtract($variation, 'qty', 0);
+            $_ean            = arrayExtract($variation, 'ean', '');
+            $_images         = arrayExtract($variation, 'images', []);
+            $_specifications = arrayExtract($variation, 'specifications', []);
+
+            $this->buildProductVariation($product, $_sku, $_qty, $_ean, $_images, $_specifications);
+        }
+
+        /** Setup product variation attributes. */
+        $this->buildProductVariationAttributes($product, $variationAttributes);
 
         $this->_outputData['product'] = $product;
 
         $this->prepareOutput();
-    }
-
-
-    /**
-     * @param array $productData
-     * @param array $images
-     *
-     * @return array
-     */
-    protected function buildProductImages(array &$productData, array $images)
-    {
-        /** @var string $image */
-        foreach ($images as $image) {
-            $productData['images'][] = (string) $image;
-        }
-
-        return $productData;
-    }
-
-
-    /**
-     * @param array $productData
-     * @param array $specifications
-     *
-     * @return array
-     */
-    protected function buildProductSpecifications(array &$productData, array $specifications)
-    {
-        /** @var array $specification */
-        foreach ($specifications as $specification) {
-            $productData['specifications'][] = [
-                'key'   => (string) arrayExtract($specification, 'key',   ''),
-                'value' => (string) arrayExtract($specification, 'value', ''),
-            ];
-        }
-
-        return $productData;
-    }
-
-
-    /**
-     * @param array $productData
-     * @param array $categories
-     *
-     * @return array
-     */
-    protected function buildProductCategories(array &$productData, array $categories)
-    {
-        /** @var array $categories */
-        foreach ($categories as $category) {
-            $productData['categories'][] = [
-                'code' => (string) arrayExtract($category, 'code', ''),
-                'name' => (string) arrayExtract($category, 'name', ''),
-            ];
-        }
-
-        return $productData;
-    }
-
-
-    /**
-     * @param array $productData
-     * @param array $attributes
-     *
-     * @return array
-     */
-    protected function buildProductVariationAttributes(array &$productData, array $attributes)
-    {
-        /** @var string $attribute */
-        foreach ($attributes as $attribute) {
-            $productData['variation_attributes'][] = (string) $attribute;
-        }
-
-        return $productData;
-    }
-
-
-    /**
-     * @param array $productData
-     * @param array $variations
-     *
-     * @return array
-     */
-    protected function buildProductVariation(array &$productData, array $variations)
-    {
-        /** @var array $variation */
-        foreach ($variations as $variation) {
-            $productVariation = [
-                'sku' => (string) arrayExtract($variation, 'sku', ''),
-                'qty' => (int)    arrayExtract($variation, 'qty', 0),
-                'ean' => (string) arrayExtract($variation, 'ean', ''),
-            ];
-
-            /** Build product variation's images. */
-            if ($images = arrayExtract($variation, 'images')) {
-                $this->buildProductImages($productVariation, (array) $images);
-            }
-
-            /** Build product variation's specifications. */
-            if ($specifications = arrayExtract($variation, 'specifications')) {
-                $this->buildProductSpecifications($productVariation, (array) $specifications);
-            }
-
-            $productData['variations'][] = $productVariation;
-        }
-
-        return $productData;
     }
 
 }
