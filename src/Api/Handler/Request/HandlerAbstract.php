@@ -66,16 +66,23 @@ abstract class HandlerAbstract implements HandlerInterface
 
     /**
      * @param string $suffix
+     * @param array  $query
      *
      * @return string
      */
-    protected function baseUrlPath($suffix = null)
+    protected function baseUrlPath($suffix = null, array $query = [])
     {
         /** @var string $baseUrlPath */
         $baseUrlPath = $this->baseUrlPath;
 
         if (!empty($suffix)) {
+            $suffix = ltrim($suffix, "\/");
             $baseUrlPath .= '/' . trim($suffix);
+        }
+
+        if (!empty($query)) {
+            $queryString  = http_build_query($query);
+            $baseUrlPath .= '?' . $queryString;
         }
 
         return $baseUrlPath;

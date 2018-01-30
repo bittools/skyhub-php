@@ -100,14 +100,12 @@ class ProductHandler extends HandlerAbstract
      */
     public function products($status = null)
     {
-        $queryString = null;
-
-        if (!empty($status)) {
-            $queryString = "?status={$status}";
-        }
+        $query = [
+            'status' => $status
+        ];
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
-        $responseHandler = $this->service()->get($this->baseUrlPath($queryString));
+        $responseHandler = $this->service()->get($this->baseUrlPath(null, $query));
         return $responseHandler;
     }
 
@@ -121,6 +119,17 @@ class ProductHandler extends HandlerAbstract
     {
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->get($this->baseUrlPath($sku));
+        return $responseHandler;
+    }
+
+
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function urls()
+    {
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
+        $responseHandler = $this->service()->get($this->baseUrlPath('/urls'));
         return $responseHandler;
     }
 
