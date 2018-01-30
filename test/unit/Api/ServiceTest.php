@@ -16,10 +16,25 @@ namespace SkyHub\Api;
 
 use PHPUnit\Framework\TestCase;
 use SkyHub\Api;
+use ReflectionClass;
 
 class ServiceTest extends TestCase
 {
-    
 
+    /**
+     * @test
+     */
+    public function checkServiceHttpClientInstance()
+    {
+        $reflection = new ReflectionClass(Api\Service\ServiceDefault::class);
+
+        /** @var \ReflectionMethod $method */
+        $method = $reflection->getMethod('httpClient');
+        $method->setAccessible(true);
+
+        $httpClient = $method->invoke(new Api\Service\ServiceDefault('https://api.skyhub.com.br'));
+
+        $this->assertInstanceOf(\GuzzleHttp\Client::class, $httpClient);
+    }
 
 }
