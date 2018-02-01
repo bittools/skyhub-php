@@ -2,7 +2,7 @@
 
 namespace SkyHub\Api\Log;
 
-trait Getter
+trait Loggerable
 {
     
     /** @var Logger */
@@ -18,7 +18,7 @@ trait Getter
     protected $logFilePath = './';
     
     /** @var string */
-    protected $logAllowed  = true;
+    protected $logAllowed  = false;
     
     /** @var string */
     protected $logLevel    = \Monolog\Logger::DEBUG;

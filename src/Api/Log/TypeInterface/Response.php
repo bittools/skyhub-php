@@ -2,7 +2,6 @@
 
 namespace SkyHub\Api\Log\TypeInterface;
 
-use SkyHub\Api\Handler\Response\HandlerInterface;
 use SkyHub\Api\Handler\Response\HandlerInterfaceException;
 use SkyHub\Api\Handler\Response\HandlerInterfaceSuccess;
 

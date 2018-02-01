@@ -5,8 +5,7 @@ namespace SkyHub\Api\Service;
 use GuzzleHttp\Client as HttpClient;
 use SkyHub\Api;
 use SkyHub\Api\Handler\Response\HandlerDefault;
-use SkyHub\Api\Handler\Response\HandlerInterface;
-use SkyHub\Api\Log\Getter;
+use SkyHub\Api\Log\Loggerable;
 use SkyHub\Api\Log\TypeInterface\Request;
 use SkyHub\Api\Log\TypeInterface\Response;
 use SkyHub\Api\Handler\Response\HandlerException;
@@ -14,7 +13,7 @@ use SkyHub\Api\Handler\Response\HandlerException;
 abstract class ServiceAbstract implements ServiceInterface
 {
     
-    use Getter;
+    use Loggerable;
     
     
     CONST REQUEST_METHOD_GET    = 'GET';
@@ -47,7 +46,7 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     public function __construct($baseUri, array $headers = [], array $options = [], $log = true)
     {
-        $this->_headers = $headers;
+        $this->_headers = array_merge($this->_headers, $headers);
         
         $defaults = [
             'headers' => $headers,

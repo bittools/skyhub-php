@@ -2,14 +2,15 @@
 
 namespace SkyHub;
 
-use SkyHub\Api\Handler\Request\Getters as HandlerGetters;
+use SkyHub\Api\Handler\Request\Getters as RequestHandlerGetters;
+use SkyHub\Api\Service\ServiceAbstract;
 use SkyHub\Api\Service\ServiceInterface;
 use SkyHub\Api\Service\ServiceJson;
 
 class Api implements ApiInterface
 {
     
-    use HandlerGetters;
+    use RequestHandlerGetters;
     
     
     const HEADER_USER_EMAIL          = 'X-User-Email';
@@ -17,7 +18,7 @@ class Api implements ApiInterface
     const HEADER_ACCOUNT_MANAGER_KEY = 'X-Accountmanager-Key';
     
     
-    /** @var ServiceInterface */
+    /** @var ServiceAbstract */
     protected $_service = null;
     
     
@@ -36,13 +37,10 @@ class Api implements ApiInterface
             self::HEADER_USER_EMAIL          => $email,
             self::HEADER_API_KEY             => $apiKey,
             self::HEADER_ACCOUNT_MANAGER_KEY => $apiToken,
-            'Accept'                         => 'application/json',
-            'Content-Type'                   => 'application/json',
         ];
         
         if (empty($apiServiceClass)) {
             $this->_service = new ServiceJson($baseUri, $headers);
-            
             return;
         }
         
@@ -53,7 +51,7 @@ class Api implements ApiInterface
     /**
      * Gets a single connection instance.
      *
-     * @return ServiceInterface
+     * @return ServiceAbstract
      */
     public function service()
     {
