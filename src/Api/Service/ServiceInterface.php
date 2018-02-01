@@ -14,7 +14,8 @@
 
 namespace SkyHub\Api\Service;
 
-use SkyHub\Api\Handler\Response\HandlerInterface;
+use SkyHub\Api\Handler\Response\HandlerInterfaceException;
+use SkyHub\Api\Handler\Response\HandlerInterfaceSuccess;
 
 interface ServiceInterface
 {
@@ -34,7 +35,7 @@ interface ServiceInterface
      * @param string $body
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function post($uri, $body = null, array $options = []);
     
@@ -44,7 +45,7 @@ interface ServiceInterface
      * @param string $body
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function put($uri, $body = null, array $options = []);
 
@@ -54,7 +55,7 @@ interface ServiceInterface
      * @param string $body
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function patch($uri, $body = null, array $options = []);
     
@@ -63,7 +64,7 @@ interface ServiceInterface
      * @param string $uri
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function get($uri, array $options = []);
 
@@ -73,7 +74,7 @@ interface ServiceInterface
      * @param string $body
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function delete($uri, $body = null, array $options = []);
     
@@ -82,7 +83,7 @@ interface ServiceInterface
      * @param string $uri
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function head($uri, array $options = []);
     
@@ -93,7 +94,7 @@ interface ServiceInterface
      * @param string|array $body
      * @param array        $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function request($method, $uri, $body = null, $options = []);
     

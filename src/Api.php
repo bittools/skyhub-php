@@ -12,6 +12,11 @@ class Api implements ApiInterface
     use HandlerGetters;
     
     
+    const HEADER_USER_EMAIL          = 'X-User-Email';
+    const HEADER_API_KEY             = 'X-Api-Key';
+    const HEADER_ACCOUNT_MANAGER_KEY = 'X-Accountmanager-Key';
+    
+    
     /** @var ServiceInterface */
     protected $_service = null;
     
@@ -28,11 +33,11 @@ class Api implements ApiInterface
     public function __construct($baseUri, $email, $apiKey, $apiToken, ServiceInterface $apiService = null)
     {
         $headers = [
-            'X-User-Email'         => $email,
-            'X-Api-Key'            => $apiKey,
-            'X-Accountmanager-Key' => $apiToken,
-            'Accept'               => 'application/json',
-            'Content-Type'         => 'application/json',
+            self::HEADER_USER_EMAIL          => $email,
+            self::HEADER_API_KEY             => $apiKey,
+            self::HEADER_ACCOUNT_MANAGER_KEY => $apiToken,
+            'Accept'                         => 'application/json',
+            'Content-Type'                   => 'application/json',
         ];
         
         if (empty($apiServiceClass)) {

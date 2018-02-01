@@ -2,6 +2,8 @@
 namespace SkyHub\Api\Service;
 
 use SkyHub\Api\Handler\Response\HandlerInterface;
+use SkyHub\Api\Handler\Response\HandlerInterfaceException;
+use SkyHub\Api\Handler\Response\HandlerInterfaceSuccess;
 
 class ServiceDefault extends ServiceAbstract
 {
@@ -11,7 +13,7 @@ class ServiceDefault extends ServiceAbstract
      * @param array|string $body
      * @param array        $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function post($uri, $body = null, array $options = [])
     {
@@ -24,7 +26,7 @@ class ServiceDefault extends ServiceAbstract
      * @param string $body
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function put($uri, $body = null, array $options = [])
     {
@@ -37,7 +39,7 @@ class ServiceDefault extends ServiceAbstract
      * @param string $body
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function patch($uri, $body = null, array $options = [])
     {
@@ -49,7 +51,7 @@ class ServiceDefault extends ServiceAbstract
      * @param $uri
      * @param $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function get($uri, array $options = null)
     {
@@ -62,7 +64,7 @@ class ServiceDefault extends ServiceAbstract
      * @param string $body
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function delete($uri, $body = null, array $options = [])
     {
@@ -74,7 +76,7 @@ class ServiceDefault extends ServiceAbstract
      * @param $uri
      * @param $options
      *
-     * @return HandlerInterface
+     * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function head($uri, array $options = null)
     {

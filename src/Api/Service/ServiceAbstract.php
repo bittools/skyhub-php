@@ -3,9 +3,13 @@
 namespace SkyHub\Api\Service;
 
 use GuzzleHttp\Client as HttpClient;
+use SkyHub\Api;
 use SkyHub\Api\Handler\Response\HandlerDefault;
 use SkyHub\Api\Handler\Response\HandlerInterface;
 use SkyHub\Api\Log\Getter;
+use SkyHub\Api\Log\TypeInterface\Request;
+use SkyHub\Api\Log\TypeInterface\Response;
+use SkyHub\Api\Handler\Response\HandlerException;
 
 abstract class ServiceAbstract implements ServiceInterface
 {
@@ -30,6 +34,9 @@ abstract class ServiceAbstract implements ServiceInterface
     /** @var int */
     protected $_timeout = 15;
     
+    /** @var int */
+    protected $_requestId = null;
+    
     
     /**
      * Service constructor.
@@ -38,7 +45,7 @@ abstract class ServiceAbstract implements ServiceInterface
      * @param array  $headers
      * @param array  $options
      */
-    public function __construct($baseUri, array $headers = [], array $options = [])
+    public function __construct($baseUri, array $headers = [], array $options = [], $log = true)
     {
         $this->_headers = $headers;
         
@@ -57,31 +64,58 @@ abstract class ServiceAbstract implements ServiceInterface
     
     
     /**
+     * @param bool $renew
+     *
+     * @return int
+     */
+    public function getRequestId($renew = false)
+    {
+        if (empty($this->_requestId) || $renew) {
+            $this->_requestId = rand(1000000000, 9999999999);
+        }
+        
+        return $this->_requestId;
+    }
+    
+    
+    /**
      * @param string $method
      * @param string $uri
      * @param null   $body
      * @param array  $options
      *
-     * @return HandlerInterface
+     * @return Api\Handler\Response\HandlerInterfaceException|Api\Handler\Response\HandlerInterfaceSuccess
      */
-    public function request($method, $uri, $body = null, $options = [])
+    public function request($method, $uri, $body = null, $options = [], $debug = false)
     {
         $options[\GuzzleHttp\RequestOptions::TIMEOUT] = $this->getTimeout();
         $options[\GuzzleHttp\RequestOptions::HEADERS] = $this->_headers;
+        $options[\GuzzleHttp\RequestOptions::DEBUG]   = (bool) $debug;
         
         $options = $this->prepareRequestBody($body, $options);
-
-        /** @todo Log the request before send it to service. */
-        // $this->logger()->info();
-
-        /** @var \Psr\Http\Message\ResponseInterface $response */
-        $response = $this->httpClient()->request($method, $uri, $options);
         
-        /** @var HandlerInterface $responseHandler */
-        $responseHandler = new HandlerDefault($response);
+        /** Log the request before sending it. */
+        $logRequest = new Request($this->getRequestId(), $method, $uri, $body, $this->protectedHeaders(), $options);
+        $this->logger()->logRequest($logRequest);
+
+        try {
+            /** @var \Psr\Http\Message\ResponseInterface $response */
+            $response = $this->httpClient()->request($method, $uri, $options);
     
-        /** @todo Log the response after send it to service. */
-        // $this->logger()->info();
+            /** @var Api\Handler\Response\HandlerInterfaceSuccess $responseHandler */
+            $responseHandler = new HandlerDefault($response);
+    
+            /** Log the request response. */
+            $logResponse = (new Response($this->getRequestId()))->importResponseHandler($responseHandler);
+        } catch (\Exception $e) {
+            /** @var Api\Handler\Response\HandlerInterfaceException $responseHandler */
+            $responseHandler = new HandlerException($e);
+            
+            /** Log the request response. */
+            $logResponse = (new Response($this->getRequestId()))->importResponseExceptionHandler($responseHandler);
+        }
+        
+        $this->logger()->logResponse($logResponse);
         
         return $responseHandler;
     }
@@ -197,6 +231,53 @@ abstract class ServiceAbstract implements ServiceInterface
     {
         $this->_timeout = (int) $timeout;
         return $this;
+    }
+    
+    
+    /**
+     * @return array
+     */
+    protected function protectedHeaders()
+    {
+        $headers = $this->_headers;
+        
+        if (isset($headers[Api::HEADER_USER_EMAIL])) {
+            $headers[Api::HEADER_USER_EMAIL] = $this->protectValue($headers[Api::HEADER_USER_EMAIL]);
+        }
+    
+        if (isset($headers[Api::HEADER_API_KEY])) {
+            $headers[Api::HEADER_API_KEY] = $this->protectValue($headers[Api::HEADER_API_KEY]);
+        }
+    
+        if (isset($headers[Api::HEADER_ACCOUNT_MANAGER_KEY])) {
+            $headers[Api::HEADER_ACCOUNT_MANAGER_KEY] = $this->protectValue($headers[Api::HEADER_ACCOUNT_MANAGER_KEY]);
+        }
+        
+        return $headers;
+    }
+    
+    
+    /**
+     * @param string $value
+     * @param string $char
+     * @param float  $protectionAmount
+     *
+     * @return string
+     */
+    protected function protectValue($value, $char = '*', $protectionAmount = 0.5)
+    {
+        $len            = strlen($value);
+        $protectionSize = (int) ($len * (float) $protectionAmount);
+        
+        $sidesAmount    = max((int) (($len-$protectionSize)/2), 0);
+        
+        $left   = substr($value, 0, $sidesAmount);
+        $right  = substr($value, -$sidesAmount, $sidesAmount);
+        $middle = str_repeat($char, $protectionSize);
+        
+        $value = implode([$left, $middle, $right]);
+        
+        return $value;
     }
     
 }

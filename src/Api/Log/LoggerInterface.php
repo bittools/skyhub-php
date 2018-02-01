@@ -2,21 +2,25 @@
 
 namespace SkyHub\Api\Log;
 
-use SkyHub\Api\Handler\Request\HandlerInterface as RequestHandlerInterface;
-use SkyHub\Api\Handler\Response\HandlerInterface as ResponseHandlerInterface;
+use SkyHub\Api\Log\TypeInterface\TypeRequestInterface,
+    SkyHub\Api\Log\TypeInterface\TypeResponseInterface;
 
 interface LoggerInterface
 {
     
     /**
-     * @param RequestHandlerInterface $request
+     * @param TypeRequestInterface $request
+     *
+     * @return mixed
      */
-    public function logRequest(RequestHandlerInterface $request);
+    public function logRequest(TypeRequestInterface $request);
     
     
     /**
-     * @param ResponseHandlerInterface $response
+     * @param TypeResponseInterface $response
+     *
+     * @return mixed
      */
-    public function logResponse(ResponseHandlerInterface $response);
+    public function logResponse(TypeResponseInterface $response);
     
 }

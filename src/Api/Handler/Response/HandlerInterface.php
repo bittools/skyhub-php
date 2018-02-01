@@ -2,22 +2,24 @@
 
 namespace SkyHub\Api\Handler\Response;
 
-use Psr\Http\Message\ResponseInterface;
-
 interface HandlerInterface
 {
-
+    
     /**
-     * HandlerInterface constructor.
-     *
-     * @param ResponseInterface $response
+     * @return array
      */
-    public function __construct(ResponseInterface $response);
-
-
+    public function export();
+    
+    
     /**
-     * @return mixed
+     * @return bool
      */
-    public function body();
+    public function success();
+    
+    
+    /**
+     * @return bool
+     */
+    public function exception();
     
 }
