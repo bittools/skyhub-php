@@ -71,5 +71,4 @@ class CategoryHandler extends HandlerAbstract
         $responseHandler = $this->service()->delete($this->baseUrlPath($code));
         return $responseHandler;
     }
-
 }

@@ -20,5 +20,4 @@ class SystemHandler extends HandlerAbstract
         $responseHandler = $this->service()->get($this->baseUrlPath());
         return $responseHandler;
     }
-
 }

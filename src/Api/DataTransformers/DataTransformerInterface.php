@@ -9,5 +9,4 @@ interface DataTransformerInterface
      * @return mixed
      */
     public function output();
-    
 }

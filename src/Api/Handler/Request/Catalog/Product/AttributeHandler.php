@@ -50,5 +50,4 @@ class AttributeHandler extends HandlerAbstract
     
         return $responseHandler;
     }
-
 }

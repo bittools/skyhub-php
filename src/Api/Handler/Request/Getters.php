@@ -2,15 +2,15 @@
 
 namespace SkyHub\Api\Handler\Request;
 
-use SkyHub\Api\Handler\Request\Catalog\CategoryHandler,
-    SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler,
-    SkyHub\Api\Handler\Request\Catalog\ProductHandler,
-    SkyHub\Api\Handler\Request\Sales\Order\QueueHandler,
-    SkyHub\Api\Handler\Request\Sales\Order\StatusHandler,
-    SkyHub\Api\Handler\Request\Sales\OrderHandler,
-    SkyHub\Api\Handler\Request\Sales\SystemHandler,
-    SkyHub\Api\Handler\Request\Sync\ErrorsHandler,
-    SkyHub\Api\Handler\Request\Catalog\Product\VariationHandler;
+use SkyHub\Api\Handler\Request\Catalog\CategoryHandler;
+use SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler;
+use SkyHub\Api\Handler\Request\Catalog\ProductHandler;
+use SkyHub\Api\Handler\Request\Sales\Order\QueueHandler;
+use SkyHub\Api\Handler\Request\Sales\Order\StatusHandler;
+use SkyHub\Api\Handler\Request\Sales\OrderHandler;
+use SkyHub\Api\Handler\Request\Sales\SystemHandler;
+use SkyHub\Api\Handler\Request\Sync\ErrorsHandler;
+use SkyHub\Api\Handler\Request\Catalog\Product\VariationHandler;
 
 trait Getters
 {
@@ -94,5 +94,4 @@ trait Getters
     {
         return new ErrorsHandler($this);
     }
-
 }

@@ -16,5 +16,4 @@ class Update extends Create
     {
         parent::__construct($code, $label, $type);
     }
-
 }

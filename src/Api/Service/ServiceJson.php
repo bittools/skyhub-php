@@ -31,5 +31,4 @@ class ServiceJson extends ServiceDefault
         $options[\GuzzleHttp\RequestOptions::JSON] = $bodyData;
         return $options;
     }
-
 }

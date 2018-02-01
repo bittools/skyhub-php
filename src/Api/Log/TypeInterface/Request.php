@@ -24,8 +24,7 @@ class Request extends TypeAbstract implements TypeRequestInterface
         array $headers = [],
         array $requestOptions = [],
         $protocolVersion = null
-    )
-    {
+    ) {
         parent::__construct($requestId, $body, $headers, $protocolVersion);
         
         $this->setMethod($method)
@@ -68,5 +67,4 @@ class Request extends TypeAbstract implements TypeRequestInterface
         $this->data['options'] = (array) $requestOptions;
         return $this;
     }
-    
 }

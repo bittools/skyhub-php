@@ -20,5 +20,4 @@ class Cancel extends DataTransformerAbstract
 
         parent::__construct();
     }
-
 }

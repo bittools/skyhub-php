@@ -37,5 +37,4 @@ class QueueHandler extends HandlerAbstract
         $responseHandler = $this->service()->delete($this->baseUrlPath("orders/{$orderId}"));
         return $responseHandler;
     }
-
 }

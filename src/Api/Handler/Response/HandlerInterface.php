@@ -21,5 +21,4 @@ interface HandlerInterface
      * @return bool
      */
     public function exception();
-    
 }

@@ -93,5 +93,4 @@ abstract class TypeAbstract implements TypeInterface
         $this->data['protocol_version'] = $version;
         return $this;
     }
-    
 }

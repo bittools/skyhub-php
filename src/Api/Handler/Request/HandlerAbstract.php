@@ -87,5 +87,4 @@ abstract class HandlerAbstract implements HandlerInterface
 
         return $baseUrlPath;
     }
-
 }

@@ -107,5 +107,4 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
             'trace'   => $this->traceAsString(),
         ];
     }
-    
 }

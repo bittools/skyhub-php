@@ -23,8 +23,7 @@ class Response extends TypeAbstract implements TypeResponseInterface
         array $headers = [],
         $statusCode = null,
         $protocolVersion = null
-    )
-    {
+    ) {
         parent::__construct($requestId, $body, $headers, $protocolVersion);
         $this->setStatusCode($statusCode);
     }
@@ -68,5 +67,4 @@ class Response extends TypeAbstract implements TypeResponseInterface
         
         return $this;
     }
-    
 }

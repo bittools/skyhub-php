@@ -97,5 +97,4 @@ interface ServiceInterface
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function request($method, $uri, $body = null, $options = []);
-    
 }

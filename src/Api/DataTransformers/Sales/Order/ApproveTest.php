@@ -18,5 +18,4 @@ class ApproveTest extends DataTransformerAbstract
         $this->_outputData['status'] = $status;
         parent::__construct();
     }
-
 }

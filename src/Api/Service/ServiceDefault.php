@@ -82,5 +82,4 @@ class ServiceDefault extends ServiceAbstract
     {
         return $this->request(self::REQUEST_METHOD_HEAD, $uri, $options);
     }
-
 }

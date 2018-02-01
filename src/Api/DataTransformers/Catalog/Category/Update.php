@@ -23,5 +23,4 @@ class Update extends DataTransformerAbstract
 
         parent::__construct();
     }
-
 }

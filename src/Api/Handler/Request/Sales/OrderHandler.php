@@ -4,12 +4,12 @@ namespace SkyHub\Api\Handler\Request\Sales;
 
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 
-use SkyHub\Api\DataTransformers\Sales\Order\ApproveTest as ApproveTestTransformer,
-    SkyHub\Api\DataTransformers\Sales\Order\Invoice as InvoiceTransformer,
-    SkyHub\Api\DataTransformers\Sales\Order\Cancel as CancelTransformer,
-    SkyHub\Api\DataTransformers\Sales\Order\Delivery as DeliveryTransformer,
-    SkyHub\Api\DataTransformers\Sales\Order\Shipment as ShipmentTransformer,
-    SkyHub\Api\DataTransformers\Sales\Order\ShipmentException as ShipmentExceptionTransformer;
+use SkyHub\Api\DataTransformers\Sales\Order\ApproveTest as ApproveTestTransformer;
+use SkyHub\Api\DataTransformers\Sales\Order\Invoice as InvoiceTransformer;
+use SkyHub\Api\DataTransformers\Sales\Order\Cancel as CancelTransformer;
+use SkyHub\Api\DataTransformers\Sales\Order\Delivery as DeliveryTransformer;
+use SkyHub\Api\DataTransformers\Sales\Order\Shipment as ShipmentTransformer;
+use SkyHub\Api\DataTransformers\Sales\Order\ShipmentException as ShipmentExceptionTransformer;
 
 class OrderHandler extends HandlerAbstract
 {
@@ -222,5 +222,4 @@ class OrderHandler extends HandlerAbstract
         $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/shipment_exception"), $body);
         return $responseHandler;
     }
-
 }

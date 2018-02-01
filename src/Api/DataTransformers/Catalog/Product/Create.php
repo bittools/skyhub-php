@@ -30,8 +30,7 @@ class Create extends DataTransformerAbstract
         array $specifications = [],
         array $variations = [],
         array $variationAttributes = []
-    )
-    {
+    ) {
         $product = [
             'sku'               => (string) $sku,
             'name'              => (string) arrayExtract($data, 'name', ''),
@@ -77,5 +76,4 @@ class Create extends DataTransformerAbstract
 
         parent::__construct();
     }
-
 }

@@ -24,5 +24,4 @@ class Invoice extends DataTransformerAbstract
 
         parent::__construct();
     }
-
 }

@@ -55,5 +55,4 @@ interface HandlerInterfaceSuccess extends HandlerInterface
      * @return string
      */
     public function reasonPhrase();
-    
 }

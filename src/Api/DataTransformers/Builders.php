@@ -36,7 +36,7 @@ trait Builders
         /** @var array $specification */
         foreach ($specifications as $specification) {
             $productData['specifications'][] = [
-                'key'   => (string) arrayExtract($specification, 'key',   ''),
+                'key'   => (string) arrayExtract($specification, 'key', ''),
                 'value' => (string) arrayExtract($specification, 'value', ''),
             ];
         }
@@ -99,8 +99,7 @@ trait Builders
         $ean,
         array $images = [],
         array $specifications = []
-    )
-    {
+    ) {
         $transformer = new Create($sku, $qty, $ean, $images, $specifications);
         $output      = $transformer->output();
 
@@ -108,5 +107,4 @@ trait Builders
 
         return $productData;
     }
-
 }

@@ -27,5 +27,4 @@ interface TypeRequestInterface extends TypeInterface
      * @return $this
      */
     public function setOptions(array $requestOptions = []);
-    
 }

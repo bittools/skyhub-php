@@ -56,8 +56,7 @@ class VariationHandler extends HandlerAbstract
         $variationEan = null,
         array $variationImages = [],
         array $variationSpecifications = []
-    )
-    {
+    ) {
         $transformer = new Update(
             $variationSku,
             $variationQty,
@@ -72,5 +71,4 @@ class VariationHandler extends HandlerAbstract
         $responseHandler = $this->service()->put($this->baseUrlPath($sku), $body);
         return $responseHandler;
     }
-
 }

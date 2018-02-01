@@ -16,12 +16,12 @@ abstract class ServiceAbstract implements ServiceInterface
     use Loggerable;
     
     
-    CONST REQUEST_METHOD_GET    = 'GET';
-    CONST REQUEST_METHOD_POST   = 'POST';
-    CONST REQUEST_METHOD_PUT    = 'PUT';
-    CONST REQUEST_METHOD_HEAD   = 'HEAD';
-    CONST REQUEST_METHOD_DELETE = 'DELETE';
-    CONST REQUEST_METHOD_PATCH  = 'PATCH';
+    const REQUEST_METHOD_GET    = 'GET';
+    const REQUEST_METHOD_POST   = 'POST';
+    const REQUEST_METHOD_PUT    = 'PUT';
+    const REQUEST_METHOD_HEAD   = 'HEAD';
+    const REQUEST_METHOD_DELETE = 'DELETE';
+    const REQUEST_METHOD_PATCH  = 'PATCH';
 
     
     /** @var HttpClient */
@@ -254,5 +254,4 @@ abstract class ServiceAbstract implements ServiceInterface
         
         return $headers;
     }
-    
 }

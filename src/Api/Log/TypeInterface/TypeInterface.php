@@ -49,5 +49,4 @@ interface TypeInterface
      * @return $this
      */
     public function setProtocolVersion($version = null);
-    
 }

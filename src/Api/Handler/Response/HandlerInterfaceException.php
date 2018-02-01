@@ -49,5 +49,4 @@ interface HandlerInterfaceException extends HandlerInterface
      * @return array
      */
     public function trace();
-    
 }

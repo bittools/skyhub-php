@@ -80,5 +80,4 @@ class StatusHandler extends HandlerAbstract
         $responseHandler = $this->service()->put($this->baseUrlPath($code), $body);
         return $responseHandler;
     }
-
 }

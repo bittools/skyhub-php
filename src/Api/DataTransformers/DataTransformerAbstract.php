@@ -31,5 +31,4 @@ abstract class DataTransformerAbstract implements DataTransformerInterface
     {
         return $this->_outputData;
     }
-    
 }

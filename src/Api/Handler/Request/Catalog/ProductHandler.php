@@ -3,9 +3,9 @@
 namespace SkyHub\Api\Handler\Request\Catalog;
 
 use SkyHub\Api\Handler\Request\HandlerAbstract;
-use SkyHub\Api\DataTransformers\Catalog\Product\Variation\Create as CreateVariationTransformer,
-    SkyHub\Api\DataTransformers\Catalog\Product\Create as CreateTransformer,
-    SkyHub\Api\DataTransformers\Catalog\Product\Update as UpdateTransformer;
+use SkyHub\Api\DataTransformers\Catalog\Product\Variation\Create as CreateVariationTransformer;
+use SkyHub\Api\DataTransformers\Catalog\Product\Create as CreateTransformer;
+use SkyHub\Api\DataTransformers\Catalog\Product\Update as UpdateTransformer;
 
 class ProductHandler extends HandlerAbstract
 {
@@ -33,8 +33,7 @@ class ProductHandler extends HandlerAbstract
         array $specifications = [],
         array $variations = [],
         array $variationAttributes = []
-    )
-    {
+    ) {
         $transformer = new CreateTransformer(
             $sku,
             $attributes,
@@ -72,8 +71,7 @@ class ProductHandler extends HandlerAbstract
         array $specifications = [],
         array $variations = [],
         array $variationAttributes = []
-    )
-    {
+    ) {
         $transformer = new UpdateTransformer(
             $sku,
             $attributes,
@@ -163,8 +161,7 @@ class ProductHandler extends HandlerAbstract
         $variationEan,
         array $variationImages = [],
         array $variationSpecifications = []
-    )
-    {
+    ) {
         $transformer = new CreateVariationTransformer(
             $variationSku,
             $variationQty,
@@ -179,5 +176,4 @@ class ProductHandler extends HandlerAbstract
         $responseHandler = $this->service()->post($this->baseUrlPath("{$sku}/variations"), $body);
         return $responseHandler;
     }
-
 }

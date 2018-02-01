@@ -45,5 +45,4 @@ class Shipment extends DataTransformerAbstract
 
         parent::__construct();
     }
-
 }

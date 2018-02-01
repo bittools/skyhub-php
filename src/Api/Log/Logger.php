@@ -150,5 +150,4 @@ class Logger extends LoggerAbstract
         
         return $this;
     }
-    
 }

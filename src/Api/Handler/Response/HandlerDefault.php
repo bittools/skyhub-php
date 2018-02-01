@@ -117,5 +117,4 @@ class HandlerDefault extends HandlerAbstract implements HandlerInterfaceSuccess
             'reason_phrase'    => $this->reasonPhrase(),
         ];
     }
-    
 }

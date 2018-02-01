@@ -2,8 +2,8 @@
 
 namespace SkyHub\Api\Log;
 
-use SkyHub\Api\Log\TypeInterface\TypeRequestInterface,
-    SkyHub\Api\Log\TypeInterface\TypeResponseInterface;
+use SkyHub\Api\Log\TypeInterface\TypeRequestInterface;
+use SkyHub\Api\Log\TypeInterface\TypeResponseInterface;
 
 interface LoggerInterface
 {
@@ -22,5 +22,4 @@ interface LoggerInterface
      * @return mixed
      */
     public function logResponse(TypeResponseInterface $response);
-    
 }

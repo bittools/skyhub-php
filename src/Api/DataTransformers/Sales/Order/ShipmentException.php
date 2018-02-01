@@ -30,5 +30,4 @@ class ShipmentException extends DataTransformerAbstract
 
         parent::__construct();
     }
-
 }

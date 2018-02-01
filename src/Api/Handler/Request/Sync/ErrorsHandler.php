@@ -68,8 +68,7 @@ class ErrorsHandler extends HandlerAbstract
         array $errors = [
             ['entity_id' => null, 'error_category_code' => null, 'error_code' => null]
         ]
-    )
-    {
+    ) {
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->patch($this->baseUrlPath('products'));
         return $responseHandler;
@@ -87,11 +86,9 @@ class ErrorsHandler extends HandlerAbstract
         array $errors = [
             ['entity_id' => null, 'error_category_code' => null, 'error_code' => null]
         ]
-    )
-    {
+    ) {
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->patch($this->baseUrlPath('orders'));
         return $responseHandler;
     }
-
 }

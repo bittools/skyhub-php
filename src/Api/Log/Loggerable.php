@@ -146,5 +146,4 @@ trait Loggerable
     {
         return $this->logLevel;
     }
-    
 }

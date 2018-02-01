@@ -21,5 +21,4 @@ class Update extends Create
 
         parent::__construct();
     }
-
 }

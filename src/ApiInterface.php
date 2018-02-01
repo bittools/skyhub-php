@@ -22,5 +22,4 @@ interface ApiInterface
      * @return \SkyHub\Api\Service\ServiceInterface
      */
     public function service();
-    
 }
