@@ -2,8 +2,8 @@
 
 namespace SkyHub\Api\Handler\Request\Catalog\Product;
 
-use SkyHub\Api\DataTransformers\Catalog\Product\Attribute\Create as CreateTransformer;
-use SkyHub\Api\DataTransformers\Catalog\Product\Attribute\Update as UpdateTransformer;
+use SkyHub\Api\DataTransformer\Catalog\Product\Attribute\Create as CreateTransformer;
+use SkyHub\Api\DataTransformer\Catalog\Product\Attribute\Update as UpdateTransformer;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 use SkyHub\Api\Handler\Response\HandlerInterface;
 

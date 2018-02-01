@@ -2,7 +2,7 @@
 
 namespace SkyHub\Api\Handler\Request;
 
-use SkyHub\Api\DataTransformers\DataTransformerInterface;
+use SkyHub\Api\DataTransformer\DataTransformerInterface;
 use SkyHub\Api\Service\ServiceInterface;
 use SkyHub\ApiInterface;
 

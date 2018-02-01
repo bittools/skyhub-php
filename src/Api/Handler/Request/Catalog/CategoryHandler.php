@@ -3,8 +3,8 @@
 namespace SkyHub\Api\Handler\Request\Catalog;
 
 use SkyHub\Api\Handler\Request\HandlerAbstract;
-use SkyHub\Api\DataTransformers\Catalog\Category\Create as CreateTransformer;
-use SkyHub\Api\DataTransformers\Catalog\Category\Update as UpdateTransformer;
+use SkyHub\Api\DataTransformer\Catalog\Category\Create as CreateTransformer;
+use SkyHub\Api\DataTransformer\Catalog\Category\Update as UpdateTransformer;
 
 /**
  * BSeller Platform | B2W - Companhia Digital

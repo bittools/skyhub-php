@@ -4,12 +4,12 @@ namespace SkyHub\Api\Handler\Request\Sales;
 
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 
-use SkyHub\Api\DataTransformers\Sales\Order\ApproveTest as ApproveTestTransformer;
-use SkyHub\Api\DataTransformers\Sales\Order\Invoice as InvoiceTransformer;
-use SkyHub\Api\DataTransformers\Sales\Order\Cancel as CancelTransformer;
-use SkyHub\Api\DataTransformers\Sales\Order\Delivery as DeliveryTransformer;
-use SkyHub\Api\DataTransformers\Sales\Order\Shipment as ShipmentTransformer;
-use SkyHub\Api\DataTransformers\Sales\Order\ShipmentException as ShipmentExceptionTransformer;
+use SkyHub\Api\DataTransformer\Sales\Order\ApproveTest as ApproveTestTransformer;
+use SkyHub\Api\DataTransformer\Sales\Order\Invoice as InvoiceTransformer;
+use SkyHub\Api\DataTransformer\Sales\Order\Cancel as CancelTransformer;
+use SkyHub\Api\DataTransformer\Sales\Order\Delivery as DeliveryTransformer;
+use SkyHub\Api\DataTransformer\Sales\Order\Shipment as ShipmentTransformer;
+use SkyHub\Api\DataTransformer\Sales\Order\ShipmentException as ShipmentExceptionTransformer;
 
 /**
  * BSeller Platform | B2W - Companhia Digital

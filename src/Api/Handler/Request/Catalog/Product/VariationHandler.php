@@ -2,7 +2,7 @@
 
 namespace SkyHub\Api\Handler\Request\Catalog\Product;
 
-use SkyHub\Api\DataTransformers\Catalog\Product\Variation\Update;
+use SkyHub\Api\DataTransformer\Catalog\Product\Variation\Update;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 use SkyHub\Api\Handler\Response\HandlerInterface;
 

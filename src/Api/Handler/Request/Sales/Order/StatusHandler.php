@@ -2,8 +2,8 @@
 
 namespace SkyHub\Api\Handler\Request\Sales\Order;
 
-use SkyHub\Api\DataTransformers\Sales\Order\Status\Create;
-use SkyHub\Api\DataTransformers\Sales\Order\Status\Update;
+use SkyHub\Api\DataTransformer\Sales\Order\Status\Create;
+use SkyHub\Api\DataTransformer\Sales\Order\Status\Update;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 
 /**

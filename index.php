@@ -14,7 +14,7 @@ $api = new SkyHub\Api($baseUri, $email, $apiKey, $apiToken);
  * Attribute Creation and Update.
  */
 $responseCreate = $api->productAttribute()->create('color', 'Color', ['Blue', 'White', 'Green', 'Yellow']);
-//$responseUpdate = $api->productAttribute()->update('color', 'Color', ['Blue', 'White', 'Green', 'Yellow', 'Orange']);
+$responseUpdate = $api->productAttribute()->update('color', 'Color', ['Blue', 'White', 'Green', 'Yellow', 'Orange']);
 
 /**
  * Category List, Creation, Update and Delete.
