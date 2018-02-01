@@ -45,20 +45,20 @@ class Create extends DataTransformerAbstract
     ) {
         $product = [
             'sku'               => (string) $sku,
-            'name'              => (string) arrayExtract($data, 'name', ''),
-            'description'       => (string) arrayExtract($data, 'description', ''),
-            'status'            => (string) arrayExtract($data, 'status', 'disabled'),
-            'qty'               => (int)    arrayExtract($data, 'qty', 0),
-            'price'             => (float)  arrayExtract($data, 'price', 0.0000),
-            'promotional_price' => (float)  arrayExtract($data, 'promotional_price', 0.0000),
-            'cost'              => (float)  arrayExtract($data, 'cost', 0.0000),
-            'weight'            => (float)  arrayExtract($data, 'weight', 0.0000),
-            'height'            => (float)  arrayExtract($data, 'height', 0.0000),
-            'width'             => (float)  arrayExtract($data, 'width', 0.0000),
-            'length'            => (float)  arrayExtract($data, 'length', 0.0000),
-            'brand'             => (string) arrayExtract($data, 'brand', ''),
-            'ean'               => (string) arrayExtract($data, 'ean', ''),
-            'nbm'               => (string) arrayExtract($data, 'nbm', ''),
+            'name'              => (string) $this->arrayExtract($data, 'name', ''),
+            'description'       => (string) $this->arrayExtract($data, 'description', ''),
+            'status'            => (string) $this->arrayExtract($data, 'status', 'disabled'),
+            'qty'               => (int)    $this->arrayExtract($data, 'qty', 0),
+            'price'             => (float)  $this->arrayExtract($data, 'price', 0.0000),
+            'promotional_price' => (float)  $this->arrayExtract($data, 'promotional_price', 0.0000),
+            'cost'              => (float)  $this->arrayExtract($data, 'cost', 0.0000),
+            'weight'            => (float)  $this->arrayExtract($data, 'weight', 0.0000),
+            'height'            => (float)  $this->arrayExtract($data, 'height', 0.0000),
+            'width'             => (float)  $this->arrayExtract($data, 'width', 0.0000),
+            'length'            => (float)  $this->arrayExtract($data, 'length', 0.0000),
+            'brand'             => (string) $this->arrayExtract($data, 'brand', ''),
+            'ean'               => (string) $this->arrayExtract($data, 'ean', ''),
+            'nbm'               => (string) $this->arrayExtract($data, 'nbm', ''),
         ];
 
         /** Setup images. */
@@ -72,11 +72,11 @@ class Create extends DataTransformerAbstract
 
         /** Setup product variations. */
         foreach ($variations as $variation) {
-            $_sku            = arrayExtract($variation, 'sku', '');
-            $_qty            = arrayExtract($variation, 'qty', 0);
-            $_ean            = arrayExtract($variation, 'ean', '');
-            $_images         = arrayExtract($variation, 'images', []);
-            $_specifications = arrayExtract($variation, 'specifications', []);
+            $_sku            = $this->arrayExtract($variation, 'sku', '');
+            $_qty            = $this->arrayExtract($variation, 'qty', 0);
+            $_ean            = $this->arrayExtract($variation, 'ean', '');
+            $_images         = $this->arrayExtract($variation, 'images', []);
+            $_specifications = $this->arrayExtract($variation, 'specifications', []);
 
             $this->buildProductVariation($product, $_sku, $_qty, $_ean, $_images, $_specifications);
         }

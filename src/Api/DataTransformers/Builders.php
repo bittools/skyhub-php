@@ -3,6 +3,7 @@
 namespace SkyHub\Api\DataTransformers;
 
 use SkyHub\Api\DataTransformers\Catalog\Product\Variation\Create;
+use SkyHub\Api\Helpers;
 
 /**
  * BSeller Platform | B2W - Companhia Digital
@@ -18,6 +19,8 @@ use SkyHub\Api\DataTransformers\Catalog\Product\Variation\Create;
  */
 trait Builders
 {
+    
+    use Helpers;
 
 
     /**
@@ -48,8 +51,8 @@ trait Builders
         /** @var array $specification */
         foreach ($specifications as $specification) {
             $productData['specifications'][] = [
-                'key'   => (string) arrayExtract($specification, 'key', ''),
-                'value' => (string) arrayExtract($specification, 'value', ''),
+                'key'   => (string) $this->arrayExtract($specification, 'key', ''),
+                'value' => (string) $this->arrayExtract($specification, 'value', ''),
             ];
         }
 
@@ -68,8 +71,8 @@ trait Builders
         /** @var array $categories */
         foreach ($categories as $category) {
             $productData['categories'][] = [
-                'code' => (string) arrayExtract($category, 'code', ''),
-                'name' => (string) arrayExtract($category, 'name', ''),
+                'code' => (string) $this->arrayExtract($category, 'code', ''),
+                'name' => (string) $this->arrayExtract($category, 'name', ''),
             ];
         }
 

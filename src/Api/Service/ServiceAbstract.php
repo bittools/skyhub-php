@@ -4,6 +4,7 @@ namespace SkyHub\Api\Service;
 
 use GuzzleHttp\Client as HttpClient;
 use SkyHub\Api;
+use SkyHub\Api\Helpers;
 use SkyHub\Api\Handler\Response\HandlerDefault;
 use SkyHub\Api\Log\Loggerable;
 use SkyHub\Api\Log\TypeInterface\Request;
@@ -25,7 +26,7 @@ use SkyHub\Api\Handler\Response\HandlerException;
 abstract class ServiceAbstract implements ServiceInterface
 {
     
-    use Loggerable;
+    use Loggerable, Helpers;
     
     
     const REQUEST_METHOD_GET    = 'GET';
@@ -253,15 +254,15 @@ abstract class ServiceAbstract implements ServiceInterface
         $headers = $this->headers;
         
         if (isset($headers[Api::HEADER_USER_EMAIL])) {
-            $headers[Api::HEADER_USER_EMAIL] = protect_string($headers[Api::HEADER_USER_EMAIL]);
+            $headers[Api::HEADER_USER_EMAIL] = $this->protectString($headers[Api::HEADER_USER_EMAIL]);
         }
     
         if (isset($headers[Api::HEADER_API_KEY])) {
-            $headers[Api::HEADER_API_KEY] = protect_string($headers[Api::HEADER_API_KEY]);
+            $headers[Api::HEADER_API_KEY] = $this->protectString($headers[Api::HEADER_API_KEY]);
         }
     
         if (isset($headers[Api::HEADER_ACCOUNT_MANAGER_KEY])) {
-            $headers[Api::HEADER_ACCOUNT_MANAGER_KEY] = protect_string($headers[Api::HEADER_ACCOUNT_MANAGER_KEY]);
+            $headers[Api::HEADER_ACCOUNT_MANAGER_KEY] = $this->protectString($headers[Api::HEADER_ACCOUNT_MANAGER_KEY]);
         }
         
         return $headers;
