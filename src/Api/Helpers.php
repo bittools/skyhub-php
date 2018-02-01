@@ -80,5 +80,4 @@ trait Helpers
     {
         return (bool) isset($data[$index]);
     }
-
 }
