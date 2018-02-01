@@ -241,42 +241,18 @@ abstract class ServiceAbstract implements ServiceInterface
         $headers = $this->_headers;
         
         if (isset($headers[Api::HEADER_USER_EMAIL])) {
-            $headers[Api::HEADER_USER_EMAIL] = $this->protectValue($headers[Api::HEADER_USER_EMAIL]);
+            $headers[Api::HEADER_USER_EMAIL] = protect_string($headers[Api::HEADER_USER_EMAIL]);
         }
     
         if (isset($headers[Api::HEADER_API_KEY])) {
-            $headers[Api::HEADER_API_KEY] = $this->protectValue($headers[Api::HEADER_API_KEY]);
+            $headers[Api::HEADER_API_KEY] = protect_string($headers[Api::HEADER_API_KEY]);
         }
     
         if (isset($headers[Api::HEADER_ACCOUNT_MANAGER_KEY])) {
-            $headers[Api::HEADER_ACCOUNT_MANAGER_KEY] = $this->protectValue($headers[Api::HEADER_ACCOUNT_MANAGER_KEY]);
+            $headers[Api::HEADER_ACCOUNT_MANAGER_KEY] = protect_string($headers[Api::HEADER_ACCOUNT_MANAGER_KEY]);
         }
         
         return $headers;
-    }
-    
-    
-    /**
-     * @param string $value
-     * @param string $char
-     * @param float  $protectionAmount
-     *
-     * @return string
-     */
-    protected function protectValue($value, $char = '*', $protectionAmount = 0.5)
-    {
-        $len            = strlen($value);
-        $protectionSize = (int) ($len * (float) $protectionAmount);
-        
-        $sidesAmount    = max((int) (($len-$protectionSize)/2), 0);
-        
-        $left   = substr($value, 0, $sidesAmount);
-        $right  = substr($value, -$sidesAmount, $sidesAmount);
-        $middle = str_repeat($char, $protectionSize);
-        
-        $value = implode([$left, $middle, $right]);
-        
-        return $value;
     }
     
 }

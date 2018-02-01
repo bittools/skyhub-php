@@ -41,4 +41,30 @@ if (!function_exists('arrayExtract')) {
 
         return $data[$index];
     };
-}
+};
+
+
+if (!function_exists('protect_string')) {
+    /**
+     * @param string $value
+     * @param string $char
+     * @param float  $density
+     *
+     * @return string
+     */
+    function protect_string($value, $char = '*', $density = 0.5)
+    {
+        $len            = strlen($value);
+        $protectionSize = (int) ($len * (float) $density);
+        
+        $sidesAmount    = max((int) (($len-$protectionSize)/2), 0);
+        
+        $left   = substr($value, 0, $sidesAmount);
+        $right  = substr($value, -$sidesAmount, $sidesAmount);
+        $middle = str_repeat($char, $protectionSize);
+        
+        $value = implode([$left, $middle, $right]);
+        
+        return $value;
+    };
+};

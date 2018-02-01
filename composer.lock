@@ -1059,12 +1059,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "023f4f054490228cb01523743326a2c54b97521c"
+                "reference": "b7803aeca3ccb99ad0a506fa80b64cd6a56bbc0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/023f4f054490228cb01523743326a2c54b97521c",
-                "reference": "023f4f054490228cb01523743326a2c54b97521c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b7803aeca3ccb99ad0a506fa80b64cd6a56bbc0c",
+                "reference": "b7803aeca3ccb99ad0a506fa80b64cd6a56bbc0c",
                 "shasum": ""
             },
             "require": {
@@ -1133,7 +1133,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-01-29T15:25:00+00:00"
+            "time": "2018-02-01T05:50:59+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1679,7 +1679,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
+                "php": "^7.1"
             },
             "type": "library",
             "extra": {
@@ -1713,12 +1713,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "09dcef65965712877bba624ee0f28194c36f21f6"
+                "reference": "4d56b899983b4b5251f27b9643d67d5f9c86aef7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/09dcef65965712877bba624ee0f28194c36f21f6",
-                "reference": "09dcef65965712877bba624ee0f28194c36f21f6",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4d56b899983b4b5251f27b9643d67d5f9c86aef7",
+                "reference": "4d56b899983b4b5251f27b9643d67d5f9c86aef7",
                 "shasum": ""
             },
             "require": {
@@ -1756,7 +1756,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-01-31T22:57:59+00:00"
+            "time": "2018-02-01T04:05:03+00:00"
         },
         {
             "name": "symfony/yaml",
