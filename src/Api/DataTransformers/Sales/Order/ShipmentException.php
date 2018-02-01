@@ -26,7 +26,7 @@ class ShipmentException extends DataTransformerAbstract
             ]
         ];
 
-        $this->_outputData = $shipmentException;
+        $this->setOutputData($shipmentException);
 
         parent::__construct();
     }

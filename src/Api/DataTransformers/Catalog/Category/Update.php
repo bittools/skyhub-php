@@ -6,7 +6,7 @@ use SkyHub\Api\DataTransformers\DataTransformerAbstract;
 
 class Update extends DataTransformerAbstract
 {
-
+    
     /**
      * Attribute constructor.
      *
@@ -15,12 +15,12 @@ class Update extends DataTransformerAbstract
      */
     public function __construct($code, $name)
     {
-        $this->_outputData = [
-            'category' => [
-                'name' => $name
-            ]
-        ];
-
+        $this->setOutputData([
+             'category' => [
+                 'name' => $name
+             ]
+        ]);
+        
         parent::__construct();
     }
 }

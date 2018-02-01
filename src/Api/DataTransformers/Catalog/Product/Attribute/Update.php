@@ -2,7 +2,9 @@
 
 namespace SkyHub\Api\DataTransformers\Catalog\Product\Attribute;
 
-class Update extends Create
+use SkyHub\Api\DataTransformers\DataTransformerAbstract;
+
+class Update extends DataTransformerAbstract
 {
     
     /**
@@ -14,10 +16,10 @@ class Update extends Create
      */
     public function __construct($code, $label, array $options = [])
     {
-        $this->_outputData = [
+        $this->setOutputData([
             'label'   => $label,
             'options' => $options
-        ];
+        ]);
 
         parent::__construct();
     }

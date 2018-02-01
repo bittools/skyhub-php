@@ -16,11 +16,11 @@ class Create extends DataTransformerAbstract
      */
     public function __construct($code, $label, array $options = [])
     {
-        $this->_outputData = [
+        $this->setOoutputData([
             'name'    => $code,
             'label'   => $label,
             'options' => $options
-        ];
+        ]);
 
         parent::__construct();
     }

@@ -25,16 +25,16 @@ abstract class ServiceAbstract implements ServiceInterface
 
     
     /** @var HttpClient */
-    protected $_client = null;
+    protected $client = null;
     
     /** @var array */
-    protected $_headers = [];
+    protected $headers = [];
     
     /** @var int */
-    protected $_timeout = 15;
+    protected $timeout = 15;
     
     /** @var int */
-    protected $_requestId = null;
+    protected $requestId = null;
     
     
     /**
@@ -46,7 +46,7 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     public function __construct($baseUri, array $headers = [], array $options = [], $log = true)
     {
-        $this->_headers = array_merge($this->_headers, $headers);
+        $this->headers = array_merge($this->headers, $headers);
         
         $defaults = [
             'headers' => $headers,
@@ -69,11 +69,11 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     public function getRequestId($renew = false)
     {
-        if (empty($this->_requestId) || $renew) {
-            $this->_requestId = rand(1000000000, 9999999999);
+        if (empty($this->requestId) || $renew) {
+            $this->requestId = rand(1000000000, 9999999999);
         }
         
-        return $this->_requestId;
+        return $this->requestId;
     }
     
     
@@ -88,7 +88,7 @@ abstract class ServiceAbstract implements ServiceInterface
     public function request($method, $uri, $body = null, $options = [], $debug = false)
     {
         $options[\GuzzleHttp\RequestOptions::TIMEOUT] = $this->getTimeout();
-        $options[\GuzzleHttp\RequestOptions::HEADERS] = $this->_headers;
+        $options[\GuzzleHttp\RequestOptions::HEADERS] = $this->headers;
         $options[\GuzzleHttp\RequestOptions::DEBUG]   = (bool) $debug;
         
         $options = $this->prepareRequestBody($body, $options);
@@ -158,7 +158,7 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     protected function httpClient()
     {
-        return $this->_client;
+        return $this->client;
     }
     
     
@@ -170,15 +170,15 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     protected function prepareHttpClient($baseUri = null, array $defaults = [])
     {
-        if (null === $this->_client) {
-            $this->_client = new HttpClient([
+        if (null === $this->client) {
+            $this->client = new HttpClient([
                 'base_uri' => $baseUri,
                 'base_url' => $baseUri,
                 'defaults' => $defaults
             ]);
         }
     
-        return $this->_client;
+        return $this->client;
     }
     
     
@@ -187,7 +187,7 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     public function getHeaders()
     {
-        return (array) $this->_headers;
+        return (array) $this->headers;
     }
     
     
@@ -200,12 +200,12 @@ abstract class ServiceAbstract implements ServiceInterface
     public function setHeaders(array $headers = [], $append = true)
     {
         if (!$append) {
-            $this->_headers = $headers;
+            $this->headers = $headers;
             return $this;
         }
         
         foreach ($headers as $key => $value) {
-            $this->_headers[$key] = $value;
+            $this->headers[$key] = $value;
         }
         
         return $this;
@@ -217,7 +217,7 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     public function getTimeout()
     {
-        return (int) $this->_timeout;
+        return (int) $this->timeout;
     }
     
     
@@ -228,7 +228,7 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     public function setTimeout($timeout)
     {
-        $this->_timeout = (int) $timeout;
+        $this->timeout = (int) $timeout;
         return $this;
     }
     
@@ -238,7 +238,7 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     protected function protectedHeaders()
     {
-        $headers = $this->_headers;
+        $headers = $this->headers;
         
         if (isset($headers[Api::HEADER_USER_EMAIL])) {
             $headers[Api::HEADER_USER_EMAIL] = protect_string($headers[Api::HEADER_USER_EMAIL]);

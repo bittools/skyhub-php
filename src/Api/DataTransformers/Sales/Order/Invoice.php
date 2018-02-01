@@ -15,12 +15,12 @@ class Invoice extends DataTransformerAbstract
      */
     public function __construct($status, $invoiceKey)
     {
-        $this->_outputData = [
+        $this->setOutputData([
             'status'  => $status,
             'invoice' => [
                 'key' => $invoiceKey
             ],
-        ];
+        ]);
 
         parent::__construct();
     }

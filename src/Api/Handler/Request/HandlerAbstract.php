@@ -13,10 +13,10 @@ abstract class HandlerAbstract implements HandlerInterface
     private $api;
     
     /** @var DataTransformerInterface */
-    protected $_transformer = null;
+    protected $transformer = null;
     
     /** @var string */
-    protected $_transformerClass = null;
+    protected $transformerClass = null;
 
     /** @var string */
     protected $baseUrlPath = null;
@@ -38,11 +38,11 @@ abstract class HandlerAbstract implements HandlerInterface
      */
     protected function transformer()
     {
-        if (empty($this->_transformerClass)) {
-            $this->_transformer = new $this->_transformerClass();
+        if (empty($this->transformerClass)) {
+            $this->transformer = new $this->transformerClass();
         }
         
-        return $this->_transformer;
+        return $this->transformer;
     }
     
     

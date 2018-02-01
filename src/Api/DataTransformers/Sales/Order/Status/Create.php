@@ -16,13 +16,13 @@ class Create extends DataTransformerAbstract
      */
     public function __construct($code, $label, $type)
     {
-        $this->_outputData = [
+        $this->setOutputData([
             'status' => [
                 'code'  => $code,
                 'label' => $label,
                 'type'  => $type
             ]
-        ];
+        ]);
 
         parent::__construct();
     }

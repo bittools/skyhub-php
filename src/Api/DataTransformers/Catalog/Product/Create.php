@@ -72,7 +72,9 @@ class Create extends DataTransformerAbstract
         /** Setup product variation attributes. */
         $this->buildProductVariationAttributes($product, $variationAttributes);
 
-        $this->_outputData['product'] = $product;
+        $this->setOutputData([
+            'product' => $product
+        ]);
 
         parent::__construct();
     }

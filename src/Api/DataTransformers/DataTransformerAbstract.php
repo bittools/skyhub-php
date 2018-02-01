@@ -6,9 +6,12 @@ abstract class DataTransformerAbstract implements DataTransformerInterface
 {
     
     /** @var array */
-    protected $_outputData = [];
-
-
+    protected $outputData = [];
+    
+    
+    /**
+     * DataTransformerAbstract constructor.
+     */
     public function __construct()
     {
         $this->prepareOutput();
@@ -25,10 +28,22 @@ abstract class DataTransformerAbstract implements DataTransformerInterface
     
     
     /**
+     * @param string|array $data
+     *
+     * @return $this
+     */
+    protected function setOutputData($data)
+    {
+        $this->outputData = $data;
+        return $this;
+    }
+    
+    
+    /**
      * @return array|mixed
      */
     public function output()
     {
-        return $this->_outputData;
+        return $this->outputData;
     }
 }

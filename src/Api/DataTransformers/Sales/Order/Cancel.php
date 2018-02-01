@@ -14,9 +14,9 @@ class Cancel extends DataTransformerAbstract
      */
     public function __construct($status)
     {
-        $this->_outputData = [
+        $this->setOutputData([
             'status' => $status,
-        ];
+        ]);
 
         parent::__construct();
     }
