@@ -16,5 +16,10 @@ namespace SkyHub\Api\EntityInterface;
  */
 interface EntityInterface
 {
-
+    
+    /**
+     * @return array
+     */
+    public function export();
+    
 }

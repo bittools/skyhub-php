@@ -2,6 +2,8 @@
 
 namespace SkyHub\Api\EntityInterface\Catalog;
 
+use SkyHub\Api\EntityInterface\Catalog\Product\MutualMethods;
+use SkyHub\Api\EntityInterface\Catalog\Product\Variation;
 use SkyHub\Api\EntityInterface\EntityAbstract;
 
 /**
@@ -18,7 +20,373 @@ use SkyHub\Api\EntityInterface\EntityAbstract;
  */
 class Product extends EntityAbstract
 {
-
-    protected $data = [];
-
+    
+    use MutualMethods;
+    
+    
+    /** string */
+    const STATUS_DISABLED = 'disabled';
+    
+    /** string */
+    const STATUS_ENABLED  = 'enabled';
+    
+    
+    /**
+     * @param string $sku
+     *
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->setData('status', (string) $status);
+        return $this;
+    }
+    
+    
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->getData('status');
+    }
+    
+    /**
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->setData('name', (string) $name);
+        return $this;
+    }
+    
+    
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->getData('name');
+    }
+    
+    
+    /**
+     * @param string $description
+     *
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->setData('description', (string) $description);
+        return $this;
+    }
+    
+    
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->getData('description');
+    }
+    
+    
+    /**
+     * @param float $price
+     *
+     * @return $this
+     */
+    public function setPrice($price)
+    {
+        $this->setData('price', (float) $price);
+        return $this;
+    }
+    
+    
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return (float) $this->getData('price');
+    }
+    
+    
+    /**
+     * @param float $price
+     *
+     * @return $this
+     */
+    public function setPromotionalPrice($price)
+    {
+        $this->setData('promotional_price', (float) $price);
+        return $this;
+    }
+    
+    
+    /**
+     * @return float
+     */
+    public function getPromotionalPrice()
+    {
+        return (float) $this->getData('promotional_price');
+    }
+    
+    
+    /**
+     * @param float $price
+     *
+     * @return $this
+     */
+    public function setCost($price)
+    {
+        $this->setData('cost', (float) $price);
+        return $this;
+    }
+    
+    
+    /**
+     * @return float
+     */
+    public function getCost()
+    {
+        return (float) $this->getData('cost');
+    }
+    
+    
+    /**
+     * @param float $weight
+     *
+     * @return $this
+     */
+    public function setWeight($weight)
+    {
+        $this->setData('weight', (float) $weight);
+        return $this;
+    }
+    
+    
+    /**
+     * @return float
+     */
+    public function getWeight()
+    {
+        return (float) $this->getData('weight');
+    }
+    
+    
+    /**
+     * @param float $height
+     *
+     * @return $this
+     */
+    public function setHeight($height)
+    {
+        $this->setData('height', (float) $height);
+        return $this;
+    }
+    
+    
+    /**
+     * @return float
+     */
+    public function getHeight()
+    {
+        return (float) $this->getData('height');
+    }
+    
+    
+    /**
+     * @param float $width
+     *
+     * @return $this
+     */
+    public function setWidth($width)
+    {
+        $this->setData('width', (float) $width);
+        return $this;
+    }
+    
+    
+    /**
+     * @return float
+     */
+    public function getWidth()
+    {
+        return (float) $this->getData('width');
+    }
+    
+    
+    /**
+     * @param float $length
+     *
+     * @return $this
+     */
+    public function setLength($length)
+    {
+        $this->setData('length', (float) $length);
+        return $this;
+    }
+    
+    
+    /**
+     * @return float
+     */
+    public function getLength()
+    {
+        return (float) $this->getData('length');
+    }
+    
+    
+    /**
+     * @param string $brand
+     *
+     * @return $this
+     */
+    public function setBrand($brand)
+    {
+        $this->setData('brand', (string) $brand);
+        return $this;
+    }
+    
+    
+    /**
+     * @return string
+     */
+    public function getBrand()
+    {
+        return (string) $this->getData('brand');
+    }
+    
+    
+    /**
+     * @param string $nbm
+     *
+     * @return $this
+     */
+    public function setNbm($nbm)
+    {
+        $this->setData('nbm', (string) $nbm);
+        return $this;
+    }
+    
+    
+    /**
+     * @return string
+     */
+    public function getNbm()
+    {
+        return (string) $this->getData('nbm');
+    }
+    
+    
+    /**
+     * @return array
+     */
+    public function getCategories()
+    {
+        return (array) $this->getData('categories');
+    }
+    
+    
+    /**
+     * @param string $code
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function addCategory($code, $name)
+    {
+        $data = (array) $this->getCategories();
+        $data[] = [
+            'code' => $code,
+            'name' => $name,
+        ];
+        
+        $this->setData('categories', $data);
+        
+        return $this;
+    }
+    
+    
+    /**
+     * @return array
+     */
+    public function getVariationAttributes()
+    {
+        return (array) $this->getData('variation_attributes');
+    }
+    
+    
+    /**
+     * @param string $code
+     *
+     * @return $this
+     */
+    public function addVariationAttribute($code)
+    {
+        $data   = $this->getVariationAttributes();
+        $data[] = $code;
+        
+        $this->setData('variation_attributes', $data);
+        
+        return $this;
+    }
+    
+    
+    /**
+     * @return array
+     */
+    public function getVariations()
+    {
+        return (array) $this->getData('variations');
+    }
+    
+    
+    /**
+     * @param string $sku
+     * @param int    $qty
+     * @param string $ean
+     *
+     * @return Variation
+     */
+    public function addVariation($sku, $qty, $ean)
+    {
+        $variations = $this->getVariations();
+        $variation  = new Variation($sku, $qty, $ean);
+        
+        /** @var Variation $_variation */
+        foreach ($variations as $_variation) {
+            if ($_variation->getSku() == $sku) {
+                return $_variation;
+            }
+        }
+        
+        $variations[] = $variation;
+        
+        $this->setData('variations', $variations);
+        
+        return $variation;
+    }
+    
+    
+    /**
+     * @return array|bool|mixed|string
+     */
+    public function export()
+    {
+        $data       = (array) $this->getData();
+        $variations = [];
+        
+        /** @var Variation $variation */
+        foreach ($this->getVariations() as $variation) {
+            $variations[] = $variation->export();
+        }
+        
+        $data['variations'] = $variations;
+        
+        return (array) $data;
+    }
 }

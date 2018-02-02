@@ -2,6 +2,7 @@
 
 namespace SkyHub\Api\EntityInterface;
 
+use SkyHub\Api\Helpers;
 use SkyHub\ApiInterface;
 
 /**
@@ -16,8 +17,12 @@ use SkyHub\ApiInterface;
  *
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
  */
-abstract class EntityAbstract
+abstract class EntityAbstract implements EntityInterface
 {
+    
+    use Helpers;
+    
+    protected $data = [];
     
     /** @var ApiInterface */
     protected $api;
@@ -28,8 +33,47 @@ abstract class EntityAbstract
      *
      * @param ApiInterface $api
      */
-    public function __construct(ApiInterface $api)
+    public function __construct(ApiInterface $api = null)
     {
-        $this->api = $api;
+        if (!empty($api)) {
+            $this->api = $api;
+        }
+    }
+    
+    
+    /**
+     * @param string $key
+     *
+     * @return array|bool|mixed|string
+     */
+    public function getData($key = null, $default = null)
+    {
+        if (is_null($key)) {
+            return $this->data;
+        }
+        
+        return $this->arrayExtract($this->data, $key, $default);
+    }
+    
+    
+    /**
+     * @param string       $key
+     * @param string|array $value
+     *
+     * @return $this
+     */
+    public function setData($key, $value)
+    {
+        $this->data[$key] = $value;
+        return $this;
+    }
+    
+    
+    /**
+     * @return array
+     */
+    public function export()
+    {
+        return $this->getData();
     }
 }
