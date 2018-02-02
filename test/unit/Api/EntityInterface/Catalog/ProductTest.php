@@ -20,7 +20,7 @@ use SkyHub\Api\EntityInterface\Catalog\Product;
  */
 class ProductTest extends TestCase
 {
-    
+
     /** @var Api */
     protected $api;
     
@@ -411,6 +411,35 @@ class ProductTest extends TestCase
     
         $this->assertEquals($expected, $variation->getSpecifications());
     }
+
+
+    /**
+     * @test
+     */
+    public function productCheckAttributesFillAndExport()
+    {
+        $product = $this->getFilledProduct();
+
+        $expected = [
+            'sku' => 'sku123',
+            'name' => 'Sample Product',
+            'description' => 'Sample Product Description',
+            'status' => 'enabled',
+            'qty' => 123,
+            'price' => 2.3458,
+            'promotional_price' => 1.9876,
+            'cost' => 1.2090,
+            'weight' => 1.45,
+            'height' => 1.45,
+            'width' => 1.45,
+            'length' => 1.45,
+            'brand' => 'Nike',
+            'ean' => '01234567890',
+            'nbm' => '11234567890'
+        ];
+
+        $this->assertEquals($expected, $product->getAttributes());
+    }
     
     
     /**
@@ -418,41 +447,8 @@ class ProductTest extends TestCase
      */
     public function productCheckCompleteFillAndExport()
     {
-        $product = $this->product;
-    
-        $product->setSku('sku123')
-            ->setName('Sample Product')
-            ->setDescription('Sample Product Description')
-            ->setStatus($product::STATUS_ENABLED)
-            ->setQty(123)
-            ->setPrice(2.3458)
-            ->setPromotionalPrice(1.9876)
-            ->setCost(1.2090)
-            ->setWeight(1.45)
-            ->setHeight(1.45)
-            ->setWidth(1.45)
-            ->setLength(1.45)
-            ->setBrand('Nike')
-            ->setEan('01234567890')
-            ->setNbm('11234567890')
-            ->addCategory('foo', 'Foo > Foo')
-            ->addCategory('bar', 'Bar > Bar')
-            ->addImage('http://sourceimage001.jpg')
-            ->addImage('http://sourceimage002.jpg')
-            ->addImage('http://sourceimage003.jpg')
-            ->addSpecification('color', 'Black')
-            ->addSpecification('size', 'XL')
-            ->addSpecification('voltage', '220v')
-            ->addVariationAttribute('color')
-            ->addVariationAttribute('size');
-        
-        /** @var Product\Variation $variation */
-        $variation = $product->addVariation('variation001', 100, '9876565');
-        $variation->addImage('http://variation-sourceimage001.jpg')
-            ->addImage('http://variation-sourceimage002.jpg')
-            ->addImage('http://variation-sourceimage003.jpg')
-            ->addSpecification('color', 'White')
-            ->addSpecification('size', 'S');
+        /** @var Product $product */
+        $product = $this->getFilledProduct();
         
         $expected = [
             'product' => [
@@ -528,5 +524,52 @@ class ProductTest extends TestCase
         ];
         
         $this->assertEquals($expected, $product->export());
+    }
+
+
+    /**
+     * @return Product
+     */
+    protected function getFilledProduct()
+    {
+        $this->setUp();
+
+        $product = $this->product;
+
+        $product->setSku('sku123')
+            ->setName('Sample Product')
+            ->setDescription('Sample Product Description')
+            ->setStatus($product::STATUS_ENABLED)
+            ->setQty(123)
+            ->setPrice(2.3458)
+            ->setPromotionalPrice(1.9876)
+            ->setCost(1.2090)
+            ->setWeight(1.45)
+            ->setHeight(1.45)
+            ->setWidth(1.45)
+            ->setLength(1.45)
+            ->setBrand('Nike')
+            ->setEan('01234567890')
+            ->setNbm('11234567890')
+            ->addCategory('foo', 'Foo > Foo')
+            ->addCategory('bar', 'Bar > Bar')
+            ->addImage('http://sourceimage001.jpg')
+            ->addImage('http://sourceimage002.jpg')
+            ->addImage('http://sourceimage003.jpg')
+            ->addSpecification('color', 'Black')
+            ->addSpecification('size', 'XL')
+            ->addSpecification('voltage', '220v')
+            ->addVariationAttribute('color')
+            ->addVariationAttribute('size');
+
+        /** @var Product\Variation $variation */
+        $variation = $product->addVariation('variation001', 100, '9876565');
+        $variation->addImage('http://variation-sourceimage001.jpg')
+            ->addImage('http://variation-sourceimage002.jpg')
+            ->addImage('http://variation-sourceimage003.jpg')
+            ->addSpecification('color', 'White')
+            ->addSpecification('size', 'S');
+
+        return $product;
     }
 }

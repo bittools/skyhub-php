@@ -2,6 +2,7 @@
 
 namespace SkyHub\Api\EntityInterface;
 
+use SkyHub\Api;
 use SkyHub\Api\Helpers;
 use SkyHub\ApiInterface;
 
@@ -24,7 +25,7 @@ abstract class EntityAbstract implements EntityInterface
     
     protected $data = [];
     
-    /** @var ApiInterface */
+    /** @var Api */
     protected $api;
     
     
@@ -75,5 +76,23 @@ abstract class EntityAbstract implements EntityInterface
     public function export()
     {
         return $this->getData();
+    }
+
+
+    /**
+     * @return Api
+     */
+    protected function api()
+    {
+        return $this->api;
+    }
+
+
+    /**
+     * @return \SkyHub\Api\Service\ServiceAbstract
+     */
+    protected function service()
+    {
+        return $this->api()->service();
     }
 }

@@ -32,7 +32,7 @@ class Product extends EntityAbstract
     
     
     /**
-     * @param string $sku
+     * @param string $status
      *
      * @return $this
      */
@@ -369,6 +369,25 @@ class Product extends EntityAbstract
         $this->setData('variations', $variations);
         
         return $variation;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getAttributes()
+    {
+        $data = (array) $this->getData();
+
+        unset(
+            $data['variations'],
+            $data['categories'],
+            $data['images'],
+            $data['specifications'],
+            $data['variation_attributes']
+        );
+
+        return $data;
     }
     
     
