@@ -21,5 +21,4 @@ interface EntityInterface
      * @return array
      */
     public function export();
-    
 }

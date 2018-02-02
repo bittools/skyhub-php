@@ -132,5 +132,4 @@ trait MutualMethods
         
         return $this;
     }
-    
 }
