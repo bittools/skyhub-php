@@ -3,6 +3,7 @@
 namespace SkyHub;
 
 use SkyHub\Api\Handler\Request\Getters as RequestHandlerGetters;
+use SkyHub\Api\EntityInterface\Getters as EntityInterfaceGetters;
 use SkyHub\Api\Service\ServiceAbstract;
 use SkyHub\Api\Service\ServiceInterface;
 use SkyHub\Api\Service\ServiceJson;
@@ -22,10 +23,11 @@ use SkyHub\Api\Service\ServiceJson;
 class Api implements ApiInterface
 {
     
-    use RequestHandlerGetters;
+    use RequestHandlerGetters, EntityInterfaceGetters;
     
-    const HEADER_USER_EMAIL = 'X-User-Email';
-    const HEADER_API_KEY = 'X-Api-Key';
+    
+    const HEADER_USER_EMAIL          = 'X-User-Email';
+    const HEADER_API_KEY             = 'X-Api-Key';
     const HEADER_ACCOUNT_MANAGER_KEY = 'X-Accountmanager-Key';
     
     /**

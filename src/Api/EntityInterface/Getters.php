@@ -2,7 +2,7 @@
 
 namespace SkyHub\Api\EntityInterface;
 
-use SkyHub\ApiInterface;
+use SkyHub\Api\EntityInterface\Catalog\Product;
 
 /**
  * BSeller Platform | B2W - Companhia Digital
@@ -16,20 +16,14 @@ use SkyHub\ApiInterface;
  *
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
  */
-abstract class EntityAbstract
+trait Getters
 {
     
-    /** @var ApiInterface */
-    protected $api;
-    
-    
     /**
-     * EntityAbstract constructor.
-     *
-     * @param ApiInterface $api
+     * @return Product
      */
-    public function __construct(ApiInterface $api)
+    public function catalogProductEntityInterface()
     {
-        $this->api = $api;
+        return new Product($this);
     }
 }
