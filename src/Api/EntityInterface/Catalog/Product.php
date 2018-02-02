@@ -387,6 +387,6 @@ class Product extends EntityAbstract
         
         $data['variations'] = $variations;
         
-        return (array) $data;
+        return (array) ['product' => $data];
     }
 }
