@@ -2,6 +2,8 @@
 
 namespace SkyHub\Api\Handler\Request;
 
+use SkyHub\Api\EntityInterface\EntityInterface;
+
 /**
  * BSeller Platform | B2W - Companhia Digital
  *
@@ -16,5 +18,10 @@ namespace SkyHub\Api\Handler\Request;
  */
 interface HandlerInterface
 {
+
+    /**
+     * @return EntityInterface
+     */
+    public function entityInterface();
 
 }

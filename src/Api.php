@@ -52,7 +52,7 @@ class Api implements ApiInterface
             self::HEADER_API_KEY => $apiKey,
             self::HEADER_ACCOUNT_MANAGER_KEY => $apiToken,
         ];
-        
+
         if (empty($apiServiceClass)) {
             $this->service = new ServiceJson($baseUri, $headers);
             

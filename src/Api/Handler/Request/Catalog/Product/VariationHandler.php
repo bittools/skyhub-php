@@ -83,4 +83,10 @@ class VariationHandler extends HandlerAbstract
         $responseHandler = $this->service()->put($this->baseUrlPath($sku), $body);
         return $responseHandler;
     }
+
+
+    public function entityInterface()
+    {
+
+    }
 }

@@ -23,18 +23,18 @@ class ProductTest extends TestCase
 
     /** @var Api */
     protected $api;
-    
+
     /** @var Product */
     protected $product;
-    
-    
+
+
     protected function setUp()
     {
         $this->api = new Api('', '', '', '');
-        $this->product = $this->api->catalogProductEntityInterface();
+        $this->product = $this->api->product()->entityInterface();
     }
-    
-    
+
+
     /**
      * @test
      */
@@ -42,8 +42,8 @@ class ProductTest extends TestCase
     {
         $this->assertInstanceOf(Product::class, $this->product);
     }
-    
-    
+
+
     /**
      * @test
      */
@@ -51,214 +51,217 @@ class ProductTest extends TestCase
     {
         $key = 'type';
         $data = 'Sample Product';
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setData($key, $data));
         $this->assertInternalType('string', $this->product->getData($key));
         $this->assertEquals($data, $this->product->getData($key));
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductName()
     {
         $name = 'Sample Product';
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setName($name));
         $this->assertInternalType('string', $this->product->getName());
         $this->assertEquals($name, $this->product->getName());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductDescription()
     {
         $description = 'Sample Product Description';
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setDescription($description));
         $this->assertInternalType('string', $this->product->getDescription());
         $this->assertEquals($description, $this->product->getDescription());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductSku()
     {
         $sku = 'sample_product';
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setSku($sku));
         $this->assertInternalType('string', $this->product->getSku());
         $this->assertEquals($sku, $this->product->getSku());
     }
-    
-    
+
+
     /**
      * @test
      */
-    public function setProductStatus()
+    public function setProductStatuses()
     {
         $status = Product::STATUS_ENABLED;
-        
-        $this->assertInstanceOf(Product::class, $this->product->setStatus($status));
+
+        $this->assertInstanceOf(Product::class, $this->product->setStatus(true));
         $this->assertInternalType('string', $this->product->getStatus());
         $this->assertEquals($status, $this->product->getStatus());
-        
+
         $status = Product::STATUS_DISABLED;
-        
-        $this->assertInstanceOf(Product::class, $this->product->setStatus($status));
+
+        $this->assertInstanceOf(Product::class, $this->product->setStatus(false));
         $this->assertInternalType('string', $this->product->getStatus());
         $this->assertEquals($status, $this->product->getStatus());
+
+        $this->assertCount(2, $this->product->getStatusesAvailable());
+        $this->assertEquals([Product::STATUS_ENABLED, Product::STATUS_DISABLED], $this->product->getStatusesAvailable());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductQty()
     {
         $status = Product::STATUS_ENABLED;
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setStatus($status));
         $this->assertInternalType('string', $this->product->getStatus());
         $this->assertEquals($status, $this->product->getStatus());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductPrice()
     {
         $data = 12.9989;
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setPrice($data));
         $this->assertInternalType('float', $this->product->getPrice());
         $this->assertEquals($data, $this->product->getPrice());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductPromotionalPrice()
     {
         $data = 12.9989;
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setPromotionalPrice($data));
         $this->assertInternalType('float', $this->product->getPromotionalPrice());
         $this->assertEquals($data, $this->product->getPromotionalPrice());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductCost()
     {
         $data = 12.9989;
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setCost($data));
         $this->assertInternalType('float', $this->product->getCost());
         $this->assertEquals($data, $this->product->getCost());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductWeight()
     {
         $data = 1.878;
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setWeight($data));
         $this->assertInternalType('float', $this->product->getWeight());
         $this->assertEquals($data, $this->product->getWeight());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductHeight()
     {
         $data = 1.878;
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setHeight($data));
         $this->assertInternalType('float', $this->product->getHeight());
         $this->assertEquals($data, $this->product->getHeight());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductWidth()
     {
         $data = 1.878;
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setWidth($data));
         $this->assertInternalType('float', $this->product->getWidth());
         $this->assertEquals($data, $this->product->getWidth());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductLength()
     {
         $data = 1.878;
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setLength($data));
         $this->assertInternalType('float', $this->product->getLength());
         $this->assertEquals($data, $this->product->getLength());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductBrand()
     {
         $data = 'Nike';
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setBrand($data));
         $this->assertInternalType('string', $this->product->getBrand());
         $this->assertEquals($data, $this->product->getBrand());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductEan()
     {
         $data = '087689769876986';
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setEan($data));
         $this->assertInternalType('string', $this->product->getEan());
         $this->assertEquals($data, $this->product->getEan());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function setProductNbm()
     {
         $data = '087689769876986';
-        
+
         $this->assertInstanceOf(Product::class, $this->product->setNbm($data));
         $this->assertInternalType('string', $this->product->getNbm());
         $this->assertEquals($data, $this->product->getNbm());
     }
-    
-    
+
+
     /**
      * @test
      */
@@ -266,10 +269,10 @@ class ProductTest extends TestCase
     {
         $this->product->addCategory('category001', 'Jewels');
         $this->product->addCategory('category002', 'Watches');
-        
+
         $this->assertCount(2, $this->product->getCategories());
         $this->assertInternalType('array', $this->product->getCategories());
-        
+
         $expected = [
             [
                 'code' => 'category001',
@@ -279,11 +282,11 @@ class ProductTest extends TestCase
                 'name' => 'Watches'
             ]
         ];
-        
+
         $this->assertEquals($expected, $this->product->getCategories());
     }
-    
-    
+
+
     /**
      * @test
      */
@@ -292,20 +295,20 @@ class ProductTest extends TestCase
         $this->product->addImage('http://sourceToImage001.jpg');
         $this->product->addImage('http://sourceToImage002.jpg');
         $this->product->addImage('http://sourceToImage003.jpg');
-        
+
         $this->assertCount(3, $this->product->getImages());
         $this->assertInternalType('array', $this->product->getImages());
-        
+
         $expected = [
             'http://sourceToImage001.jpg',
             'http://sourceToImage002.jpg',
             'http://sourceToImage003.jpg',
         ];
-        
+
         $this->assertEquals($expected, $this->product->getImages());
     }
-    
-    
+
+
     /**
      * @test
      */
@@ -314,10 +317,10 @@ class ProductTest extends TestCase
         $this->product->addSpecification('color', 'green');
         $this->product->addSpecification('brand', 'Nike');
         $this->product->addSpecification('size', 'G');
-        
+
         $this->assertCount(3, $this->product->getSpecifications());
         $this->assertInternalType('array', $this->product->getSpecifications());
-        
+
         $expected = [
             [
                 'key'   => 'color',
@@ -330,11 +333,11 @@ class ProductTest extends TestCase
                 'value' => 'G'
             ]
         ];
-        
+
         $this->assertEquals($expected, $this->product->getSpecifications());
     }
-    
-    
+
+
     /**
      * @test
      */
@@ -343,59 +346,59 @@ class ProductTest extends TestCase
         $this->product->addVariationAttribute('size');
         $this->product->addVariationAttribute('color');
         $this->product->addVariationAttribute('voltage');
-        
+
         $this->assertCount(3, $this->product->getVariationAttributes());
         $this->assertInternalType('array', $this->product->getVariationAttributes());
-        
+
         $expected = [
             'size',
             'color',
             'voltage',
         ];
-        
+
         $this->assertEquals($expected, $this->product->getVariationAttributes());
     }
-    
-    
+
+
     /**
      * @test
      */
     public function addProductVariationsAndCheckThemAfter()
     {
         $variation = $this->product->addVariation('sku1234', 123, 'foo');
-        
+
         $this->assertInstanceOf(Product\Variation::class, $variation);
         $this->assertInternalType('array', $this->product->getVariations());
         $this->assertCount(1, $this->product->getVariations());
-    
-        
+
+
         /** Test Images for Variation */
-    
+
         $variation->addImage('http://sourceToImage001.jpg');
         $variation->addImage('http://sourceToImage002.jpg');
         $variation->addImage('http://sourceToImage003.jpg');
-    
+
         $this->assertCount(3, $variation->getImages());
         $this->assertInternalType('array', $variation->getImages());
-    
+
         $expected = [
             'http://sourceToImage001.jpg',
             'http://sourceToImage002.jpg',
             'http://sourceToImage003.jpg',
         ];
-    
+
         $this->assertEquals($expected, $variation->getImages());
-    
-        
+
+
         /** Test Specifications for Variation */
-    
+
         $variation->addSpecification('color', 'green');
         $variation->addSpecification('brand', 'Nike');
         $variation->addSpecification('size', 'G');
-    
+
         $this->assertCount(3, $variation->getSpecifications());
         $this->assertInternalType('array', $variation->getSpecifications());
-    
+
         $expected = [
             [
                 'key'   => 'color',
@@ -408,7 +411,7 @@ class ProductTest extends TestCase
                 'value' => 'G'
             ]
         ];
-    
+
         $this->assertEquals($expected, $variation->getSpecifications());
     }
 
@@ -440,8 +443,8 @@ class ProductTest extends TestCase
 
         $this->assertEquals($expected, $product->getAttributes());
     }
-    
-    
+
+
     /**
      * @test
      */
@@ -449,7 +452,7 @@ class ProductTest extends TestCase
     {
         /** @var Product $product */
         $product = $this->getFilledProduct();
-        
+
         $expected = [
             'product' => [
                 'sku' => 'sku123',
@@ -522,7 +525,7 @@ class ProductTest extends TestCase
                 ],
             ]
         ];
-        
+
         $this->assertEquals($expected, $product->export());
     }
 
@@ -532,8 +535,6 @@ class ProductTest extends TestCase
      */
     protected function getFilledProduct()
     {
-        $this->setUp();
-
         $product = $this->product;
 
         $product->setSku('sku123')

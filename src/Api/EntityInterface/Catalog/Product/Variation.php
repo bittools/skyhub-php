@@ -41,4 +41,13 @@ class Variation extends EntityAbstract
         
         parent::__construct();
     }
+
+
+    /**
+     * @return bool
+     */
+    public function validate()
+    {
+        return true;
+    }
 }

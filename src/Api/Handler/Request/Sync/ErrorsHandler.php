@@ -103,4 +103,10 @@ class ErrorsHandler extends HandlerAbstract
         $responseHandler = $this->service()->patch($this->baseUrlPath('orders'));
         return $responseHandler;
     }
+
+
+    public function entityInterface()
+    {
+
+    }
 }

@@ -4,6 +4,7 @@ namespace SkyHub\Api\Handler\Request\Catalog\Product;
 
 use SkyHub\Api\DataTransformer\Catalog\Product\Attribute\Create as CreateTransformer;
 use SkyHub\Api\DataTransformer\Catalog\Product\Attribute\Update as UpdateTransformer;
+use SkyHub\Api\EntityInterface\Catalog\Product\Attribute;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 use SkyHub\Api\Handler\Response\HandlerInterface;
 
@@ -25,7 +26,7 @@ class AttributeHandler extends HandlerAbstract
     /** @var string */
     protected $baseUrlPath = '/attributes';
 
-    
+
     /**
      * @param string $code
      * @param string $label
@@ -37,7 +38,7 @@ class AttributeHandler extends HandlerAbstract
     {
         $transformer = new CreateTransformer($code, $label, $options);
         $body        = $transformer->output();
-        
+
          /** @var HandlerInterface $responseHandler */
         $responseHandler = $this->service()->post($this->baseUrlPath(), $body);
         
@@ -61,5 +62,14 @@ class AttributeHandler extends HandlerAbstract
         $responseHandler = $this->service()->put($this->baseUrlPath($code), $body);
     
         return $responseHandler;
+    }
+
+
+    /**
+     * @return Attribute
+     */
+    public function entityInterface()
+    {
+        return new Attribute($this->api(), $this);
     }
 }

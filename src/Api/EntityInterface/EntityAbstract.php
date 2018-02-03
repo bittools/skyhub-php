@@ -5,6 +5,7 @@ namespace SkyHub\Api\EntityInterface;
 use SkyHub\Api;
 use SkyHub\Api\Helpers;
 use SkyHub\ApiInterface;
+use SkyHub\Api\Handler\Request\HandlerInterface;
 
 /**
  * BSeller Platform | B2W - Companhia Digital
@@ -27,6 +28,9 @@ abstract class EntityAbstract implements EntityInterface
     
     /** @var Api */
     protected $api;
+
+    /** @var Api\Handler\Request\HandlerInterface */
+    protected $requestHandler;
     
     
     /**
@@ -34,10 +38,14 @@ abstract class EntityAbstract implements EntityInterface
      *
      * @param ApiInterface $api
      */
-    public function __construct(ApiInterface $api = null)
+    public function __construct(ApiInterface $api = null, HandlerInterface $handler = null)
     {
         if (!empty($api)) {
             $this->api = $api;
+        }
+
+        if (!empty($handler)) {
+            $this->requestHandler = $handler;
         }
     }
     
@@ -94,5 +102,14 @@ abstract class EntityAbstract implements EntityInterface
     protected function service()
     {
         return $this->api()->service();
+    }
+
+
+    /**
+     * @return HandlerInterface
+     */
+    protected function requestHandler()
+    {
+        return $this->requestHandler;
     }
 }

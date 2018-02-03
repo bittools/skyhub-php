@@ -32,13 +32,17 @@ class Product extends EntityAbstract
     
     
     /**
-     * @param string $status
+     * @param bool|string $status
      *
      * @return $this
      */
     public function setStatus($status)
     {
-        $this->setData('status', (string) $status);
+        if (is_bool($status)) {
+            $status = $status ? self::STATUS_ENABLED : self::STATUS_DISABLED;
+        }
+
+        $this->setData('status', $status);
         return $this;
     }
     
@@ -48,8 +52,21 @@ class Product extends EntityAbstract
      */
     public function getStatus()
     {
-        return $this->getData('status');
+        return (string) $this->getData('status');
     }
+
+
+    /**
+     * @return array
+     */
+    public function getStatusesAvailable()
+    {
+        return [
+            self::STATUS_ENABLED,
+            self::STATUS_DISABLED,
+        ];
+    }
+
     
     /**
      * @param string $name
@@ -388,6 +405,15 @@ class Product extends EntityAbstract
         );
 
         return $data;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function validate()
+    {
+        return true;
     }
     
     
