@@ -196,6 +196,6 @@ class ProductHandler extends HandlerAbstract
      */
     public function entityInterface()
     {
-        return new Product($this->api(), $this);
+        return new Product($this);
     }
 }

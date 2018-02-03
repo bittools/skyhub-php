@@ -2,6 +2,7 @@
 
 namespace SkyHub\Api\Handler\Request\Catalog;
 
+use SkyHub\Api\EntityInterface\Catalog\Product;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 use SkyHub\Api\DataTransformer\Catalog\Category\Create as CreateTransformer;
 use SkyHub\Api\DataTransformer\Catalog\Category\Update as UpdateTransformer;
@@ -85,6 +86,9 @@ class CategoryHandler extends HandlerAbstract
     }
 
 
+    /**
+     * @return \SkyHub\Api\EntityInterface\EntityInterface|void
+     */
     public function entityInterface()
     {
 

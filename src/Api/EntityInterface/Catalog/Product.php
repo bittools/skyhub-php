@@ -372,7 +372,11 @@ class Product extends EntityAbstract
     public function addVariation($sku, $qty, $ean)
     {
         $variations = $this->getVariations();
-        $variation  = new Variation($sku, $qty, $ean);
+        $variation  = new Variation($this->requestHandler());
+
+        $variation->setSku($sku)
+            ->setQty($qty)
+            ->setEan($ean);
         
         /** @var Variation $_variation */
         foreach ($variations as $_variation) {

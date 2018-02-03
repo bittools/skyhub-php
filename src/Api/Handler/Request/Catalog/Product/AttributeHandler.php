@@ -70,6 +70,6 @@ class AttributeHandler extends HandlerAbstract
      */
     public function entityInterface()
     {
-        return new Attribute($this->api(), $this);
+        return new Attribute($this);
     }
 }

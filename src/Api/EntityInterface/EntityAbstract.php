@@ -29,7 +29,7 @@ abstract class EntityAbstract implements EntityInterface
     /** @var Api */
     protected $api;
 
-    /** @var Api\Handler\Request\HandlerInterface */
+    /** @var Api\Handler\Request\HandlerAbstract */
     protected $requestHandler;
     
     
@@ -38,14 +38,11 @@ abstract class EntityAbstract implements EntityInterface
      *
      * @param ApiInterface $api
      */
-    public function __construct(ApiInterface $api = null, HandlerInterface $handler = null)
+    public function __construct(Api\Handler\Request\HandlerAbstract $handler)
     {
-        if (!empty($api)) {
-            $this->api = $api;
-        }
-
         if (!empty($handler)) {
             $this->requestHandler = $handler;
+            $this->api            = $handler->api();
         }
     }
     

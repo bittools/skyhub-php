@@ -61,7 +61,7 @@ abstract class HandlerAbstract implements HandlerInterface
     /**
      * @return ApiInterface
      */
-    protected function api()
+    public function api()
     {
         return $this->api;
     }
@@ -70,7 +70,7 @@ abstract class HandlerAbstract implements HandlerInterface
     /**
      * @return ServiceInterface
      */
-    protected function service()
+    public function service()
     {
         return $this->api->service();
     }
