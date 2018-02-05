@@ -697,30 +697,30 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "0.5.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "cf842904952e64e703800d094cdf34e715a8a3ae"
+                "reference": "ad39fb2becfa9ddc4b23b5e85c88123462d86ef2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/cf842904952e64e703800d094cdf34e715a8a3ae",
-                "reference": "cf842904952e64e703800d094cdf34e715a8a3ae",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/ad39fb2becfa9ddc4b23b5e85c88123462d86ef2",
+                "reference": "ad39fb2becfa9ddc4b23b5e85c88123462d86ef2",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
-                "phpdocumentor/reflection-common": "^1.0"
+                "php": ">=7.1",
+                "phpdocumentor/reflection-common": "^2.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^6.4"
+                "phpunit/phpunit": "^6.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "0.x-dev"
                 }
             },
             "autoload": {
@@ -738,7 +738,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2017-12-30T13:23:38+00:00"
+            "time": "2018-01-31T13:23:25+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -1712,12 +1712,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "4d56b899983b4b5251f27b9643d67d5f9c86aef7"
+                "reference": "2503b5aca573b6d4b9c4f92ab639183a663ff7c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4d56b899983b4b5251f27b9643d67d5f9c86aef7",
-                "reference": "4d56b899983b4b5251f27b9643d67d5f9c86aef7",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/2503b5aca573b6d4b9c4f92ab639183a663ff7c7",
+                "reference": "2503b5aca573b6d4b9c4f92ab639183a663ff7c7",
                 "shasum": ""
             },
             "require": {
@@ -1755,7 +1755,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-02-01T04:05:03+00:00"
+            "time": "2018-02-04T22:33:35+00:00"
         },
         {
             "name": "symfony/yaml",
