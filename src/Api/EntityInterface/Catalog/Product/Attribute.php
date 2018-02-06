@@ -93,7 +93,7 @@ class Attribute extends EntityAbstract
      */
     public function validate()
     {
-        return $this;
+        return true;
     }
 
 
@@ -103,12 +103,14 @@ class Attribute extends EntityAbstract
     public function create()
     {
         $this->validate();
+    
+        /** @var \SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler $handler */
+        $handler = $this->requestHandler();
+        
+        /** @var HandlerDefault|HandlerException $response */
+        $response = $handler->create($this->getCode(), $this->getLabel(), $this->getOptions());
 
-        /** @var HandlerDefault|HandlerException $result */
-        $result = $this->requestHandler()
-            ->create($this->getCode(), $this->getLabel(), $this->getOptions());
-
-        return $result;
+        return $response;
     }
 
 
@@ -119,10 +121,12 @@ class Attribute extends EntityAbstract
     {
         $this->validate();
 
-        /** @var HandlerDefault|HandlerException $result */
-        $result = $this->requestHandler()
-            ->create($this->getCode(), $this->getLabel(), $this->getOptions());
+        /** @var \SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler $handler */
+        $handler = $this->requestHandler();
+        
+        /** @var HandlerDefault|HandlerException $response */
+        $response = $handler->update($this->getCode(), $this->getLabel(), $this->getOptions());
 
-        return $result;
+        return $response;
     }
 }

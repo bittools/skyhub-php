@@ -438,4 +438,114 @@ class Product extends EntityAbstract
         
         return (array) ['product' => $data];
     }
+    
+    
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function create()
+    {
+        $this->validate();
+        
+        /** @var \SkyHub\Api\Handler\Request\Catalog\ProductHandler $handler */
+        $handler = $this->requestHandler();
+        
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $response */
+        $response = $handler->create(
+            $this->getSku(),
+            $this->getAttributes(),
+            $this->getImages(),
+            $this->getCategories(),
+            $this->getSpecifications(),
+            $this->getVariations(),
+            $this->getVariationAttributes()
+        );
+        
+        return $response;
+    }
+    
+    
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function update()
+    {
+        $this->validate();
+    
+        /** @var \SkyHub\Api\Handler\Request\Catalog\ProductHandler $handler */
+        $handler = $this->requestHandler();
+    
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $response */
+        $response = $handler->update(
+            $this->getSku(),
+            $this->getAttributes(),
+            $this->getImages(),
+            $this->getCategories(),
+            $this->getSpecifications(),
+            $this->getVariations(),
+            $this->getVariationAttributes()
+        );
+        
+        return $response;
+    }
+    
+    
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function delete()
+    {
+        /** @var \SkyHub\Api\Handler\Request\Catalog\ProductHandler $handler */
+        $handler = $this->requestHandler();
+    
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $response */
+        $response = $handler->delete($this->getSku());
+        
+        return $response;
+    }
+    
+    
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function product()
+    {
+        /** @var \SkyHub\Api\Handler\Request\Catalog\ProductHandler $handler */
+        $handler = $this->requestHandler();
+    
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $response */
+        $response = $handler->product($this->getSku());
+        
+        return $response;
+    }
+    
+    
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function products()
+    {
+        /** @var \SkyHub\Api\Handler\Request\Catalog\ProductHandler $handler */
+        $handler = $this->requestHandler();
+    
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $response */
+        $response = $handler->products($this->getStatus());
+        
+        return $response;
+    }
+    
+    
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function urls()
+    {
+        /** @var \SkyHub\Api\Handler\Request\Catalog\ProductHandler $handler */
+        $handler = $this->requestHandler();
+    
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $response */
+        $response = $handler->urls();
+    
+        return $response;
+    }
 }
