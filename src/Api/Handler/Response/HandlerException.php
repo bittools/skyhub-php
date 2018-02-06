@@ -107,6 +107,15 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     
     
     /**
+     * @return bool
+     */
+    public function invalid()
+    {
+        return false;
+    }
+    
+    
+    /**
      * @return array
      */
     public function export()

@@ -2,6 +2,8 @@
 
 namespace SkyHub\Api\Handler\Response;
 
+use Psr\Http\Message\ResponseInterface;
+
 /**
  * BSeller Platform | B2W - Companhia Digital
  *
@@ -14,29 +16,41 @@ namespace SkyHub\Api\Handler\Response;
  *
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
  */
-interface HandlerInterface
+class HandlerInvalid extends HandlerAbstract
 {
+    
+    /**
+     * @return bool
+     */
+    public function success()
+    {
+        return false;
+    }
+    
+    
+    /**
+     * @return bool
+     */
+    public function exception()
+    {
+        return false;
+    }
+    
+    
+    /**
+     * @return bool
+     */
+    public function invalid()
+    {
+        return true;
+    }
+    
     
     /**
      * @return array
      */
-    public function export();
-    
-    
-    /**
-     * @return bool
-     */
-    public function success();
-    
-    
-    /**
-     * @return bool
-     */
-    public function exception();
-    
-    
-    /**
-     * @return bool
-     */
-    public function invalid();
+    public function export()
+    {
+        return [];
+    }
 }

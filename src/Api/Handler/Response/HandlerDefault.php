@@ -116,6 +116,15 @@ class HandlerDefault extends HandlerAbstract implements HandlerInterfaceSuccess
     
     
     /**
+     * @return bool
+     */
+    public function invalid()
+    {
+        return false;
+    }
+    
+    
+    /**
      * @return array
      */
     public function export()
