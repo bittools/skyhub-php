@@ -1,6 +1,7 @@
 <?php
 
 namespace SkyHub\Api\EntityInterface;
+use SkyHub\Api\DataTransformer\DataTransformerAbstract;
 
 /**
  * BSeller Platform | B2W - Companhia Digital
@@ -21,4 +22,10 @@ interface EntityInterface
      * @return array
      */
     public function export();
+
+
+    /**
+     * @return bool
+     */
+    public function validate();
 }

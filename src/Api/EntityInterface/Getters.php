@@ -22,8 +22,16 @@ trait Getters
     /**
      * @return Product
      */
-    public function catalogProductEntityInterface()
+    public function productEntityInterface()
     {
         return new Product($this);
+    }
+
+    /**
+     * @return Product\Attribute
+     */
+    public function productAttributeEntityInterface()
+    {
+        return new Product\Attribute($this);
     }
 }

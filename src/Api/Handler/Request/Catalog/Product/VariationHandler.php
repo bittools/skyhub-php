@@ -3,6 +3,7 @@
 namespace SkyHub\Api\Handler\Request\Catalog\Product;
 
 use SkyHub\Api\DataTransformer\Catalog\Product\Variation\Update;
+use SkyHub\Api\EntityInterface\Catalog\Product\Variation;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 use SkyHub\Api\Handler\Response\HandlerInterface;
 
@@ -82,5 +83,14 @@ class VariationHandler extends HandlerAbstract
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->put($this->baseUrlPath($sku), $body);
         return $responseHandler;
+    }
+
+
+    /**
+     * @return Variation
+     */
+    public function entityInterface()
+    {
+        return new Variation($this);
     }
 }

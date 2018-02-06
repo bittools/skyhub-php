@@ -24,21 +24,13 @@ class Variation extends EntityAbstract
     
     /** @var array */
     protected $data = [];
-    
-    
+
+
     /**
-     * Variation constructor.
-     *
-     * @param string $sku
-     * @param int    $qty
-     * @param string $ean
+     * @return bool
      */
-    public function __construct($sku, $qty, $ean)
+    public function validate()
     {
-        $this->setSku($sku);
-        $this->setQty($qty);
-        $this->setEan($ean);
-        
-        parent::__construct();
+        return true;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace SkyHub\Api\Handler\Request\Catalog;
 
+use SkyHub\Api\EntityInterface\Catalog\Product;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 use SkyHub\Api\DataTransformer\Catalog\Category\Create as CreateTransformer;
 use SkyHub\Api\DataTransformer\Catalog\Category\Update as UpdateTransformer;
@@ -82,5 +83,14 @@ class CategoryHandler extends HandlerAbstract
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->delete($this->baseUrlPath($code));
         return $responseHandler;
+    }
+
+
+    /**
+     * @return \SkyHub\Api\EntityInterface\EntityInterface|void
+     */
+    public function entityInterface()
+    {
+
     }
 }

@@ -234,4 +234,10 @@ class OrderHandler extends HandlerAbstract
         $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/shipment_exception"), $body);
         return $responseHandler;
     }
+
+
+    public function entityInterface()
+    {
+
+    }
 }

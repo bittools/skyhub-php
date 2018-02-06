@@ -32,13 +32,17 @@ class Product extends EntityAbstract
     
     
     /**
-     * @param string $sku
+     * @param bool|string $status
      *
      * @return $this
      */
     public function setStatus($status)
     {
-        $this->setData('status', (string) $status);
+        if (is_bool($status)) {
+            $status = $status ? self::STATUS_ENABLED : self::STATUS_DISABLED;
+        }
+
+        $this->setData('status', $status);
         return $this;
     }
     
@@ -48,8 +52,21 @@ class Product extends EntityAbstract
      */
     public function getStatus()
     {
-        return $this->getData('status');
+        return (string) $this->getData('status');
     }
+
+
+    /**
+     * @return array
+     */
+    public function getStatusesAvailable()
+    {
+        return [
+            self::STATUS_ENABLED,
+            self::STATUS_DISABLED,
+        ];
+    }
+
     
     /**
      * @param string $name
@@ -355,7 +372,11 @@ class Product extends EntityAbstract
     public function addVariation($sku, $qty, $ean)
     {
         $variations = $this->getVariations();
-        $variation  = new Variation($sku, $qty, $ean);
+        $variation  = new Variation($this->requestHandler());
+
+        $variation->setSku($sku)
+            ->setQty($qty)
+            ->setEan($ean);
         
         /** @var Variation $_variation */
         foreach ($variations as $_variation) {
@@ -369,6 +390,34 @@ class Product extends EntityAbstract
         $this->setData('variations', $variations);
         
         return $variation;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getAttributes()
+    {
+        $data = (array) $this->getData();
+
+        unset(
+            $data['variations'],
+            $data['categories'],
+            $data['images'],
+            $data['specifications'],
+            $data['variation_attributes']
+        );
+
+        return $data;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function validate()
+    {
+        return true;
     }
     
     

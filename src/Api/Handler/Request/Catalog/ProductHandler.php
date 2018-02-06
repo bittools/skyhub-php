@@ -2,6 +2,7 @@
 
 namespace SkyHub\Api\Handler\Request\Catalog;
 
+use SkyHub\Api\EntityInterface\Catalog\Product;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 use SkyHub\Api\DataTransformer\Catalog\Product\Variation\Create as CreateVariationTransformer;
 use SkyHub\Api\DataTransformer\Catalog\Product\Create as CreateTransformer;
@@ -187,5 +188,14 @@ class ProductHandler extends HandlerAbstract
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->post($this->baseUrlPath("{$sku}/variations"), $body);
         return $responseHandler;
+    }
+
+
+    /**
+     * @return Attribute
+     */
+    public function entityInterface()
+    {
+        return new Product($this);
     }
 }
