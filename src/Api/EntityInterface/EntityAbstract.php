@@ -103,7 +103,7 @@ abstract class EntityAbstract implements EntityInterface
 
 
     /**
-     * @return HandlerInterface
+     * @return Api\Handler\Request\HandlerAbstract
      */
     protected function requestHandler()
     {
