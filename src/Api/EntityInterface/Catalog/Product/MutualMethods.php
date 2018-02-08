@@ -39,13 +39,13 @@ trait MutualMethods
     
     
     /**
-     * @param int $qty
+     * @param float $qty
      *
      * @return $this
      */
     public function setQty($qty)
     {
-        $this->data['qty'] = (int) $qty;
+        $this->data['qty'] = (float) $qty;
         return $this;
     }
     
