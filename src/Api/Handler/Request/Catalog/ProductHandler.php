@@ -192,7 +192,7 @@ class ProductHandler extends HandlerAbstract
 
 
     /**
-     * @return Attribute
+     * @return Product
      */
     public function entityInterface()
     {
