@@ -38,9 +38,7 @@ class Product extends EntityAbstract
      */
     public function setStatus($status)
     {
-        if (is_bool($status)) {
-            $status = $status ? self::STATUS_ENABLED : self::STATUS_DISABLED;
-        }
+        $status = $status ? self::STATUS_ENABLED : self::STATUS_DISABLED;
 
         $this->setData('status', $status);
         return $this;

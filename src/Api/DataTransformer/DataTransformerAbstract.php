@@ -26,7 +26,6 @@ abstract class DataTransformerAbstract implements DataTransformerInterface
      */
     public function __construct()
     {
-        $this->prepareOutput();
     }
     
     
@@ -56,6 +55,7 @@ abstract class DataTransformerAbstract implements DataTransformerInterface
      */
     public function output()
     {
+        $this->prepareOutput();
         return $this->outputData;
     }
 }

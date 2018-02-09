@@ -90,4 +90,14 @@ class Create extends DataTransformerAbstract
 
         parent::__construct();
     }
+
+
+    /**
+     * @return $this
+     */
+    protected function prepareOutput()
+    {
+        parent::prepareOutput();
+        return $this;
+    }
 }
