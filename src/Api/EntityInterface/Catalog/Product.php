@@ -358,16 +358,32 @@ class Product extends EntityAbstract
     {
         return (array) $this->getData('variations');
     }
+
+
+    /**
+     * @return array
+     */
+    public function exportVariations()
+    {
+        $variations = [];
+
+        /** @var Variation $variation */
+        foreach ($this->getVariations() as $variation) {
+            $variations[] = $variation->export();
+        }
+
+        return $variations;
+    }
     
     
     /**
      * @param string $sku
-     * @param int    $qty
+     * @param float  $qty
      * @param string $ean
      *
      * @return Variation
      */
-    public function addVariation($sku, $qty, $ean)
+    public function addVariation($sku, $qty = 0.0000, $ean = null)
     {
         $variations = $this->getVariations();
         $variation  = new Variation($this->requestHandler());
@@ -455,7 +471,7 @@ class Product extends EntityAbstract
             $this->getImages(),
             $this->getCategories(),
             $this->getSpecifications(),
-            $this->getVariations(),
+            $this->exportVariations(),
             $this->getVariationAttributes()
         );
         
@@ -480,7 +496,7 @@ class Product extends EntityAbstract
             $this->getImages(),
             $this->getCategories(),
             $this->getSpecifications(),
-            $this->getVariations(),
+            $this->exportVariations(),
             $this->getVariationAttributes()
         );
         
