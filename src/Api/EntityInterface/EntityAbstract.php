@@ -36,7 +36,7 @@ abstract class EntityAbstract implements EntityInterface
     /**
      * EntityAbstract constructor.
      *
-     * @param ApiInterface $api
+     * @param Api\Handler\Request\HandlerAbstract $handler
      */
     public function __construct(Api\Handler\Request\HandlerAbstract $handler)
     {
@@ -48,7 +48,8 @@ abstract class EntityAbstract implements EntityInterface
     
     
     /**
-     * @param string $key
+     * @param string     $key
+     * @param null|mixed $default
      *
      * @return array|bool|mixed|string
      */
