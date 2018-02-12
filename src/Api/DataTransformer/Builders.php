@@ -48,13 +48,6 @@ trait Builders
      */
     protected function buildProductSpecifications(array &$productData, array $specifications)
     {
-        $specifications[] = [
-            'key' => 'category_ids',
-            'value' => [
-                1, 2
-            ],
-        ];
-
         /** @var array $specification */
         foreach ($specifications as $specification) {
             $key   = $this->arrayExtract($specification, 'key', '');
