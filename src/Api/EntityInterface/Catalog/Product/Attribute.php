@@ -89,15 +89,6 @@ class Attribute extends EntityAbstract
 
 
     /**
-     * @return bool
-     */
-    public function validate()
-    {
-        return true;
-    }
-
-
-    /**
      * @return HandlerDefault|HandlerException
      */
     public function create()

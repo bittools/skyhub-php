@@ -424,15 +424,6 @@ class Product extends EntityAbstract
 
         return $data;
     }
-
-
-    /**
-     * @return bool
-     */
-    public function validate()
-    {
-        return true;
-    }
     
     
     /**

@@ -110,4 +110,10 @@ abstract class EntityAbstract implements EntityInterface
     {
         return $this->requestHandler;
     }
+
+
+    public function validate()
+    {
+        return true;
+    }
 }

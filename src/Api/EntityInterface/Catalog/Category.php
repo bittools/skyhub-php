@@ -132,13 +132,4 @@ class Category extends EntityAbstract
         $handler = $this->requestHandler();
         return $handler->categories();
     }
-
-
-    /**
-     * @return bool
-     */
-    public function validate()
-    {
-        return true;
-    }
 }

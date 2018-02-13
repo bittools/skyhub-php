@@ -2,6 +2,7 @@
 
 namespace SkyHub\Api\Handler\Request\Sales\Order;
 
+use SkyHub\Api\EntityInterface\Sales\Order\Queue;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 
 /**
@@ -51,8 +52,11 @@ class QueueHandler extends HandlerAbstract
     }
 
 
+    /**
+     * @return Queue
+     */
     public function entityInterface()
     {
-
+        return new Queue($this);
     }
 }

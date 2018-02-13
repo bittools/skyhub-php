@@ -24,13 +24,4 @@ class Variation extends EntityAbstract
     
     /** @var array */
     protected $data = [];
-
-
-    /**
-     * @return bool
-     */
-    public function validate()
-    {
-        return true;
-    }
 }
