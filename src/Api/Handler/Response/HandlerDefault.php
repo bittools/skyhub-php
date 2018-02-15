@@ -53,6 +53,28 @@ class HandlerDefault extends HandlerAbstract implements HandlerInterfaceSuccess
     
     
     /**
+     * @return string
+     */
+    public function bodyString()
+    {
+        return (string) $this->httpResponse()->getBody();
+    }
+    
+    
+    /**
+     * @param bool $assoc
+     * @param int  $depth
+     * @param int  $options
+     *
+     * @return array|\stdClass
+     */
+    public function json($assoc = true, $depth = 512, $options = 0)
+    {
+        return json_decode($this->bodyString(), $assoc, $depth, $options);
+    }
+    
+    
+    /**
      * @return int|null
      */
     public function bodySize()

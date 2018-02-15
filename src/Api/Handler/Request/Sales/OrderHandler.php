@@ -2,6 +2,7 @@
 
 namespace SkyHub\Api\Handler\Request\Sales;
 
+use SkyHub\Api\EntityInterface\Sales\Order;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 
 use SkyHub\Api\DataTransformer\Sales\Order\ApproveTest as ApproveTestTransformer;
@@ -234,10 +235,13 @@ class OrderHandler extends HandlerAbstract
         $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/shipment_exception"), $body);
         return $responseHandler;
     }
-
-
+    
+    
+    /**
+     * @return Order
+     */
     public function entityInterface()
     {
-
+        return new Order($this);
     }
 }
