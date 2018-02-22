@@ -107,7 +107,15 @@ abstract class ServiceAbstract implements ServiceInterface
         $options = $this->prepareRequestBody($body, $options);
         
         /** Log the request before sending it. */
-        $logRequest = new Request($this->getRequestId(), $method, $uri, $body, $this->protectedHeaders(), $options);
+        $logRequest = new Request(
+            $this->getRequestId(),
+            $method,
+            $uri,
+            $body,
+            $this->protectedHeaders($this->headers),
+            $this->protectedOptions($options)
+        );
+        
         $this->logger()->logRequest($logRequest);
 
         try {
@@ -247,12 +255,34 @@ abstract class ServiceAbstract implements ServiceInterface
     
     
     /**
+     * @param $options
+     *
+     * @return mixed
+     */
+    protected function protectedOptions($options)
+    {
+        $headers = $this->arrayExtract($options, 'headers');
+        
+        if (empty($headers)) {
+            return $options;
+        }
+    
+        $headers = $this->protectedHeaders($headers);
+        $options['headers'] = $headers;
+        
+        return $options;
+    }
+    
+    
+    /**
      * @return array
      */
-    protected function protectedHeaders()
+    protected function protectedHeaders(array $headers = [])
     {
-        $headers = $this->headers;
-        
+        if (empty($headers)) {
+            $headers = $this->headers;
+        }
+    
         if (isset($headers[Api::HEADER_USER_EMAIL])) {
             $headers[Api::HEADER_USER_EMAIL] = $this->protectString($headers[Api::HEADER_USER_EMAIL]);
         }
