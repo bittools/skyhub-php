@@ -103,7 +103,9 @@ class Logger extends LoggerAbstract
             return $this;
         }
         
-        $this->logger->log($this->level, (string) $request);
+        try {
+            $this->logger->log($this->level, (string) $request);
+        } catch (\Exception $e) {}
         
         return $this;
     }
