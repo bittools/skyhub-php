@@ -28,9 +28,14 @@
     "authors": [
         {
             "name": "Tiago Sampaio",
-            "email": "tiago@tiagosampaio.com"
+            "email": "tiago@tiagosampaio.com",
+            "role": "Developer"
         }
     ],
+    "support": {
+        "email": "sdk@e-smart.com.br"
+    },
     "minimum-stability": "stable",
     "prefer-stable": true
 }
+
