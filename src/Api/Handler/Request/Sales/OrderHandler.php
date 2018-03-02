@@ -202,7 +202,7 @@ class OrderHandler extends HandlerAbstract
         $body = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
-        $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/delivery"), $body);
+        $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/shipments"), $body);
         return $responseHandler;
     }
 
