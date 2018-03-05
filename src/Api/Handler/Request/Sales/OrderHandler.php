@@ -158,7 +158,7 @@ class OrderHandler extends HandlerAbstract
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
-        $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/invoice"), $body);
+        $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/cancel"), $body);
         return $responseHandler;
     }
 
