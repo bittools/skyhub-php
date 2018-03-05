@@ -98,12 +98,14 @@ class OrderHandler extends HandlerAbstract
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
+    /*
     public function createTest(...$orderData)
     {
-        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler * /
          $responseHandler = $this->service()->post($this->baseUrlPath());
          return $responseHandler;
     }
+    */
 
 
     /**
