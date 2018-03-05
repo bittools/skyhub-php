@@ -121,4 +121,19 @@ class Order extends EntityAbstract
         $handler = $this->requestHandler();
         return $handler->shipment($orderId, $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl);
     }
+    
+    
+    /**
+     * @param string $orderId
+     * @param string $datetime
+     * @param string $observation
+     *
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function shipmentException($orderId, $datetime, $observation)
+    {
+        /** @var OrderHandler $handler */
+        $handler = $this->requestHandler();
+        return $handler->shipmentException($orderId, $datetime, $observation);
+    }
 }
