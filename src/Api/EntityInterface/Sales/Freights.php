@@ -19,7 +19,6 @@ namespace SkyHub\Api\EntityInterface\Sales\Order;
 
 use SkyHub\Api\EntityInterface\EntityAbstract;
 use SkyHub\Api\Handler\Request\Sales\FreightsHandler;
-use SkyHub\Api\Handler\Request\Sales\Order\StatusHandler;
 
 class Freights extends EntityAbstract
 {
