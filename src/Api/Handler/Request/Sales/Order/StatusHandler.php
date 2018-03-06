@@ -19,6 +19,7 @@ namespace SkyHub\Api\Handler\Request\Sales\Order;
 
 use SkyHub\Api\DataTransformer\Sales\Order\Status\Create;
 use SkyHub\Api\DataTransformer\Sales\Order\Status\Update;
+use SkyHub\Api\EntityInterface\Sales\Order\Status;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 
 class StatusHandler extends HandlerAbstract
@@ -95,10 +96,13 @@ class StatusHandler extends HandlerAbstract
         $responseHandler = $this->service()->put($this->baseUrlPath($code), $body);
         return $responseHandler;
     }
-
-
+    
+    
+    /**
+     * @return \SkyHub\Api\EntityInterface\EntityInterface|Status
+     */
     public function entityInterface()
     {
-
+        return new Status($this);
     }
 }
