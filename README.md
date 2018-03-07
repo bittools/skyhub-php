@@ -1,5 +1,7 @@
 <img align="right" style="float:right; max-width:200px; height:200px;" src="doc/images/logo.png">
-![SkyHub - MaketPlace Intelligence](doc/images/logo.png)
+![SkyHub - MaketPlace Intelligence](doc/images/logo.png?raw=true "SkyHub - MaketPlace Intelligence")
+![Alt text](doc/images/logo.png?raw=true "Title")
+
 <h2>SkyHub - PHP SDK</h2>
 
 Esta é a SDK oficial da SkyHub, construída em PHP, que você pode utilizar para integrar sua plataforma aos nossos serviços.
