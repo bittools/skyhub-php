@@ -1,7 +1,7 @@
 <h2>SkyHub - PHP SDK</h2>
 Esta é a SDK oficial da SkyHub, construída em PHP, que você pode utilizar para integrar sua plataforma aos nossos serviços.
 
-##Wiki
+## Wiki
 1. [Requerimentos do Sistema](doc/SYSTEM_REQUIREMENTS.md) 
 2. [Instalação e Setup](doc/INSTALLATION.md)
 3. [Credenciais](doc/CREDENTIALS.md)
@@ -22,3 +22,6 @@ Esta é a SDK oficial da SkyHub, construída em PHP, que você pode utilizar par
         8. [Obtendo Etiquetas de Pedidos]()
         9. [Pedidos com Problemas de Entrega]()
      
+## Contribuindo com o Código
+
+## Licença
