@@ -12,29 +12,75 @@
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
  */
 
-include __DIR__ . '/../../api.php';
+include __DIR__ . '/../api.php';
 
-/** @var \SkyHub\Api\EntityInterface\Catalog\Product\Attribute $entityInterface */
+/** @var \SkyHub\Api\EntityInterface\Catalog\Product $entityInterface */
 $entityInterface = $api->productAttribute()
                        ->entityInterface();
 
-$entityInterface->setCode('color')
-                ->setLabel('Color')
-                ->addOption('Blue')
-                ->addOption('White')
-                ->addOption('Green')
-                ->addOption('Yellow');
+$entityInterface->setSku('sku123')
+        ->setName('Sample Product')
+        ->setDescription('Sample Product Description')
+        ->setStatus('enabled')
+        ->setQty(123)
+        ->setPrice(2.3458)
+        ->setPromotionalPrice(1.9876)
+        ->setCost(1.2090)
+        ->setWeight(1.45)
+        ->setHeight(1.45)
+        ->setWidth(1.45)
+        ->setLength(1.45)
+        ->setBrand('Nike')
+        ->setEan('01234567890')
+        ->setNbm('11234567890')
+        ->addCategory('foo', 'Foo > Foo')
+        ->addCategory('bar', 'Bar > Bar')
+        ->addImage('http://sourceimage001.jpg')
+        ->addImage('http://sourceimage002.jpg')
+        ->addImage('http://sourceimage003.jpg')
+        ->addSpecification('color', 'Black')
+        ->addSpecification('size', 'XL')
+        ->addSpecification('voltage', '220v')
+        ->addVariationAttribute('color')
+        ->addVariationAttribute('size');
+
+/** @var \SkyHub\Api\EntityInterface\Catalog\Product\Variation $variation */
+$variation = $entityInterface->addVariation('variation001', 100, '9876565');
+$variation->addImage('http://variation-sourceimage001.jpg')
+          ->addImage('http://variation-sourceimage002.jpg')
+          ->addImage('http://variation-sourceimage003.jpg')
+          ->addSpecification('color', 'White')
+          ->addSpecification('size', 'S');
+
 
 /**
- * Create an Attribute
+ * CREATE A PRODUCT
  *
  * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
  */
 $responseCreate = $entityInterface->create();
 
 /**
- * Update an Attribute
- *
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * UPDATE A PRODUCT
  */
-$responseCreate = $entityInterface->create();
+$responseUpdate = $entityInterface->update();
+
+/**
+ * DELETE A PRODUCT
+ */
+$responseUpdate = $entityInterface->delete();
+
+/**
+ * GET A SINGLE PRODUCT
+ */
+$responseUpdate = $entityInterface->product();
+
+/**
+ * GET A SINGLE PRODUCT
+ */
+$responseUpdate = $entityInterface->products();
+
+/**
+ * GET A PRODUCT MARKETPLACE URLS
+ */
+$responseUpdate = $entityInterface->urls();

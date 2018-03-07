@@ -22,6 +22,27 @@ use SkyHub\Api\Handler\Request\Sales\Order\QueueHandler;
 
 class Queue extends EntityAbstract
 {
+    
+    /**
+     * @param $orderId
+     *
+     * @return $this
+     */
+    public function setOrderId($orderId)
+    {
+        $this->setData('order_id', $orderId);
+        return $this;
+    }
+    
+    
+    /**
+     * @return array|bool|mixed|string
+     */
+    public function getOrderId()
+    {
+        return $this->getData('order_id');
+    }
+    
 
     /**
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
@@ -39,8 +60,12 @@ class Queue extends EntityAbstract
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function delete($orderId)
+    public function delete($orderId = null)
     {
+        if (empty($orderId)) {
+            $orderId = $this->getOrderId();
+        }
+        
         /** @var QueueHandler $handler */
         $handler = $this->requestHandler();
         return $handler->delete($orderId);
