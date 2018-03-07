@@ -18,12 +18,12 @@ $requestHandler = $api->productAttribute();
 
 /**
  * Create an Attribute
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $requestHandler->create('color', 'Color', ['Blue', 'White', 'Green', 'Yellow']);
+$response = $requestHandler->create('color', 'Color', ['Blue', 'White', 'Green', 'Yellow']);
 
 
 /**
  * Update an Attribute
  */
-$responseUpdate = $requestHandler->update('color', 'Color', ['Blue', 'White', 'Green', 'Yellow', 'Orange']);
+$response = $requestHandler->update('color', 'Color', ['Blue', 'White', 'Green', 'Yellow', 'Orange']);

@@ -19,24 +19,24 @@ $requestHandler = $api->category();
 
 /**
  * CREATE a Category
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $requestHandler->create('category001', 'Category 001');
+$response = $requestHandler->create('category001', 'Category 001');
 
 /**
  * UPDATE a Category
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $requestHandler->update('category001', 'Category 001');
+$response = $requestHandler->update('category001', 'Category 001');
 
 /**
  * DELETE a Category
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $requestHandler->delete('category001');
+$response = $requestHandler->delete('category001');
 
 /**
  * LIST all Categories
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $requestHandler->categories();
+$response = $requestHandler->categories();

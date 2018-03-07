@@ -28,13 +28,13 @@ $entityInterface->setCode('color')
 /**
  * Create an Attribute
  *
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $entityInterface->create();
+$response = $entityInterface->create();
 
 /**
  * Update an Attribute
  *
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $entityInterface->create();
+$response = $entityInterface->create();

@@ -98,9 +98,9 @@ $variationAttributes = [
 /**
  * CREATE A PRODUCT
  *
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $requestHandler->create(
+$response = $requestHandler->create(
     $sku,
     $attributes,
     $images,
@@ -113,7 +113,7 @@ $responseCreate = $requestHandler->create(
 /**
  * UPDATE A PRODUCT
  */
-$responseUpdate = $requestHandler->update(
+$response = $requestHandler->update(
     $sku,
     $attributes,
     $images,
@@ -126,19 +126,19 @@ $responseUpdate = $requestHandler->update(
 /**
  * DELETE A PRODUCT
  */
-$responseUpdate = $requestHandler->delete($sku);
+$response = $requestHandler->delete($sku);
 
 /**
  * GET A SINGLE PRODUCT
  */
-$responseUpdate = $requestHandler->product($sku);
+$response = $requestHandler->product($sku);
 
 /**
  * GET A SINGLE PRODUCT
  */
-$responseUpdate = $requestHandler->products(['status' => 'foo']);
+$response = $requestHandler->products(['status' => 'foo']);
 
 /**
  * GET A PRODUCT MARKETPLACE URLS
  */
-$responseUpdate = $requestHandler->urls();
+$response = $requestHandler->urls();

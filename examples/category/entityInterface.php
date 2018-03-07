@@ -26,27 +26,27 @@ $entityInterface->setCode('category001')
 /**
  * CREATE a Category
  *
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $entityInterface->create();
+$response = $entityInterface->create();
 
 /**
  * UPDATE a Category
  *
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $entityInterface->update();
+$response = $entityInterface->update();
 
 /**
  * DELETE a Category
  *
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $entityInterface->delete();
+$response = $entityInterface->delete();
 
 /**
  * LIST all Categories
  *
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $entityInterface->categories();
+$response = $entityInterface->categories();

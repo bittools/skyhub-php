@@ -56,31 +56,31 @@ $variation->addImage('http://variation-sourceimage001.jpg')
 /**
  * CREATE A PRODUCT
  *
- * @var SkyHub\Api\Handler\Response\HandlerInterface $responseCreate
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
-$responseCreate = $entityInterface->create();
+$response = $entityInterface->create();
 
 /**
  * UPDATE A PRODUCT
  */
-$responseUpdate = $entityInterface->update();
+$response = $entityInterface->update();
 
 /**
  * DELETE A PRODUCT
  */
-$responseUpdate = $entityInterface->delete();
+$response = $entityInterface->delete();
 
 /**
  * GET A SINGLE PRODUCT
  */
-$responseUpdate = $entityInterface->product();
+$response = $entityInterface->product();
 
 /**
  * GET A SINGLE PRODUCT
  */
-$responseUpdate = $entityInterface->products();
+$response = $entityInterface->products();
 
 /**
  * GET A PRODUCT MARKETPLACE URLS
  */
-$responseUpdate = $entityInterface->urls();
+$response = $entityInterface->urls();
