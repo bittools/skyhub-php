@@ -1,4 +1,6 @@
 <h2>SkyHub - PHP SDK</h2>
+<img align="right" style="float: right; height: 200px;" src="doc/images/logo.png">
+
 Esta é a SDK oficial da SkyHub, construída em PHP, que você pode utilizar para integrar sua plataforma aos nossos serviços.
 
 ## Wiki
