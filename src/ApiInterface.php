@@ -28,10 +28,9 @@ interface ApiInterface
      * @param string                $baseUri
      * @param string                $email
      * @param string                $apiKey
-     * @param string                $apiToken
      * @param ServiceInterface|null $apiService
      */
-    public function __construct($baseUri, $email, $apiKey, $apiToken, ServiceInterface $apiService = null);
+    public function __construct($baseUri, $email, $apiKey, ServiceInterface $apiService = null);
     
     
     /**

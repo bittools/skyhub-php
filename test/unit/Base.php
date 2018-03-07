@@ -31,9 +31,6 @@ trait Base
     /** @var string */
     protected $apiKey    = 'testApiKey';
     
-    /** @var string */
-    protected $apiToken  = 'testApiToken';
-    
     
     /**
      * @return Api
@@ -41,7 +38,7 @@ trait Base
     protected function api()
     {
         if (empty($this->api)) {
-            $this->api = new Api($this->baseUri, $this->email, $this->apiKey, $this->apiToken);
+            $this->api = new Api($this->baseUri, $this->email, $this->apiKey);
         }
     
         return $this->api;

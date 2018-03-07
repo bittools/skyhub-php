@@ -30,7 +30,7 @@ class ProductTest extends TestCase
 
     protected function setUp()
     {
-        $this->api = new Api('', '', '', '');
+        $this->api = new Api('', '', '');
         $this->product = $this->api->product()->entityInterface();
     }
 
