@@ -36,13 +36,10 @@ class ApiTest extends TestCase
     /** @var string */
     protected $apiKey    = 'testApiKey';
     
-    /** @var string */
-    protected $apiToken  = 'testApiToken';
-    
     
     public function setUp()
     {
-        $this->api = new Api($this->baseUri, $this->email, $this->apiKey, $this->apiToken);
+        $this->api = new Api($this->baseUri, $this->email, $this->apiKey);
     }
     
     

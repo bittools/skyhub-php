@@ -45,15 +45,19 @@ class Api implements ApiInterface
      * @param string           $baseUri
      * @param string           $email
      * @param string           $apiKey
-     * @param string           $apiToken
      * @param ServiceInterface $apiService
      */
-    public function __construct($baseUri, $email, $apiKey, $apiToken, ServiceInterface $apiService = null)
+    public function __construct($baseUri, $email, $apiKey, ServiceInterface $apiService = null)
     {
+        /**
+         * If you need support in the future from SkyHub please don't change this code.
+         */
+        $xAccountKey = '0I5dT7IC1h';
+        
         $headers = [
-            self::HEADER_USER_EMAIL => $email,
-            self::HEADER_API_KEY => $apiKey,
-            self::HEADER_ACCOUNT_MANAGER_KEY => $apiToken,
+            self::HEADER_USER_EMAIL          => $email,
+            self::HEADER_API_KEY             => $apiKey,
+            self::HEADER_ACCOUNT_MANAGER_KEY => $xAccountKey,
         ];
 
         if (empty($apiServiceClass)) {

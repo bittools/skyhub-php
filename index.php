@@ -3,12 +3,11 @@
 require_once __DIR__ . '/src/bootstrap.php';
 
 $baseUri = 'https://api.skyhub.com.br';
-$email = 'valdir.calixto@e-smart.com.br';
-$apiKey = 'wxVMVTkf_csx17LioTjY';
-$apiToken = 'bZa6Ml0zgS';
+$email   = 'valdir.calixto@e-smart.com.br';
+$apiKey  = 'wxVMVTkf_csx17LioTjY';
 
 /** @var \SkyHub\Api $api */
-$api = new SkyHub\Api($baseUri, $email, $apiKey, $apiToken);
+$api = new SkyHub\Api($baseUri, $email, $apiKey);
 
 /**
  * Attribute Creation and Update.
