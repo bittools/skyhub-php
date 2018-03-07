@@ -1,4 +1,4 @@
-![SkyHub - MarketPlace Intelligence](https://github.com/tiagosampaio/skyhub-php/raw/master/doc/images/logo.png)
+![SkyHub - MarketPlace Intelligence](/doc/images/logo.png)
 
 <h2>SkyHub - PHP SDK</h2>
 
