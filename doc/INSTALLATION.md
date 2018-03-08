@@ -32,4 +32,4 @@ php composer.phar update
 
 [Voltar](../README.md)
 
-[Continuar: Utilizando a SDK](usage/API.md)
+[Continuar: Utilizando a SDK - API](usage/API.md)
