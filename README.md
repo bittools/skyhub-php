@@ -1,6 +1,6 @@
 ![SkyHub - MarketPlace Intelligence](https://github.com/tiagosampaio/skyhub-php/raw/master/doc/images/logo.png)
 
-<h2>SkyHub - PHP SDK</h2>
+# SkyHub - PHP SDK
 
 Esta é a SDK oficial da SkyHub, construída em PHP, que você pode utilizar para integrar sua plataforma aos nossos serviços.
 
@@ -9,7 +9,7 @@ Esta é a SDK oficial da SkyHub, construída em PHP, que você pode utilizar par
 2. [Instalação e Setup](doc/INSTALLATION.md)
 3. [Credenciais](doc/CREDENTIALS.md)
 4. Utilizando a SDK
-    1. [Instanciando a API](doc/using/API.md)
+    1. [Instanciando a API](doc/usage/API.md)
     2. [Catálogo]()
         1. [Atributos de Produto]()
         2. [Produtos]()
