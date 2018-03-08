@@ -4,6 +4,37 @@
 
 Esta é a SDK oficial da SkyHub, construída em PHP, que você pode utilizar para integrar sua plataforma aos nossos serviços.
 
+Veja um exemplo de como é fácil utilizar:
+
+```php
+<?php
+
+    $baseUri = 'https://api.skyhub.com.br';
+    $email   = 'teste.sdk@skyhub.com.br';
+    $apiKey  = 'ddRTGUrf_bho17FooTjC';
+
+    /** @var \SkyHub\Api $api */
+    $api = new SkyHub\Api($baseUri, $email, $apiKey);
+    
+    /** @var \SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler $requestHandler */
+    $requestHandler = $api->productAttribute();
+    
+    /**
+     * Create an Attribute
+     * @var SkyHub\Api\Handler\Response\HandlerInterface $response
+     */
+    $response = $requestHandler->create('color', 'Color', [
+        'Blue',
+        'White',
+        'Green',
+        'Yellow'
+    ]);
+    
+    if ($response->success()) {
+        echo 'SUCCESS!';
+    }
+```
+
 ## Wiki
 1. [Requerimentos do Sistema](doc/SYSTEM_REQUIREMENTS.md) 
 2. [Instalação e Setup](doc/INSTALLATION.md)
@@ -26,5 +57,17 @@ Esta é a SDK oficial da SkyHub, construída em PHP, que você pode utilizar par
         9. [Pedidos com Problemas de Entrega]()
      
 ## Contribuindo com o Código
+
+Sua contribuição é sempre bem vinda! Por favor, leia a [documentação](doc/CONTRIBUTING.md) de contribuição de código.
+
+## Autores
+
+Tiago Sampaio
+
+## Suporte
+
+Para solicitações de suporte, por favor, envie um e-mail para o seguinte endereço:
+
+sdk@e-smart.com.br
 
 ## Licença
