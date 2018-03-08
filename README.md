@@ -9,6 +9,8 @@ Veja um exemplo de como é fácil utilizar:
 ```php
 <?php
 
+    require_once './vendor/autoload.php';
+
     $baseUri = 'https://api.skyhub.com.br';
     $email   = 'teste.sdk@skyhub.com.br';
     $apiKey  = 'ddRTGUrf_bho17FooTjC';
@@ -36,25 +38,25 @@ Veja um exemplo de como é fácil utilizar:
 ```
 
 ## Wiki
-1. [Requerimentos do Sistema](doc/SYSTEM_REQUIREMENTS.md) 
-2. [Instalação e Setup](doc/INSTALLATION.md)
-3. [Credenciais](doc/CREDENTIALS.md)
-4. Utilizando a SDK
-    1. [Instanciando a API](doc/usage/API.md)
-    2. [Catálogo]()
+1. [Requerimentos do Sistema](doc/SYSTEM_REQUIREMENTS.md)
+1. [Credenciais](doc/CREDENTIALS.md) 
+1. [Instalação e Setup](doc/INSTALLATION.md)
+1. Utilizando a SDK
+    1. [Utilizando a API](doc/usage/API.md)
+    1. [Catálogo]()
         1. [Atributos de Produto]()
-        2. [Produtos]()
-        3. [Categorias]()
-    3. [Pedidos]()
+        1. [Produtos]()
+        1. [Categorias]()
+    1. [Pedidos]()
         1. [Consultando Pedidos]()
-        2. [Consultando Status de Pedidos]()
-        3. [Trabalhando com Filas de Pedidos]()
-        4. [Faturando um Pedido]()
-        5. [Cancelando um Pedido]()
-        6. [Adicionando um Tracking de Pedido]()
-        7. [Definindo um Pedido como Entregue]()
-        8. [Obtendo Etiquetas de Pedidos]()
-        9. [Pedidos com Problemas de Entrega]()
+        1. [Consultando Status de Pedidos]()
+        1. [Trabalhando com Filas de Pedidos]()
+        1. [Faturando um Pedido]()
+        1. [Cancelando um Pedido]()
+        1. [Adicionando um Tracking de Pedido]()
+        1. [Definindo um Pedido como Entregue]()
+        1. [Obtendo Etiquetas de Pedidos]()
+        1. [Pedidos com Problemas de Entrega]()
      
 ## Contribuindo com o Código
 
