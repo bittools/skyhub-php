@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=5.4",
-        "guzzlehttp/guzzle": "^6.2@dev",
+        "guzzlehttp/guzzle": "^6.3",
         "monolog/monolog": "^1.0"
     },
     "require-dev": {
