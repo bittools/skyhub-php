@@ -11,12 +11,11 @@ Veja um exemplo de como é fácil utilizar:
 
     require_once './vendor/autoload.php';
 
-    $baseUri = 'https://api.skyhub.com.br';
     $email   = 'teste.sdk@skyhub.com.br';
     $apiKey  = 'ddRTGUrf_bho17FooTjC';
 
     /** @var \SkyHub\Api $api */
-    $api = new SkyHub\Api($baseUri, $email, $apiKey);
+    $api = new SkyHub\Api($email, $apiKey);
     
     /** @var \SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler $requestHandler */
     $requestHandler = $api->productAttribute();
