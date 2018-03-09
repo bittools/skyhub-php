@@ -2,7 +2,7 @@
 
 Para integrar seus produtos, primeiramente você precisa integrar os atributos que compõem seus produtos.
 
-### Criando Atributes
+### Criando Atributos
 
 Para criar um atributo de produto:
 
@@ -21,7 +21,7 @@ $response = $requestHandler->create('color', 'Color', [
 // ...
 ```
 
-### Atualizando Atributes
+### Atualizando Atributos
 
 Quando o atributo já existe na SkyHub e você precisa atualizá-lo:
 

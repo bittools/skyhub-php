@@ -1,6 +1,6 @@
 # Produtos
 
-Com os atributos integrados é hora de começar a integrar os produtos do seu catálogo.
+Com os atributos de produtos integrados é hora de começar a integrar os produtos do seu catálogo.
 
 ### Criando e Atualizando Produtos na SkyHub
 
@@ -53,22 +53,22 @@ $categories = array(
 
 $specifications = array(
     array(
-        'key' => 'color',
+        'key'   => 'color',
         'value' => 'Black',
     ), array(
-        'key' => 'size',
+        'key'   => 'size',
         'value' => 'XL',
     ), array(
-        'key' => 'voltage',
+        'key'   => 'voltage',
         'value' => '220v',
     )
 );
 
 $variations = array(
     array(
-        'sku' => 'variation001',
-        'qty' => 100,
-        'ean' => '9876565',
+        'sku'    => 'variation001',
+        'qty'    => 100,
+        'ean'    => '9876565',
         'images' => array(
             'http://variation-sourceimage001.jpg',
             'http://variation-sourceimage002.jpg',
@@ -76,11 +76,11 @@ $variations = array(
         ),
         'specifications' => array(
             array(
-                'key' => 'color',
+                'key'   => 'color',
                 'value' => 'White'
             ),
             array(
-                'key' => 'size',
+                'key'   => 'size',
                 'value' => 'S'
             )
         ),
@@ -271,7 +271,7 @@ $entityInterface->setSku('sku123')
 $response = $entityInterface->delete();
 
 /**
- * Get a Single PRoduct
+ * Get a Single Product
  *
  * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
