@@ -58,6 +58,8 @@ $response = $requestHandler->categories();
 // ...
 ```
 
+Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/categories).
+
 [Voltar](../../../README.md)
 
 [Continuar: Pedidos](../ORDERS.md)
