@@ -15,7 +15,7 @@
 include __DIR__ . '/../api.php';
 
 /** @var \SkyHub\Api\EntityInterface\Catalog\Product $entityInterface */
-$entityInterface = $api->productAttribute()
+$entityInterface = $api->product()
                        ->entityInterface();
 
 $entityInterface->setSku('sku123')
