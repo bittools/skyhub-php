@@ -5,17 +5,17 @@ Para instalar esta SDK você pode seguir os seguintes passos:
 
 ##### Passos para a instalação
 
-É necessário ter o [composer](http://getcomposer.org) instalado no ambiente no qual a SDK será utilizada.
+É necessário ter o [composer](https://getcomposer.org/download/) instalado no ambiente no qual a SDK será utilizada.
 
 ```bash
 # Install Composer
-curl -sS https://getcomposer.org/installer | php 
+$ curl -sS https://getcomposer.org/installer | php 
 ```
 
 O próximo passo é executar o composer para que todas as dependências, com suas versões corretas, sejam instaladas:
 
 ```bash
-php composer.phar require tiagosampaio/skyhub-php
+$ php composer.phar require tiagosampaio/skyhub-php
 ```
 
 Após a instalação, você precisa colocar uma chamada do autoload do Composer no seu arquivo PHP:
@@ -27,7 +27,7 @@ require_once 'vendor/autoload.php';
 Posteriormente, pode ser necessário fazer a atualização da SDK no seu ambiente. Para isso você poderá executar o seguinte comando:
 
 ```bash
-php composer.phar update
+$ php composer.phar update
 ```
 
 [Voltar](../README.md)

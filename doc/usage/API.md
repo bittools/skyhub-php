@@ -1,6 +1,6 @@
 # Utilizando a API
 
-A classe API utilizada na SDK é a proxy necessária para você ter acesso às qualquer outra funcionalidade da API. A utilização dela é simples.
+A classe API utilizada na SDK é a proxy necessária para você ter acesso às qualquer outra funcionalidade da API. A utilização dela é realmente simples.
 
 Primeiramente você precisa importar o autoload do Composer no seu arquivo PHP:
 
