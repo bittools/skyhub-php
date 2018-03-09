@@ -25,13 +25,19 @@ interface ApiInterface
     /**
      * ApiInterface constructor.
      *
-     * @param string                $baseUri
      * @param string                $email
      * @param string                $apiKey
      * @param string|null           $xAccountKey
+     * @param string|null           $baseUri
      * @param ServiceInterface|null $apiService
      */
-    public function __construct($baseUri, $email, $apiKey, $xAccountKey = null, ServiceInterface $apiService = null);
+    public function __construct(
+        $email,
+        $apiKey,
+        $xAccountKey = null,
+        $baseUri = null,
+        ServiceInterface $apiService = null
+    );
     
     
     /**

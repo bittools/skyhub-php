@@ -48,7 +48,7 @@ Veja um exemplo de como é fácil utilizar:
         1. [Produtos](doc/usage/catalog/PRODUCTS.md)
         1. [Categorias](doc/usage/catalog/CATEGORIES.md)
     1. [Pedidos](doc/usage/ORDERS.md)
-        1. [Consultando Pedidos](doc/usage/orders/ORDERS.md)
+        1. [Consultando Pedidos](doc/usage/orders/CONSULT.md)
         1. [Consultando Pedidos](doc/usage/orders/CONSULT.md)
         1. [Trabalhando com Filas de Pedidos](doc/usage/orders/QUEUE.md)
         1. [Faturando um Pedido](doc/usage/orders/INVOICE.md)

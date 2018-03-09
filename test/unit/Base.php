@@ -23,9 +23,6 @@ trait Base
     protected $api       = null;
     
     /** @var string */
-    protected $baseUri   = 'https://api.skyhub.com.br';
-    
-    /** @var string */
     protected $email     = 'test@e-smart.com.br';
     
     /** @var string */
@@ -38,7 +35,7 @@ trait Base
     protected function api()
     {
         if (empty($this->api)) {
-            $this->api = new Api($this->baseUri, $this->email, $this->apiKey);
+            $this->api = new Api($this->email, $this->apiKey);
         }
     
         return $this->api;

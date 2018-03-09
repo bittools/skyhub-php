@@ -60,13 +60,17 @@ abstract class ServiceAbstract implements ServiceInterface
      * @param array  $headers
      * @param array  $options
      */
-    public function __construct($baseUri, array $headers = [], array $options = [], $log = true)
+    public function __construct($baseUri = null, array $headers = [], array $options = [], $log = true)
     {
         $this->headers = array_merge($this->headers, $headers);
         
         $defaults = [
             'headers' => $headers,
         ];
+
+        if (empty($baseUri)) {
+            $baseUri = 'https://api.skyhub.com.br';
+        }
     
         foreach ($options as $key => $value) {
             $defaults[$key] = $value;

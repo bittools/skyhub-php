@@ -42,8 +42,13 @@ class Api implements ApiInterface
     /**
      * @inheritdoc
      */
-    public function __construct($baseUri, $email, $apiKey, $xAccountKey = null, ServiceInterface $apiService = null)
-    {
+    public function __construct(
+        $email,
+        $apiKey,
+        $xAccountKey = null,
+        $baseUri = null,
+        ServiceInterface $apiService = null
+    ) {
         /**
          * If you need support in the future from SkyHub please don't change this code.
          */
@@ -59,7 +64,6 @@ class Api implements ApiInterface
 
         if (empty($apiServiceClass)) {
             $this->service = new ServiceJson($baseUri, $headers);
-            
             return;
         }
         

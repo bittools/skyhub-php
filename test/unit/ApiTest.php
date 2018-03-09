@@ -28,9 +28,6 @@ class ApiTest extends TestCase
     protected $api       = null;
 
     /** @var string */
-    protected $baseUri   = 'https://api.skyhub.com.br';
-
-    /** @var string */
     protected $email     = 'test@e-smart.com.br';
     
     /** @var string */
@@ -39,7 +36,7 @@ class ApiTest extends TestCase
     
     public function setUp()
     {
-        $this->api = new Api($this->baseUri, $this->email, $this->apiKey);
+        $this->api = new Api($this->email, $this->apiKey);
     }
     
     

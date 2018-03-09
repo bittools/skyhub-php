@@ -6,4 +6,4 @@ Para maiores informações acesso a [documentação oficial](https://skyhub.gela
 
 [Voltar](../../README.md)
 
-[Continuar: Consultando Pedidos](orders/ORDERS.md)
+[Continuar: Consultando Pedidos](orders/CONSULT.md)
