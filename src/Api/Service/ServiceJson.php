@@ -44,7 +44,7 @@ class ServiceJson extends ServiceDefault
      */
     protected function prepareRequestBody($bodyData, array &$options = [])
     {
-        $options[\GuzzleHttp\RequestOptions::JSON] = $bodyData;
+        $options['json'] = $bodyData;
         return $options;
     }
 }

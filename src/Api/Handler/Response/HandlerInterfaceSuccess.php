@@ -17,7 +17,7 @@
 
 namespace SkyHub\Api\Handler\Response;
 
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Message\Response;
 
 interface HandlerInterfaceSuccess extends HandlerInterface
 {
@@ -25,9 +25,9 @@ interface HandlerInterfaceSuccess extends HandlerInterface
     /**
      * HandlerInterface constructor.
      *
-     * @param ResponseInterface $response
+     * @param Response $response
      */
-    public function __construct(ResponseInterface $response);
+    public function __construct(Response $response);
     
     
     /**

@@ -17,28 +17,28 @@
 
 namespace SkyHub\Api\Handler\Response;
 
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Message\Response;
 
 class HandlerDefault extends HandlerAbstract implements HandlerInterfaceSuccess
 {
     
-    /** @var ResponseInterface */
+    /** @var Response */
     protected $httpResponse = null;
     
     
     /**
      * DefaultHandler constructor.
      *
-     * @param ResponseInterface $response
+     * @param Response $response
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(Response $response)
     {
         $this->httpResponse = $response;
     }
     
     
     /**
-     * @return ResponseInterface
+     * @return Response
      */
     public function httpResponse()
     {

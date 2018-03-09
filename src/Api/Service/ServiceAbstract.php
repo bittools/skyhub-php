@@ -107,9 +107,9 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     public function request($method, $uri, $body = null, $options = [], $debug = false)
     {
-        $options[\GuzzleHttp\RequestOptions::TIMEOUT] = $this->getTimeout();
-        $options[\GuzzleHttp\RequestOptions::HEADERS] = $this->headers;
-        $options[\GuzzleHttp\RequestOptions::DEBUG]   = (bool) $debug;
+        $options['timeout'] = $this->getTimeout();
+        $options['headers'] = $this->headers;
+        $options['debug']   = (bool) $debug;
         
         $options = $this->prepareRequestBody($body, $options);
         
@@ -126,8 +126,11 @@ abstract class ServiceAbstract implements ServiceInterface
         $this->logger()->logRequest($logRequest);
 
         try {
-            /** @var \Psr\Http\Message\ResponseInterface $response */
-            $response = $this->httpClient()->request($method, $uri, $options);
+            /** @var \GuzzleHttp\Message\Request $request */
+            $request = $this->httpClient()->createRequest($method, $uri, $options);
+
+            /** @var \GuzzleHttp\Message\Response $response */
+            $response = $this->httpClient()->send($request);
     
             /** @var Api\Handler\Response\HandlerInterfaceSuccess $responseHandler */
             $responseHandler = new HandlerDefault($response);
@@ -156,7 +159,7 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     protected function prepareRequestBody($bodyData, array &$options = [])
     {
-        $options[\GuzzleHttp\RequestOptions::BODY] = $bodyData;
+        $options['body'] = $bodyData;
         return $options;
     }
     
