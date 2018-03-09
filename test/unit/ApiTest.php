@@ -83,5 +83,4 @@ class ApiTest extends TestCase
     {
         $this->assertInstanceOf(CategoryHandler::class, $this->api->category());
     }
-    
 }

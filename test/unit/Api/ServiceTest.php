@@ -36,5 +36,4 @@ class ServiceTest extends TestCase
 
         $this->assertInstanceOf(\GuzzleHttp\Client::class, $httpClient);
     }
-
 }

@@ -74,5 +74,4 @@ class AttributeTest extends TestCase
         
         $this->assertEquals($expected, $transformer->output());
     }
-    
 }

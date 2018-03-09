@@ -195,5 +195,4 @@ class OrderTest extends TestCase
 
         $this->assertEquals($expected, $transformer->output());
     }
-
 }

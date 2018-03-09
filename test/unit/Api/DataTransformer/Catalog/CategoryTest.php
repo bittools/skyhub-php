@@ -59,5 +59,4 @@ class CategoryTest extends TestCase
         
         $this->assertEquals($expected, $transformer->output());
     }
-
 }
