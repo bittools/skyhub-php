@@ -12,9 +12,8 @@
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
  */
 
-$baseUri = 'https://api.skyhub.com.br';
 $email   = 'teste.sdk@skyhub.com.br';
 $apiKey  = 'ddRTGUrf_bho17FooTjC';
 
 /** @var \SkyHub\Api $api */
-$api = new SkyHub\Api($baseUri, $email, $apiKey);
+$api = new SkyHub\Api($email, $apiKey);
