@@ -1,6 +1,6 @@
 # Catálogo
 
-NA próxima página você vai aprender como integrar seus produtos á SkyHub para que eles fiquem disponíveis para integração nos principais MarketPlaces do mercado, como [Americanas.com](https://www.americanas.com.br) e [Submarino](https://www.submarino.com.br), por exemplo.
+Na próxima página você vai aprender como integrar seus produtos á SkyHub para que eles fiquem disponíveis para integração nos principais MarketPlaces do mercado, como [Americanas.com](https://www.americanas.com.br) e [Submarino](https://www.submarino.com.br), por exemplo.
 
 [Voltar](../../README.md)
 

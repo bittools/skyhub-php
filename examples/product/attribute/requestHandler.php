@@ -14,6 +14,7 @@
 
 include __DIR__ . '/../../api.php';
 
+/** @var SkyHub\Api\Handler\Request\Catalog\Product\AttributeHandler $requestHandler */
 $requestHandler = $api->productAttribute();
 
 /**
