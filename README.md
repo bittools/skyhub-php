@@ -37,7 +37,7 @@ Veja um exemplo de como é fácil utilizar:
 ```
 
 ## Wiki
-1. [Requerimentos do Sistema](doc/SYSTEM_REQUIREMENTS.md)
+1. [Requisitos do Sistema](doc/SYSTEM_REQUIREMENTS.md)
 1. [Credenciais](doc/CREDENTIALS.md) 
 1. [Instalação e Setup](doc/INSTALLATION.md)
 1. Utilizando a SDK
