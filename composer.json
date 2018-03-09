@@ -1,5 +1,5 @@
 {
-    "name": "tiagosampaio/skyhub-php",
+    "name": "esmart/skyhub-php",
     "description": "This is the official PHP SDK for integration with SkyHub.",
     "type": "library",
     "require": {
