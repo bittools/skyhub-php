@@ -72,3 +72,10 @@ Para solicitações de suporte, por favor, envie um e-mail para o seguinte ender
 sdk@e-smart.com.br
 
 ## Licença
+> SkyHub PHP SDK é um projeto iniciado nos escritórios da B2W e disponibilizado como software Open Source em Março de 2018.
+
+O código fonte incluso nesta distribuição está licenciado sob o OSL 3.0.
+
+[The Open Software License 3.0 (OSL-3.0)](https://opensource.org/licenses/osl-3.0.php).
+
+Por favor, veja o arquivo LICENSE.txt para ler o texto completo da licença OSL 3.0 ou entre em contato com sdk@e-smart.com.br para obter uma cópia.
