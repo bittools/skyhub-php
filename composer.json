@@ -1,5 +1,5 @@
 {
-    "name": "bitools/skyhub-php",
+    "name": "bittools/skyhub-php",
     "description": "This is the official PHP SDK for integration with SkyHub.",
     "type": "library",
     "require": {
