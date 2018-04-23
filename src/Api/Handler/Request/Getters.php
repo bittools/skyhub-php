@@ -7,12 +7,13 @@
  *
  * sdk@e-smart.com.br
  *
- * @category  SkuHub
- * @package   SkuHub
+ * @category  SkyHub
+ * @package   SkyHub
  *
  * @copyright Copyright (c) 2018 B2W Digital - BSeller Platform. (http://www.bseller.com.br).
  *
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
+ * @author    Bruno Gemelli <bruno.gemelli@e-smart.com.br>
  */
 
 namespace SkyHub\Api\Handler\Request;
@@ -24,6 +25,7 @@ use SkyHub\Api\Handler\Request\Sales\Order\QueueHandler;
 use SkyHub\Api\Handler\Request\Sales\Order\StatusHandler;
 use SkyHub\Api\Handler\Request\Sales\OrderHandler;
 use SkyHub\Api\Handler\Request\Sales\SystemHandler;
+use SkyHub\Api\Handler\Request\Shipment\PlpHandler;
 use SkyHub\Api\Handler\Request\Sync\ErrorsHandler;
 use SkyHub\Api\Handler\Request\Catalog\Product\VariationHandler;
 
@@ -99,6 +101,15 @@ trait Getters
     public function saleSystems()
     {
         return new SystemHandler($this);
+    }
+
+
+    /**
+     * @return PlpHandler
+     */
+    public function plp()
+    {
+        return new PlpHandler($this);
     }
 
 
