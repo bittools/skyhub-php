@@ -24,6 +24,27 @@ class Plp extends EntityAbstract
 {
 
     /**
+     * @param string $id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->data['id'] = (string) $id;
+        return $this;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->getData('id');
+    }
+
+
+    /**
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
     public function plps()
@@ -31,5 +52,27 @@ class Plp extends EntityAbstract
         /** @var PlpHandler $handler */
         $handler = $this->requestHandler();
         return $handler->plps();
+    }
+
+
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function ordersReadyToGroup()
+    {
+        /** @var PlpHandler $handler */
+        $handler = $this->requestHandler();
+        return $handler->ordersReadyToGroup();
+    }
+
+
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function ungroup()
+    {
+        /** @var PlpHandler $handler */
+        $handler = $this->requestHandler();
+        return $handler->ungroup($this->getId());
     }
 }
