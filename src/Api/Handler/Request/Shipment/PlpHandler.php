@@ -41,6 +41,20 @@ class PlpHandler extends HandlerAbstract
 
 
     /**
+     * Retrieves a list of all orders ready to be grouped in a PLP.
+     *
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function ordersReadyToGroup()
+    {
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
+        $responseHandler = $this->service()->get($this->baseUrlPath('/to_group'));
+
+        return $responseHandler;
+    }
+
+
+    /**
      * @return Order
      */
     public function entityInterface()

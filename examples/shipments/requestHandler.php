@@ -24,3 +24,9 @@ $requestHandler = $api->plp();
  */
 $response = $requestHandler->plps();
 
+
+/**
+ * GET A LIST OF ORDERS READY TO BE GROUPED IN A PLP.
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
+ */
+$response = $requestHandler->ordersReadyToGroup();
