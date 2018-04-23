@@ -19,6 +19,7 @@ namespace SkyHub\Api\Handler\Request\Shipment;
 
 use SkyHub\Api\EntityInterface\Shipment\Plp;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
+use SkyHub\Api\DataTransformer\Shipment\Plp\Group as GroupTransformer;
 
 class PlpHandler extends HandlerAbstract
 {
@@ -55,6 +56,27 @@ class PlpHandler extends HandlerAbstract
 
 
     /**
+     * Group multiple orders in a PLP.
+     *
+     * @param array $orders
+     *
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function group(array $orders)
+    {
+        $transformer = new GroupTransformer($orders);
+
+        $body = $transformer->output();
+
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
+        $responseHandler = $this->service()->post($this->baseUrlPath(), $body);
+        return $responseHandler;
+    }
+
+
+    /**
+     * Ungroup a PLP.
+     *
      * @param string $id
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface

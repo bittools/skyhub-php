@@ -38,3 +38,13 @@ $response = $requestHandler->ordersReadyToGroup();
  */
 $plpId = '012456789';
 $response = $requestHandler->ungroup($plpId);
+
+
+/**
+ * GROUP ORDERS IN A PLP.
+ */
+$ordersId = [
+    '123',
+    '456'
+];
+$response = $requestHandler->group($ordersId);

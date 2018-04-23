@@ -45,6 +45,31 @@ class Plp extends EntityAbstract
 
 
     /**
+     * @return array
+     */
+    public function getOrders()
+    {
+        return (array) $this->getData('orders');
+    }
+
+
+    /**
+     * @param string $source
+     *
+     * @return $this
+     */
+    public function addOrder($source)
+    {
+        $orders   = $this->getOrders();
+        $orders[] = $source;
+
+        $this->setData('orders', $orders);
+
+        return $this;
+    }
+
+
+    /**
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
     public function plps()
@@ -69,10 +94,37 @@ class Plp extends EntityAbstract
     /**
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
+    public function group()
+    {
+        $this->validate();
+
+        /** @var \SkyHub\Api\Handler\Request\Shipment\PlpHandler $handler */
+        $handler = $this->requestHandler();
+
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $response */
+        $response = $handler->group($this->getOrders());
+
+        return $response;
+    }
+
+
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
     public function ungroup()
     {
         /** @var PlpHandler $handler */
         $handler = $this->requestHandler();
         return $handler->ungroup($this->getId());
     }
+
+
+    /**
+     * @return bool
+     */
+    public function validate()
+    {
+        return true;
+    }
+
 }
