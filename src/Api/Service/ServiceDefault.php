@@ -71,7 +71,7 @@ class ServiceDefault extends ServiceAbstract
      */
     public function get($uri, array $options = null)
     {
-        return $this->request(self::REQUEST_METHOD_GET, $uri, $options);
+        return $this->request(self::REQUEST_METHOD_GET, $uri, null, $options);
     }
 
 
@@ -84,7 +84,7 @@ class ServiceDefault extends ServiceAbstract
      */
     public function delete($uri, $body = null, array $options = [])
     {
-        return $this->request(self::REQUEST_METHOD_DELETE, $uri, $options);
+        return $this->request(self::REQUEST_METHOD_DELETE, $uri, $body, $options);
     }
     
     
@@ -96,6 +96,6 @@ class ServiceDefault extends ServiceAbstract
      */
     public function head($uri, array $options = null)
     {
-        return $this->request(self::REQUEST_METHOD_HEAD, $uri, $options);
+        return $this->request(self::REQUEST_METHOD_HEAD, $uri, null, $options);
     }
 }

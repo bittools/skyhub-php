@@ -30,3 +30,11 @@ $response = $requestHandler->plps();
  * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
 $response = $requestHandler->ordersReadyToGroup();
+
+
+/**
+ * UNGROUP A PLP.
+ * @var SkyHub\Api\Handler\Response\HandlerInterface $response
+ */
+$plpId = '012456789';
+$response = $requestHandler->ungroup($plpId);

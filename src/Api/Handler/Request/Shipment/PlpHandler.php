@@ -55,6 +55,23 @@ class PlpHandler extends HandlerAbstract
 
 
     /**
+     * @param string $id
+     *
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function ungroup($id)
+    {
+        $params = [
+            'plp_id'  => $id,
+        ];
+
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
+        $responseHandler = $this->service()->delete($this->baseUrlPath(), $params);
+        return $responseHandler;
+    }
+
+
+    /**
      * @return Order
      */
     public function entityInterface()
