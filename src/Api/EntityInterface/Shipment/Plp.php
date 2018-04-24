@@ -120,6 +120,17 @@ class Plp extends EntityAbstract
 
 
     /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function viewFile()
+    {
+        /** @var PlpHandler $handler */
+        $handler = $this->requestHandler();
+        return $handler->viewFile($this->getId());
+    }
+
+
+    /**
      * @return bool
      */
     public function validate()
