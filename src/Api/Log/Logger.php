@@ -117,10 +117,8 @@ class Logger extends LoggerAbstract
         if (!$this->isLogsAllowed()) {
             return $this;
         }
-        
-        try {
-            $this->logger->log($this->level, (string) $request);
-        } catch (\Exception $e) {}
+
+        $this->logger->log($this->level, (string) $request);
         
         return $this;
     }

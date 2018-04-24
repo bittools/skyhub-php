@@ -137,5 +137,4 @@ class Plp extends EntityAbstract
     {
         return true;
     }
-
 }

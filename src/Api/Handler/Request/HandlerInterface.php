@@ -26,5 +26,4 @@ interface HandlerInterface
      * @return EntityInterface
      */
     public function entityInterface();
-
 }

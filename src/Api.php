@@ -71,7 +71,6 @@ class Api implements ApiInterface
         $apiService->setHeaders($headers, true);
 
         $this->service = $apiService;
-
     }
     
     

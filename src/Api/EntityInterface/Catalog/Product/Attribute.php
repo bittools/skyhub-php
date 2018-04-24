@@ -19,8 +19,8 @@ namespace SkyHub\Api\EntityInterface\Catalog\Product;
 
 use SkyHub\Api\DataTransformer\Catalog\Product\Attribute\Create;
 use SkyHub\Api\EntityInterface\EntityAbstract;
-use SkyHub\Api\Handler\Response\HandlerDefault,
-    SkyHub\Api\Handler\Response\HandlerException;
+use SkyHub\Api\Handler\Response\HandlerDefault;
+use SkyHub\Api\Handler\Response\HandlerException;
 
 class Attribute extends EntityAbstract
 {

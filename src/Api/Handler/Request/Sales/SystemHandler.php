@@ -37,8 +37,11 @@ class SystemHandler extends HandlerAbstract
     }
 
 
+    /**
+     * @return null
+     */
     public function entityInterface()
     {
-
+        return null;
     }
 }

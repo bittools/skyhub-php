@@ -108,8 +108,11 @@ class ErrorsHandler extends HandlerAbstract
     }
 
 
+    /**
+     * @return null
+     */
     public function entityInterface()
     {
-
+        return null;
     }
 }
