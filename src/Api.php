@@ -7,12 +7,13 @@
  *
  * sdk@e-smart.com.br
  *
- * @category  SkuHub
- * @package   SkuHub
+ * @category  SkyHub
+ * @package   SkyHub
  *
  * @copyright Copyright (c) 2018 B2W Digital - BSeller Platform. (http://www.bseller.com.br).
  *
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
+ * @author    Bruno Gemelli <bruno.gemelli@e-smart.com.br>
  */
 
 namespace SkyHub;
@@ -62,12 +63,15 @@ class Api implements ApiInterface
             self::HEADER_ACCOUNT_MANAGER_KEY => $xAccountKey,
         ];
 
-        if (empty($apiServiceClass)) {
+        if (empty($apiService)) {
             $this->service = new ServiceJson($baseUri, $headers);
             return;
         }
-        
+
+        $apiService->setHeaders($headers, true);
+
         $this->service = $apiService;
+
     }
     
     

@@ -7,12 +7,13 @@
  *
  * sdk@e-smart.com.br
  *
- * @category  SkuHub
- * @package   SkuHub
+ * @category  SkyHub
+ * @package   SkyHub
  *
  * @copyright Copyright (c) 2018 B2W Digital - BSeller Platform. (http://www.bseller.com.br).
  *
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
+ * @author    Bruno Gemelli <bruno.gemelli@e-smart.com.br>
  */
 
 namespace SkyHub\Api\Service;
@@ -42,13 +43,13 @@ abstract class ServiceAbstract implements ServiceInterface
     
     /** @var HttpClient */
     protected $client = null;
-    
+
     /** @var array */
     protected $headers = [];
-    
+
     /** @var int */
     protected $timeout = 15;
-    
+
     /** @var int */
     protected $requestId = null;
     
@@ -144,12 +145,26 @@ abstract class ServiceAbstract implements ServiceInterface
             /** Log the request response. */
             $logResponse = (new Response($this->getRequestId()))->importResponseExceptionHandler($responseHandler);
         }
-        
+
+        $this->reset();
+
         $this->logger()->logResponse($logResponse);
         
         return $responseHandler;
     }
-    
+
+
+    /**
+     * Reset class attributes
+     *
+     * @return void
+     */
+    protected function reset()
+    {
+        $this->client       = null;
+        $this->requestId    = null;
+    }
+
     
     /**
      * @param string|array $bodyData

@@ -7,12 +7,13 @@
  *
  * sdk@e-smart.com.br
  *
- * @category  SkuHub
- * @package   SkuHub
+ * @category  SkyHub
+ * @package   SkyHub
  *
  * @copyright Copyright (c) 2018 B2W Digital - BSeller Platform. (http://www.bseller.com.br).
  *
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
+ * @author    Bruno Gemelli <bruno.gemelli@e-smart.com.br>
  */
 
 namespace SkyHub\Api\Handler\Response;
@@ -24,6 +25,8 @@ class HandlerDefault extends HandlerAbstract implements HandlerInterfaceSuccess
     
     /** @var Response */
     protected $httpResponse = null;
+
+    protected $bodyContent = null;
     
     
     /**
@@ -51,7 +54,11 @@ class HandlerDefault extends HandlerAbstract implements HandlerInterfaceSuccess
      */
     public function body()
     {
-        return $this->httpResponse()->getBody()->getContents();
+        if (!$this->bodyContent) {
+            $this->bodyContent = $this->httpResponse()->getBody()->getContents();
+        }
+
+        return $this->bodyContent;
     }
     
     

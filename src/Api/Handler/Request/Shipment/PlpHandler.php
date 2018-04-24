@@ -75,6 +75,22 @@ class PlpHandler extends HandlerAbstract
 
 
     /**
+     * Get PLP file
+     *
+     * @param string $id
+     *
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function viewFile($id)
+    {
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
+        $responseHandler = $this->service()->get($this->baseUrlPath('/view?plp_id='.$id));
+
+        return $responseHandler;
+    }
+
+
+    /**
      * Ungroup a PLP.
      *
      * @param string $id

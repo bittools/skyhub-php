@@ -7,12 +7,13 @@
  *
  * sdk@e-smart.com.br
  *
- * @category  SkuHub
- * @package   SkuHub
+ * @category  SkyHub
+ * @package   SkyHub
  *
  * @copyright Copyright (c) 2018 B2W Digital - BSeller Platform. (http://www.bseller.com.br).
  *
  * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
+ * @author    Bruno Gemelli <bruno.gemelli@e-smart.com.br>
  */
 
 namespace SkyHub\Api\Service;
@@ -100,4 +101,13 @@ interface ServiceInterface
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function request($method, $uri, $body = null, $options = []);
+
+
+    /**
+     * @param array $headers
+     * @param bool  $append
+     *
+     * @return $this
+     */
+    public function setHeaders(array $headers = [], $append = true);
 }

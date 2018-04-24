@@ -13,6 +13,7 @@
  */
 
 include __DIR__ . '/../api.php';
+include __DIR__ . '/../apiPdf.php';
 
 /** @var \SkyHub\Api\Handler\Request\Shipment\PlpHandler $requestHandler */
 $requestHandler = $api->plp();
@@ -48,3 +49,21 @@ $ordersId = [
     '456'
 ];
 $response = $requestHandler->group($ordersId);
+
+
+/**
+ * GET PLP JSON
+ */
+$plpId = '012456789';
+$response = $requestHandler->viewFile($plpId);
+
+
+/**
+ * GET PLP PDF
+ */
+
+/** @var \SkyHub\Api\Handler\Request\Shipment\PlpHandler $requestPlpHandler */
+$requestPlpHandler = $api2->plp();
+
+$plpId = '012456789';
+$response = $requestPlpHandler->viewFile($plpId);
