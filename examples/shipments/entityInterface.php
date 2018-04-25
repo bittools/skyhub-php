@@ -40,6 +40,8 @@ $response = $entityInterface->ordersReadyToGroup();
  * GROUP ORDERS IN A PLP.
  * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
+$entityInterface->addOrder('01234');
+$entityInterface->addOrder('56789');
 $response = $entityInterface->group();
 
 
@@ -47,6 +49,7 @@ $response = $entityInterface->group();
  * UNGROUP A PLP.
  * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
+$entityInterface->setId('123456789');
 $response = $entityInterface->ungroup();
 
 
@@ -54,6 +57,7 @@ $response = $entityInterface->ungroup();
  * GET PLP JSON.
  * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
+$entityInterface->setId('123456789');
 $response = $entityInterface->viewFile();
 
 
@@ -61,4 +65,5 @@ $response = $entityInterface->viewFile();
  * GET PLP PDF.
  * @var SkyHub\Api\Handler\Response\HandlerInterface $response
  */
+$entityInterfacePdf->setId('123456789');
 $response = $entityInterfacePdf->viewFile();
