@@ -83,8 +83,12 @@ class PlpHandler extends HandlerAbstract
      */
     public function viewFile($id)
     {
+        $query = [
+            'plp_id'   => $id
+        ];
+
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
-        $responseHandler = $this->service()->get($this->baseUrlPath('/view?plp_id='.$id));
+        $responseHandler = $this->service()->get($this->baseUrlPath('/view', $query));
 
         return $responseHandler;
     }
