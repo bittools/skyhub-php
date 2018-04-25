@@ -19,4 +19,4 @@ $apiKey  = 'ddRTGUrf_bho17FooTjC';
 $servicePdf = new SkyHub\Api\Service\ServicePdf(null);
 
 /** @var \SkyHub\Api $api2 */
-$api2 = new SkyHub\Api($email, $apiKey, null, null, $servicePdf);
+$apiPdf = new SkyHub\Api($email, $apiKey, null, null, $servicePdf);

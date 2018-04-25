@@ -114,7 +114,7 @@ class PlpHandler extends HandlerAbstract
 
 
     /**
-     * @return Order
+     * @return Plp
      */
     public function entityInterface()
     {

@@ -63,7 +63,7 @@ $response = $requestHandler->viewFile($plpId);
  */
 
 /** @var \SkyHub\Api\Handler\Request\Shipment\PlpHandler $requestPlpHandler */
-$requestPlpHandler = $api2->plp();
+$requestPlpHandler = $apiPdf->plp();
 
 $plpId = '012456789';
 $response = $requestPlpHandler->viewFile($plpId);
