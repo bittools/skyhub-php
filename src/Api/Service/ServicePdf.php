@@ -17,6 +17,8 @@
 
 namespace SkyHub\Api\Service;
 
+use SkyHub\Api\Log\TypeInterface\ResponsePdf;
+
 class ServicePdf extends ServiceDefault
 {
     
@@ -48,5 +50,14 @@ class ServicePdf extends ServiceDefault
     {
         $options['json'] = $bodyData;
         return $options;
+    }
+
+
+    /**
+     * @return \SkyHub\Api\Log\TypeInterface\ResponsePdf
+     */
+    protected function getLoggerResponse()
+    {
+        return new ResponsePdf($this->getRequestId());
     }
 }

@@ -137,13 +137,14 @@ abstract class ServiceAbstract implements ServiceInterface
             $responseHandler = new HandlerDefault($response);
     
             /** Log the request response. */
-            $logResponse = (new Response($this->getRequestId()))->importResponseHandler($responseHandler);
+            $logResponse = $this->getLoggerResponse()->importResponseHandler($responseHandler);
+
         } catch (\Exception $e) {
             /** @var Api\Handler\Response\HandlerInterfaceException $responseHandler */
             $responseHandler = new HandlerException($e);
             
             /** Log the request response. */
-            $logResponse = (new Response($this->getRequestId()))->importResponseExceptionHandler($responseHandler);
+            $logResponse = $this->getLoggerResponse()->importResponseExceptionHandler($responseHandler);
         }
 
         $this->reset();
@@ -321,5 +322,14 @@ abstract class ServiceAbstract implements ServiceInterface
         }
         
         return $headers;
+    }
+
+
+    /**
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface Response
+     */
+    protected function getLoggerResponse()
+    {
+        return new Response($this->getRequestId());
     }
 }
