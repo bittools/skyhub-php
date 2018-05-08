@@ -56,14 +56,17 @@ Veja um exemplo de como é fácil utilizar:
         1. [Confirmar Entrega de um Pedido](doc/usage/orders/DELIVERY.md)
         1. [Obtendo Etiquetas de Pedidos](doc/usage/orders/LABELS.md)
         1. [Pedidos com Problemas de Entrega](doc/usage/orders/SHIPPING_EXCEPTION.md)
+    1. [Postagem](doc/usage/SHIPMENT.md)
+            1. [PLP](doc/usage/shipment/PLPS.md)
      
 ## Contribuindo com o Código
 
-Sua contribuição é sempre bem vinda! Por favor, leia a [documentação](doc/CONTRIBUTING.md) de contribuição de código.
+Sua contribuição é sempre bem-vinda! Por favor, leia a [documentação](doc/CONTRIBUTING.md) de contribuição de código.
 
 ## Autores
 
 Tiago Sampaio
+Bruno Gemeli
 
 ## Suporte
 
