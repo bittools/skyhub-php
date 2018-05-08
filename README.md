@@ -65,7 +65,8 @@ Sua contribuição é sempre bem-vinda! Por favor, leia a [documentação](doc/C
 
 ## Autores
 
-Tiago Sampaio<br/>
+Tiago Sampaio
+
 Bruno Gemelli
 
 ## Suporte
