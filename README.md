@@ -57,7 +57,7 @@ Veja um exemplo de como é fácil utilizar:
         1. [Obtendo Etiquetas de Pedidos](doc/usage/orders/LABELS.md)
         1. [Pedidos com Problemas de Entrega](doc/usage/orders/SHIPPING_EXCEPTION.md)
     1. [Postagem](doc/usage/SHIPMENT.md)
-            1. [PLP](doc/usage/shipment/PLPS.md)
+        1. [PLP](doc/usage/shipment/PLPS.md)
      
 ## Contribuindo com o Código
 
