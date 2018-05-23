@@ -106,8 +106,9 @@ interface ServiceInterface
     /**
      * @param array $headers
      * @param bool  $append
+     * @param bool  $replaceExisting
      *
      * @return $this
      */
-    public function setHeaders(array $headers = [], $append = true);
+    public function setHeaders(array $headers = [], $append = true, $replaceExisting = true);
 }

@@ -64,13 +64,33 @@ class Api implements ApiInterface
         ];
 
         if (empty($apiService)) {
-            $this->service = new ServiceJson($baseUri, $headers);
-            return;
+            $apiService = new ServiceJson($baseUri);
         }
-
-        $apiService->setHeaders($headers, true);
+        
+        $apiService->setHeaders($headers, true, true);
 
         $this->service = $apiService;
+    }
+    
+    
+    /**
+     * Reset the authorization information and use the same instance of the API object to use different accounts.
+     *
+     * @param string $email
+     * @param string $apiKey
+     *
+     * @return $this
+     */
+    public function setAuthentication($email, $apiKey)
+    {
+        $headers = [
+            self::HEADER_USER_EMAIL => $email,
+            self::HEADER_API_KEY    => $apiKey,
+        ];
+        
+        $this->service->setHeaders($headers, true, true);
+        
+        return $this;
     }
     
     
@@ -82,5 +102,23 @@ class Api implements ApiInterface
     public function service()
     {
         return $this->service;
+    }
+    
+    
+    /**
+     * @param null                  $baseUri
+     * @param ServiceInterface|null $apiService
+     *
+     * @return $this
+     */
+    protected function initService($baseUri = null, ServiceInterface $apiService = null)
+    {
+        if (empty($apiService)) {
+            $apiService = new ServiceJson($baseUri);
+        }
+        
+        $this->service = $apiService;
+        
+        return $this;
     }
 }

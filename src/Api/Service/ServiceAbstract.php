@@ -39,6 +39,9 @@ abstract class ServiceAbstract implements ServiceInterface
     const REQUEST_METHOD_HEAD   = 'HEAD';
     const REQUEST_METHOD_DELETE = 'DELETE';
     const REQUEST_METHOD_PATCH  = 'PATCH';
+    
+    /** @var string */
+    const DEFAULT_SERVICE_BASE_URI = 'https://api.skyhub.com.br';
 
     
     /** @var HttpClient */
@@ -70,7 +73,7 @@ abstract class ServiceAbstract implements ServiceInterface
         ];
 
         if (empty($baseUri)) {
-            $baseUri = 'https://api.skyhub.com.br';
+            $baseUri = $this->getDefaultBaseUri();
         }
     
         foreach ($options as $key => $value) {
@@ -84,6 +87,17 @@ abstract class ServiceAbstract implements ServiceInterface
     
     
     /**
+     * Returns the default base URI.
+     *
+     * @return string
+     */
+    public function getDefaultBaseUri()
+    {
+        return self::DEFAULT_SERVICE_BASE_URI;
+    }
+    
+    
+    /**
      * @param bool $renew
      *
      * @return int
@@ -91,7 +105,7 @@ abstract class ServiceAbstract implements ServiceInterface
     public function getRequestId($renew = false)
     {
         if (empty($this->requestId) || $renew) {
-            $this->requestId = rand(1000000000, 9999999999);
+            $this->requestId = rand(1000000000000, 9999999999999);
         }
         
         return $this->requestId;
@@ -147,7 +161,7 @@ abstract class ServiceAbstract implements ServiceInterface
             $logResponse = $this->getLoggerResponse()->importResponseExceptionHandler($responseHandler);
         }
 
-        $this->reset();
+        // $this->reset();
 
         $this->logger()->logResponse($logResponse);
         
@@ -241,10 +255,11 @@ abstract class ServiceAbstract implements ServiceInterface
     /**
      * @param array $headers
      * @param bool  $append
+     * @param bool  $replace
      *
      * @return $this
      */
-    public function setHeaders(array $headers = [], $append = true)
+    public function setHeaders(array $headers = [], $append = true, $replaceExisting = true)
     {
         if (!$append) {
             $this->headers = $headers;
@@ -252,6 +267,11 @@ abstract class ServiceAbstract implements ServiceInterface
         }
         
         foreach ($headers as $key => $value) {
+            /** If the header is already set then check if we can replace the value. */
+            if (isset($this->headers[$key]) && (false == $replaceExisting)) {
+                continue;
+            }
+            
             $this->headers[$key] = $value;
         }
         
