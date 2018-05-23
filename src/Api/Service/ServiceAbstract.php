@@ -161,8 +161,7 @@ abstract class ServiceAbstract implements ServiceInterface
             $logResponse = $this->getLoggerResponse()->importResponseExceptionHandler($responseHandler);
         }
 
-        // $this->reset();
-
+        $this->clear();
         $this->logger()->logResponse($logResponse);
         
         return $responseHandler;
@@ -170,14 +169,24 @@ abstract class ServiceAbstract implements ServiceInterface
 
 
     /**
-     * Reset class attributes
+     * This method clears the unnecessary information after a request.
      *
-     * @return void
+     * @return $this
      */
-    protected function reset()
+    protected function clear()
     {
-        $this->client       = null;
-        $this->requestId    = null;
+        $this->clearRequestId();
+        return $this;
+    }
+    
+    
+    /**
+     * @return $this
+     */
+    protected function clearRequestId()
+    {
+        $this->requestId = null;
+        return $this;
     }
 
     
@@ -346,7 +355,7 @@ abstract class ServiceAbstract implements ServiceInterface
 
 
     /**
-     * @return \SkyHub\Api\Handler\Response\HandlerInterface Response
+     * @return \SkyHub\Api\Log\TypeInterface\TypeResponseInterface
      */
     protected function getLoggerResponse()
     {
