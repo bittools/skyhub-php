@@ -39,7 +39,7 @@ class Create extends DataTransformerAbstract
     {
         $variation['sku'] = (string) $sku;
 
-        if ($qty) {
+        if ($qty !== null) {
             $variation['qty'] = (int) $qty;
         }
 
