@@ -118,7 +118,11 @@ abstract class ServiceAbstract implements ServiceInterface
      * @param null   $body
      * @param array  $options
      *
+     * @param bool   $debug
+     *
      * @return Api\Handler\Response\HandlerInterfaceException|Api\Handler\Response\HandlerInterfaceSuccess
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function request($method, $uri, $body = null, $options = [], $debug = false)
     {
@@ -141,11 +145,8 @@ abstract class ServiceAbstract implements ServiceInterface
         $this->logger()->logRequest($logRequest);
 
         try {
-            /** @var \GuzzleHttp\Message\Request $request */
-            $request = $this->httpClient()->createRequest($method, $uri, $options);
-
-            /** @var \GuzzleHttp\Message\Response $response */
-            $response = $this->httpClient()->send($request);
+            /** @var \Psr\Http\Message\ResponseInterface $request */
+            $response = $this->httpClient()->request($method, $uri, $options);
     
             /** @var Api\Handler\Response\HandlerInterfaceSuccess $responseHandler */
             $responseHandler = new HandlerDefault($response);

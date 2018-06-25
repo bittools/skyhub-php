@@ -17,7 +17,7 @@
 
 namespace SkyHub\Api\Handler\Response;
 
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Psr7\Response;
 
 interface HandlerInterfaceSuccess extends HandlerInterface
 {
@@ -31,7 +31,7 @@ interface HandlerInterfaceSuccess extends HandlerInterface
     
     
     /**
-     * @return ResponseInterface
+     * @return Response
      */
     public function httpResponse();
 
