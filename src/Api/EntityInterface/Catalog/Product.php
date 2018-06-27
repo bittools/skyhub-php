@@ -139,7 +139,11 @@ class Product extends EntityAbstract
      */
     public function setPromotionalPrice($price)
     {
-        $this->setData('promotional_price', (float) $price);
+        if (!empty($price)) {
+            $price = (float) $price;
+        }
+
+        $this->setData('promotional_price', $price);
         return $this;
     }
     

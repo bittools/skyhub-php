@@ -63,9 +63,9 @@ class Create extends DataTransformerAbstract
             'ean'               => (string) $this->arrayExtract($data, 'ean', ''),
             'nbm'               => (string) $this->arrayExtract($data, 'nbm', ''),
         ];
-        
-        if ($promoPrice = $this->arrayExtract($data, 'promotional_price')) {
-            $product['promotional_price'] = (float) $promoPrice;
+
+        if ($this->arrayIndexExists($data, 'promotional_price')) {
+            $product['promotional_price'] = $data['promotional_price'];
         }
 
         /** Setup images. */
