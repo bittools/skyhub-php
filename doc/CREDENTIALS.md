@@ -8,7 +8,7 @@ Serão passadas duas informações:
 
 Estas duas informações são necessárias para a integração com a SkyHub.
 
-Saiba mais na [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/autenticacao-e-formato-dos-dados).
+Saiba mais na [documentação oficial](https://skyhub.gelato.io/docs/versions/1.0/autenticacao-e-formato-dos-dados).
 
 Você pode entrar em contato através da [página de contato](https://skyhub.com.br/#form_contato) do site da SkyHub.
 
