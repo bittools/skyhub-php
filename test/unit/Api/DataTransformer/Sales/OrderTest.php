@@ -223,21 +223,4 @@ class OrderTest extends TestCase
 
         $this->assertEquals($expected, $transformer->output());
     }
-
-
-    /**
-     * @test
-     */
-    public function assertDataTransformerOrderApproveTest()
-    {
-        $orderId = '99';
-        $status  = 'NEW';
-
-        $transformer = new ApproveTest($orderId, $status);
-        $expected = [
-            'status' => $status
-        ];
-
-        $this->assertEquals($expected, $transformer->output());
-    }
 }

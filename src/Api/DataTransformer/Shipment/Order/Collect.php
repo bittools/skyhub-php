@@ -27,7 +27,7 @@ class Collect extends DataTransformerAbstract
      *
      * @param array $orders
      */
-    public function __construct($orders)
+    public function __construct(array $orders = [])
     {
         $this->setOutputData([
             'order_codes' => $orders

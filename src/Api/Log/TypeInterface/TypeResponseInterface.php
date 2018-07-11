@@ -22,7 +22,6 @@ use SkyHub\Api\Handler\Response\HandlerInterfaceSuccess;
 
 interface TypeResponseInterface extends TypeInterface
 {
-
     /**
      * @param string $status
      *
@@ -30,14 +29,12 @@ interface TypeResponseInterface extends TypeInterface
      */
     public function setStatusCode($status = null);
 
-
     /**
      * @param HandlerInterfaceSuccess $handler
      *
      * @return $this
      */
     public function importResponseHandler(HandlerInterfaceSuccess $handler);
-
 
     /**
      * @param HandlerInterfaceException $handler

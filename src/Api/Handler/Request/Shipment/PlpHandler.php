@@ -124,15 +124,8 @@ class PlpHandler extends HandlerAbstract
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->delete($this->baseUrlPath(), $params);
-        return $responseHandler;
-    }
 
-    /**
-     * @return Plp
-     */
-    public function entityInterface()
-    {
-        return new Plp($this);
+        return $responseHandler;
     }
 
     /**
@@ -173,5 +166,13 @@ class PlpHandler extends HandlerAbstract
         $responseHandler = $this->service()->post($this->baseUrlPath('/confirm_collection'), $body);
 
         return $responseHandler;
+    }
+
+    /**
+     * @return Plp
+     */
+    public function entityInterface()
+    {
+        return new Plp($this);
     }
 }
