@@ -131,20 +131,20 @@ abstract class ServiceAbstract implements ServiceInterface
         $options['debug']   = (bool) $debug;
         
         $options = $this->prepareRequestBody($body, $options);
-        
-        /** Log the request before sending it. */
-        $logRequest = new Request(
-            $this->getRequestId(),
-            $method,
-            $uri,
-            $body,
-            $this->protectedHeaders($this->headers),
-            $this->protectedOptions($options)
-        );
-        
-        $this->logger()->logRequest($logRequest);
-
+    
         try {
+            /** Log the request before sending it. */
+            $logRequest = new Request(
+                $this->getRequestId(),
+                $method,
+                $uri,
+                $body,
+                $this->protectedHeaders($this->headers),
+                $this->protectedOptions($options)
+            );
+            
+            $this->logger()->logRequest($logRequest);
+        
             /** @var \Psr\Http\Message\ResponseInterface $request */
             $response = $this->httpClient()->request($method, $uri, $options);
     

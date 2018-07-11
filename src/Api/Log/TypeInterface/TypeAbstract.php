@@ -16,6 +16,7 @@
  */
 
 namespace SkyHub\Api\Log\TypeInterface;
+use SkyHub\Api\Exception\JsonDataConvert;
 
 abstract class TypeAbstract implements TypeInterface
 {
@@ -43,10 +44,16 @@ abstract class TypeAbstract implements TypeInterface
     
     /**
      * @return string
+     *
+     * @throws JsonDataConvert
      */
     public function __toString()
     {
-        return json_encode((array) $this->data);
+        try {
+            return json_encode((array) $this->data);
+        } catch (\Exception $exception) {
+            throw new JsonDataConvert('SkyHub PHP: Array cannot be converted to json format.');
+        }
     }
     
     
