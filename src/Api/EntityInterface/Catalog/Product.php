@@ -317,6 +317,10 @@ class Product extends EntityAbstract
      */
     public function addCategory($code, $name)
     {
+        if (empty($code) || empty($name)) {
+            return $this;
+        }
+        
         $data = (array) $this->getCategories();
         $data[] = [
             'code' => $code,
