@@ -153,15 +153,16 @@ abstract class ServiceAbstract implements ServiceInterface
     
             /** Log the request response. */
             $logResponse = $this->getLoggerResponse()->importResponseHandler($responseHandler);
-
-        } catch (\Exception $e) {
-            /** @var Api\Handler\Response\HandlerInterfaceException $responseHandler */
-            $responseHandler = new HandlerException($e);
-            
-            /** Log the request response. */
-            $logResponse = $this->getLoggerResponse()->importResponseExceptionHandler($responseHandler);
+        } catch (\GuzzleHttp\Exception\ClientException $clientException) {
+            /** Service Request Exception */
+            $logResponse = $this->getLoggerResponse()
+                ->importResponseExceptionHandler(new HandlerException($clientException));
+        } catch (\Exception $exception) {
+            /** Other Exceptions */
+            $logResponse = $this->getLoggerResponse()
+                ->importResponseExceptionHandler(new HandlerException($exception));
         }
-
+    
         $this->clear();
         $this->logger()->logResponse($logResponse);
         
