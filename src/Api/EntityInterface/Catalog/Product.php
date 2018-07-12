@@ -133,23 +133,27 @@ class Product extends EntityAbstract
     
     
     /**
-     * @param float $price
+     * @param float|null $price
      *
      * @return $this
      */
-    public function setPromotionalPrice($price)
+    public function setPromotionalPrice($price = null)
     {
-        $this->setData('promotional_price', (float) $price);
+        if (!is_null($price)) {
+            $price = (float) $price;
+        }
+        
+        $this->setData('promotional_price', $price);
         return $this;
     }
     
     
     /**
-     * @return float
+     * @return float|null
      */
     public function getPromotionalPrice()
     {
-        return (float) $this->getData('promotional_price');
+        return $this->getData('promotional_price');
     }
     
     

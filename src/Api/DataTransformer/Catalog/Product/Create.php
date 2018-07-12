@@ -53,7 +53,7 @@ class Create extends DataTransformerAbstract
             'status'            => (string) $this->arrayExtract($data, 'status', 'disabled'),
             'qty'               => (int)    $this->arrayExtract($data, 'qty', 0),
             'price'             => (float)  $this->arrayExtract($data, 'price', 0.0000),
-            // 'promotional_price' => (float)  $this->arrayExtract($data, 'promotional_price', 0.0000),
+            'promotional_price' =>          $this->arrayExtract($data, 'promotional_price', null),
             'cost'              => (float)  $this->arrayExtract($data, 'cost', 0.0000),
             'weight'            => (float)  $this->arrayExtract($data, 'weight', 0.0000),
             'height'            => (float)  $this->arrayExtract($data, 'height', 0.0000),
@@ -64,9 +64,11 @@ class Create extends DataTransformerAbstract
             'nbm'               => (string) $this->arrayExtract($data, 'nbm', ''),
         ];
         
+        /**
         if ($promoPrice = $this->arrayExtract($data, 'promotional_price')) {
             $product['promotional_price'] = (float) $promoPrice;
         }
+         */
 
         /** Setup images. */
         $this->buildProductImages($product, $images);
