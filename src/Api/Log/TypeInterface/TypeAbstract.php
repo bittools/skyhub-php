@@ -20,11 +20,11 @@ use SkyHub\Api\Exception\JsonDataConvert;
 
 abstract class TypeAbstract implements TypeInterface
 {
-    
+
     /** @var array */
     protected $data = [];
-    
-    
+
+
     /**
      * Request constructor.
      *
@@ -36,12 +36,12 @@ abstract class TypeAbstract implements TypeInterface
     public function __construct($requestId, $body = null, array $headers = [], $protocolVersion = null)
     {
         $this->setRequestId($requestId)
-             ->setBody($body)
-             ->setHeaders($headers)
-             ->setProtocolVersion($protocolVersion);
+            ->setBody($body)
+            ->setHeaders($headers)
+            ->setProtocolVersion($protocolVersion);
     }
-    
-    
+
+
     /**
      * @return string
      *
@@ -51,20 +51,14 @@ abstract class TypeAbstract implements TypeInterface
     {
         try {
             $data = json_encode((array) $this->data);
-        } catch (\Error $error) {
-            $data = false;
         } catch (\Exception $exception) {
-            $data = false;
+            $data = '';
         }
-        
-        if (false === $data) {
-            throw new JsonDataConvert('SkyHub PHP: Array cannot be converted to json format.');
-        }
-        
+
         return $data;
     }
-    
-    
+
+
     /**
      * @param string|array $id
      *
@@ -75,8 +69,8 @@ abstract class TypeAbstract implements TypeInterface
         $this->data['request_id'] = $id;
         return $this;
     }
-    
-    
+
+
     /**
      * @param string|object|array $body
      *
@@ -87,12 +81,12 @@ abstract class TypeAbstract implements TypeInterface
         if (is_object($body)) {
             $body = (string) $body;
         }
-        
+
         $this->data['body'] = $body;
         return $this;
     }
-    
-    
+
+
     /**
      * @param string $message
      *
@@ -103,8 +97,8 @@ abstract class TypeAbstract implements TypeInterface
         $this->data['custom_message'] = (string) $message;
         return $this;
     }
-    
-    
+
+
     /**
      * @param array $headers
      */
@@ -113,8 +107,8 @@ abstract class TypeAbstract implements TypeInterface
         $this->data['headers'] = $headers;
         return $this;
     }
-    
-    
+
+
     /**
      * @param string $version
      */
