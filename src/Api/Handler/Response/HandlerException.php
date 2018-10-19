@@ -18,14 +18,17 @@
 namespace SkyHub\Api\Handler\Response;
 
 use Exception;
+use GuzzleHttp\Stream\CachingStream;
 
 class HandlerException extends HandlerAbstract implements HandlerInterfaceException
 {
-    
+
     /** @var Exception */
     protected $exception = null;
-    
-    
+
+    protected $content = '';
+
+
     /**
      * HandlerException constructor.
      *
@@ -35,17 +38,21 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     {
         $this->exception = $exception;
     }
-    
-    
+
+
     /**
      * @return string
      */
     public function message()
     {
+        if ($body = $this->body()) {
+            return $body;
+        }
+
         return $this->exception->getMessage();
     }
-    
-    
+
+
     /**
      * @return string
      */
@@ -53,8 +60,8 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     {
         return $this->exception->getFile();
     }
-    
-    
+
+
     /**
      * @return int|mixed
      */
@@ -62,8 +69,8 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     {
         return $this->exception->getCode();
     }
-    
-    
+
+
     /**
      * @return int
      */
@@ -71,8 +78,8 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     {
         return $this->exception->getLine();
     }
-    
-    
+
+
     /**
      * @return string
      */
@@ -80,8 +87,8 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     {
         return $this->exception->getTraceAsString();
     }
-    
-    
+
+
     /**
      * @return array
      */
@@ -89,8 +96,122 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     {
         return $this->exception->getTrace();
     }
-    
-    
+
+    /**
+     * @return bool|\GuzzleHttp\Message\Request
+     */
+    public function request()
+    {
+        if (!method_exists($this->exception, 'getRequest')) {
+            return false;
+        }
+
+        $request = $this->exception->getRequest();
+        if (!($request instanceof \GuzzleHttp\Message\Request)) {
+            return false;
+        }
+
+        return $request;
+    }
+
+    /**
+     * @return bool|\GuzzleHttp\Message\Response
+     */
+    public function response()
+    {
+        if (!method_exists($this->exception, 'getResponse')) {
+            return false;
+        }
+
+        $response = $this->exception->getResponse();
+        if (!($response instanceof \GuzzleHttp\Message\Response)) {
+            return false;
+        }
+
+        return $response;
+    }
+
+    /**
+     * @return bool|\GuzzleHttp\Stream\StreamInterface|string
+     */
+    public function body()
+    {
+        if (!$this->response()) {
+            return false;
+        }
+
+        if (!method_exists($this->response(), 'getBody')) {
+            return false;
+        }
+
+        $body = $this->response()->getBody();
+        if (!($body instanceof \GuzzleHttp\Stream\Stream)) {
+            return false;
+        }
+
+        $body = $this->getErrors($body);
+
+        if (!$body && !empty($this->content)) {
+            return $this->content;
+        }
+
+        return $body;
+    }
+
+    /**
+     * @param \GuzzleHttp\Stream\StreamInterface $stream
+     * @return bool|string
+     */
+    public function readStream(\GuzzleHttp\Stream\StreamInterface $stream)
+    {
+        try {
+            $stream = new CachingStream($stream);
+            return $stream->read(4096);
+        } catch (\Exception $e) {
+
+        }
+
+        return false;
+    }
+
+    /**
+     * @param \GuzzleHttp\Stream\StreamInterface $stream
+     * @return bool|string
+     */
+    public function getErrors(\GuzzleHttp\Stream\StreamInterface $stream)
+    {
+        $content = $this->readStream($stream);
+        $error = $this->extractError($content);
+        if (empty($error) && !empty($this->content)) {
+            return $this->content;
+        }
+
+        $this->content = $error;
+        return $this->content;
+    }
+
+    /**
+     * @param $jsonContent
+     * @return bool|string
+     */
+    public function extractError($jsonContent)
+    {
+        if (!($content = json_decode($jsonContent, true))) {
+            return false;
+        }
+
+        $errors = array();
+        foreach ($content as $error) {
+            if (empty($error)) {
+                continue;
+            }
+
+            $errors[] = (string)$error;
+        }
+
+        return implode('<br/>', $errors);
+    }
+
     /**
      * @return bool
      */
@@ -98,8 +219,8 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     {
         return false;
     }
-    
-    
+
+
     /**
      * @return bool
      */
@@ -107,8 +228,8 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     {
         return true;
     }
-    
-    
+
+
     /**
      * @return bool
      */
@@ -116,8 +237,8 @@ class HandlerException extends HandlerAbstract implements HandlerInterfaceExcept
     {
         return false;
     }
-    
-    
+
+
     /**
      * @return array
      */
