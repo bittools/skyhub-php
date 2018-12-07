@@ -10,7 +10,7 @@ A fila de pedidos é de onde você precisa
 /** @var \SkyHub\Api\Handler\Request\Sales\Order\QueueHandler $requestHandler */
 $requestHandler = $api->queue();
 
-/** @var \SkyHub\Api\Handler\Response\HandlerInterface $response
+/** @var \SkyHub\Api\Handler\Response\HandlerInterface $response */
 $response = $requestHandler->orders();
 
 // ...
@@ -26,7 +26,7 @@ $requestHandler = $api->queue();
 
 $orderId = 'Marketplace-000000001';
 
-/** @var \SkyHub\Api\Handler\Response\HandlerInterface $response
+/** @var \SkyHub\Api\Handler\Response\HandlerInterface $response */
 $response = $requestHandler->delete($orderId);
 
 // ...
