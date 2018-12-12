@@ -15,7 +15,13 @@ $ curl -sS https://getcomposer.org/installer | php
 O próximo passo é executar o composer para que todas as dependências, com suas versões corretas, sejam instaladas:
 
 ```bash
-$ php composer.phar require tiagosampaio/skyhub-php
+$ php composer.phar require bittools/skyhub-php
+```
+
+Ou, caso você já tenha o composer instalado:
+
+```bash
+$ composer require bittools/skyhub-php
 ```
 
 Após a instalação, você precisa colocar uma chamada do autoload do Composer no seu arquivo PHP:
