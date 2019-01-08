@@ -80,6 +80,10 @@ For support requests please send an e-mail to the following address:
 
 sdk@e-smart.com.br
 
+#### Read in Another Language
+
+* [Português do Brasil](README.md)
+
 ## Licence
 > SkyHub PHP SDK is a project started into B2W Digital office and distributed as an Open Source Software in March of 2018.
 

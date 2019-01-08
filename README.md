@@ -75,6 +75,10 @@ Para solicitações de suporte, por favor, envie um e-mail para o seguinte ender
 
 sdk@e-smart.com.br
 
+#### Read in Another Language
+
+* [English US](README.en_US.md)
+
 ## Licença
 > SkyHub PHP SDK é um projeto iniciado nos escritórios da B2W e disponibilizado como software Open Source em Março de 2018.
 
