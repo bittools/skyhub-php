@@ -1,41 +1,42 @@
-# Instalação da SDK
+# SDK Installation
 
-Esta SDK segue os padrões PSR e utiliza o composer para a instalação de todas as suas dependências.
-Para instalar esta SDK você pode seguir os seguintes passos:
+This SDK follow the PSR standards and must be installed via composer because of its dependencies.
 
-##### Passos para a instalação
+To install this SDK você can follow the steps below:
 
-É necessário ter o [composer](https://getcomposer.org/download/) instalado no ambiente no qual a SDK será utilizada.
+##### Installation Steps
+
+It's required to have the [composer](https://getcomposer.org/download/) installed on the machine where the SDK will be used.
 
 ```bash
 # Install Composer
 $ curl -sS https://getcomposer.org/installer | php 
 ```
 
-O próximo passo é executar o composer para que todas as dependências, com suas versões corretas, sejam instaladas:
+The next step is to execute composer to obtain all the required dependencies and their correct versions:
 
 ```bash
 $ php composer.phar require bittools/skyhub-php
 ```
 
-Ou, caso você já tenha o composer instalado:
+If you already have the composer installed:
 
 ```bash
 $ composer require bittools/skyhub-php
 ```
 
-Após a instalação, você precisa colocar uma chamada do autoload do Composer no seu arquivo PHP:
+After the installation, you need to require (import) the composer autoload file in you PHP script:
 
 ```php
 require_once 'vendor/autoload.php';
 ```
 
-Posteriormente, pode ser necessário fazer a atualização da SDK no seu ambiente. Para isso você poderá executar o seguinte comando:
+Afterwards, you may want to update your composer version to get the most updated version of composer application. To do so run the following command:
 
 ```bash
 $ php composer.phar update
 ```
 
-[Voltar](../README.md)
+[Back](../README.md)
 
-[Continuar: Utilizando a SDK - API](usage/API.md)
+[Continue: Using the SDK - API](usage/API.md)
