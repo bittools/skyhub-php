@@ -82,7 +82,11 @@ $variations = array(
             array(
                 'key'   => 'size',
                 'value' => 'S'
-            )
+            ),
+            array(
+                'key'   => 'price',
+                'value' => '2.10'
+            ),
         ),
     ),
 );
