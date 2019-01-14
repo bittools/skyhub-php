@@ -1,8 +1,8 @@
-# Trabalhando com Filas de Pedidos
+# Working With Orders Queues
 
-A fila de pedidos é de onde você precisa 
+The orders queue must be requested to obtain data about new / update orders.
 
-### Obtendo o Próximo Pedido da Fila de Pedidos
+### Requesting the Next Order on the Queue
 
 ```php
 // ...
@@ -16,7 +16,7 @@ $response = $requestHandler->orders();
 // ...
 ```
 
-### Removendo um Pedido da Fila
+### Removing an Order from the Queue
 
 ```php
 // ...
@@ -32,8 +32,8 @@ $response = $requestHandler->delete($orderId);
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/queues).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/queues).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Faturando um Pedido](INVOICE.md)
+[Continue: Invoicing an Order](INVOICE.md)

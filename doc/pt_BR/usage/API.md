@@ -28,6 +28,6 @@ Após isso você poderá instanciar uma nova classe API:
 
 Com isso você estará apto a utlizar qualquer funcionalidade da integração.
 
-[Voltar](../../README.md)
+[Voltar](../../../README.md)
 
 [Continuar: Catálogo](CATALOG.md)

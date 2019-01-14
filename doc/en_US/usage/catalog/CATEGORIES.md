@@ -1,8 +1,8 @@
-# Categorias
+# Categories
 
-A criação de categorias é feita de forma bem simples.
+The categories creation is simple way made. 
 
-### Criando uma Categoria
+### Creating a Category
 
 ```php
 // ...
@@ -16,7 +16,7 @@ $response = $requestHandler->create('category001', 'Category 001');
 // ...
 ```
 
-### Atualizando uma Categoria
+### Updating a Category
 
 ```php
 // ...
@@ -30,7 +30,7 @@ $response = $requestHandler->update('category001', 'Updated Category 001 Name');
 // ...
 ```
 
-### Excluindo uma Categoria
+### Removing a Category
 
 ```php
 // ...
@@ -44,7 +44,7 @@ $response = $requestHandler->delete('category001');
 // ...
 ```
 
-### Obtendo uma Lista de Categorias
+## Getting a List of Categories
 
 ```php
 // ...
@@ -58,8 +58,8 @@ $response = $requestHandler->categories();
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/categories).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/categories).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Pedidos](../ORDERS.md)
+[Continue: Orders](../ORDERS.md)

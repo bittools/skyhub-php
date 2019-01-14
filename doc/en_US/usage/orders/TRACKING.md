@@ -1,4 +1,4 @@
-# Enviar Dados de Entrega de um Pedido
+# Sending Order Delivery Data 
 
 ```php
 // ...
@@ -24,8 +24,8 @@ $response = $requestHandler->shipment(
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/enviar-dados-de-entrega).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/enviar-dados-de-entrega).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Confirmar Entrega de um Pedido](DELIVERY.md)
+[Continue: Confirming a Product's Delivery](DELIVERY.md)

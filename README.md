@@ -48,7 +48,6 @@ Veja um exemplo de como é fácil utilizar:
         1. [Categorias](doc/pt_BR/usage/catalog/CATEGORIES.md)
     1. [Pedidos](doc/pt_BR/usage/ORDERS.md)
         1. [Consultando Pedidos](doc/pt_BR/usage/orders/CONSULT.md)
-        1. [Consultando Pedidos](doc/pt_BR/usage/orders/CONSULT.md)
         1. [Trabalhando com Filas de Pedidos](doc/pt_BR/usage/orders/QUEUE.md)
         1. [Faturando um Pedido](doc/pt_BR/usage/orders/INVOICE.md)
         1. [Cancelando um Pedido](doc/pt_BR/usage/orders/CANCEL.md)

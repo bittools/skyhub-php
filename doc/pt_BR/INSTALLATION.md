@@ -36,6 +36,6 @@ Posteriormente, pode ser necessário fazer a atualização da SDK no seu ambient
 $ php composer.phar update
 ```
 
-[Voltar](../README.md)
+[Voltar](../../README.md)
 
 [Continuar: Utilizando a SDK - API](usage/API.md)

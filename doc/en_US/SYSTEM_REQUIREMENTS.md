@@ -1,9 +1,9 @@
-# Requisitos do Sistema
+# System Requirements
 
-Para você conseguir utilizar essa SDK é necessário conferir alguns requisitos necessários:
+To use this SDK it's necessary to check a few requirements:
 
-* PHP 5.4 ou superior
+* PHP 5.4 or newer.
 
-[Voltar](../README.md)
+[Back](../../README.en_US.md)
 
-[Continuar: Credenciais](CREDENTIALS.md)
+[Continue: Credentials](CREDENTIALS.md)

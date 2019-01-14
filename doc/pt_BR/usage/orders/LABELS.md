@@ -15,6 +15,6 @@ $response = $requestHandler->shipmentLabels($orderId);
 
 Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/obter-etiqueta-de-frete).
 
-[Voltar](../../../README.md)
+[Voltar](../../../../README.md)
 
 [Continuar: Pedidos com Problemas de Entrega](SHIPPING_EXCEPTION.md)

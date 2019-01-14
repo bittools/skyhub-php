@@ -4,6 +4,6 @@ Para você conseguir utilizar essa SDK é necessário conferir alguns requisitos
 
 * PHP 5.4 ou superior
 
-[Voltar](../README.md)
+[Voltar](../../README.md)
 
 [Continuar: Credenciais](CREDENTIALS.md)

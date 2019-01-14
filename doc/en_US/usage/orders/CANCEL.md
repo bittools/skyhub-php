@@ -1,4 +1,4 @@
-# Cancelando um Pedido
+# Cancelling a order
 
 ```php
 // ...
@@ -13,8 +13,8 @@ $response = $requestHandler->cancel($orderId);
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/cancelar-um-pedido).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/cancelar-um-pedido).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Adicionando um Tracking de Pedido](TRACKING.md)
+[Continue: Adding an Order Track](TRACKING.md)

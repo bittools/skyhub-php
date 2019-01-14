@@ -1,4 +1,4 @@
-# Obter Etiqueta de Frete
+# Getting Order Tags
 
 ```php
 // ...
@@ -13,8 +13,8 @@ $response = $requestHandler->shipmentLabels($orderId);
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/obter-etiqueta-de-frete).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/obter-etiqueta-de-frete).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Pedidos com Problemas de Entrega](SHIPPING_EXCEPTION.md)
+[Continue: Problems With Orders Delivery](SHIPPING_EXCEPTION.md)

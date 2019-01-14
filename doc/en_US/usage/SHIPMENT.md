@@ -1,9 +1,9 @@
-# Postagem
+# Posting
 
-Na próxima página você vai aprender como agrupar seus pedidos à uma só PLP dos Correios.
+In the following page you will learn how to group your orders into one PLP (pre listing orders).
 
-Ao agrupar suas PLPs você economiza tempo e dinheiro, pois não será mais necessário imprimir uma PLP para cada uma das etiquetas emitidas.
+When grouping orders you save time and money because it's not necessary to print one label to each order. Only one to all orders grouped.
 
-[Voltar](../../README.md)
+[Back](../../../README.en_US.md)
 
-[Continuar: PLP](shipment/PLPS.md)
+[Continue: PLP](shipment/PLPS.md)

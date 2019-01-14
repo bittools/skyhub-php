@@ -105,5 +105,5 @@ $response = $requestHandler->viewFile('PLP_ID');
 
 Para mais informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.0/resources/postagem-plp).
 
-[Voltar](../../../README.md)
+[Voltar](../../../../README.md)
 

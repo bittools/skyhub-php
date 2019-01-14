@@ -17,6 +17,6 @@ $response = $requestHandler->invoice($orderId, $nfKey);
 
 Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/faturar-um-pedido).
 
-[Voltar](../../../README.md)
+[Voltar](../../../../README.md)
 
 [Continuar: Cancelando um Pedido](CANCEL.md)

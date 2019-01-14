@@ -1,16 +1,16 @@
-# Consultando Pedidos
+# Requesting Orders
 
-A consulta de pedidos é feita para obter as informações de um pedido, porém não deve ser utilizada para identificar pedidos novos.
+Orders requesting is made to obtain informations about an order but shouldn't be used to identify new orders. 
 
-Para saber mais sobre consulta de pedidos novos, veja a documentação sobre a [fila de pedidos](QUEUE.md).
+To know more about new orders request, see the documentation about [orders queue](QUEUE.md).
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders).
+For more information, access the [official documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders).
 
-A consulta de pedidos pode ser necessária para atualização de status do pedido em sua plataforma, por exemplo.
+Orders searching can be necessary to update order status in your platform, for example. 
 
-### Consultando um Pedido
+### Requesting an Order
 
-Este método permite consultar apenas um pedido por vez.
+This method allow to request only an order a time.
 
 ```php
 // ...
@@ -25,11 +25,11 @@ $response = $requestHandler->order($orderId);
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/obter-um-pedido).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/obter-um-pedido).
 
-### Obter uma Lista de Pedidos
+### Obtaining a List of Orders
 
-O método abaixo retorna uma lista com todos os seus pedidos na SkyHub.
+The following method returns a list with all your orders in SkyHub.
 
 ```php
 // ...
@@ -42,8 +42,8 @@ $response = $requestHandler->orders();
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/listar-pedidos).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/listar-pedidos).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Trabalhando com Filas de Pedidos](QUEUE.md)
+[Continue: Working With Orders Queue](QUEUE.md)

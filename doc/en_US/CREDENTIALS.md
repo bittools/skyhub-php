@@ -1,17 +1,18 @@
-# Credenciais para Integração
+# Credentials for Integration
 
-Para utlizar essa integração é necessário que você entre em contato com a equipe comercial da SkyHub e solicite uma conta para acesso á API.
-Serão passadas duas informações:
+To use this integration, it's necessary that you contact SkyHub's commercial and request an account to access the API.
 
-* E-mail de acesso
-* Chave API
+Two pieces of informations will be made available:
 
-Estas duas informações são necessárias para a integração com a SkyHub.
+* E-mail access;
+* API key;
 
-Saiba mais na [documentação oficial](https://skyhub.gelato.io/docs/versions/1.0/autenticacao-e-formato-dos-dados).
+These informations are needed to integrate with SkyHub.
 
-Você pode entrar em contato através da [página de contato](https://skyhub.com.br/#form_contato) do site da SkyHub.
+Read more at [official_documentation](https://skyhub.gelato.io/docs/versions/1.0/autenticacao-e-formato-dos-dados).
 
-[Voltar](../README.md)
+You can get in touch through [contact_page](https://skyhub.com.br/#form_contato).
 
-[Continuar: Instalação e Setup](INSTALLATION.md)
+[Back](../../README.en_US.md)
+
+[Continue: Installation and Setup](INSTALLATION.md)
