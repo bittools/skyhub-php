@@ -1,11 +1,11 @@
-# Postagem
+# Posting
 
-Se a sua integração entre a SkyHub e o marketplace B2W é realizada através de API e você utiliza B2W Entrega, você pode agrupar seus pedidos à uma só PLP dos Correios.
+If the integration between SkyHub and marketplace B2W is made through API and you use `B2W Entrega`, you can group your orders into one PLP.
 
 
-### Obter uma Lista de PLPs
+### Obtaining a PLP's List
 
-Você pode obter uma lista de PLPs utilizando o trecho de código abaixo:
+You can obtain a list of PLPs using the following code snippet:
 
 ```php
 // ...
@@ -20,9 +20,9 @@ $response = $requestHandler->plps();
 ```
 
 
-### Obter a Lista de Pedidos Aptos ao Agrupamento
+### Obtaining an Orders List That Can be Grouped
 
-Você pode obter uma lista de pedidos aptos a serem agrupados em uma PLP utilizando o trecho de código abaixo:
+You can obtain an orders list allowed to be grouped into a single PLP using the following code snippet:
 
 ```php
 // ...
@@ -37,9 +37,9 @@ $response = $requestHandler->ordersReadyToGroup();
 ```
 
 
-### Agrupar Pedidos em uma PLP
+### Grouping Orders Into a Single PLP
 
-Você pode agrupar os pedidos em uma PLP utilizando o trecho de código abaixo:
+You can group the orders into a PLP using the following code snippet:
 
 ```php
 // ...
@@ -63,9 +63,9 @@ $response = $requestHandler->group($orders);
 ```
 
 
-### Desagrupar uma PLP
+### Ungroup a PLP
 
-Você pode desagrupar uma PLP utilizando o trecho de código abaixo:
+You can ungroup a PLP using the following code snippet:
 
 ```php
 // ...
@@ -80,9 +80,9 @@ $response = $requestHandler->ungroup('PLP_ID');
 ```
 
 
-### Recuperar PLP 
+### Load PLP
 
-Você pode obter o PDF de sua PLP utilizando o trecho de código abaixo:
+You can obtain the PDF of your PLP using the following code snippet:
 
 ```php
 // ...
@@ -103,7 +103,7 @@ $response = $requestHandler->viewFile('PLP_ID');
 ```
 
 
-Para mais informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.0/resources/postagem-plp).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.0/resources/postagem-plp).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 

@@ -1,10 +1,10 @@
-# Atributos de Produto
+# Product Attributes
 
-Para integrar seus produtos, primeiramente você precisa integrar os atributos que compõem seus produtos.
+To integrate your products, first you need to integrate the products attributes. 
 
-### Criando Atributos
+### Creating Attributes
 
-Para criar um atributo de produto:
+To create a product attribute:
 
 ```php
 // ...
@@ -21,9 +21,9 @@ $response = $requestHandler->create('color', 'Color', [
 // ...
 ```
 
-### Atualizando Atributos
+### Updating Attributes
 
-Quando o atributo já existe na SkyHub e você precisa atualizá-lo:
+When the attribute already exists on SkyHub and you need to update it:
 
 ```php
 // ...
@@ -44,8 +44,8 @@ $response = $requestHandler->update('color', 'Color', [
 // ...
 ```
 
-Para mais informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/attributes).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/attributes).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Produtos](PRODUCTS.md)
+[Continue: Products](PRODUCTS.md)

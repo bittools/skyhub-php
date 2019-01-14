@@ -26,6 +26,6 @@ $response = $requestHandler->shipment(
 
 Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/enviar-dados-de-entrega).
 
-[Voltar](../../../README.md)
+[Voltar](../../../../README.md)
 
 [Continuar: Confirmar Entrega de um Pedido](DELIVERY.md)

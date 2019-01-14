@@ -1,6 +1,6 @@
-# Faturando um Pedido
+# Invoicing an Order
 
-Para faturar um pedido você precisa ter em mãos a chave da nota fiscal para enviá-la na requisição.
+To invoice an order you need to have in hands the number of the `fiscal note` to send it on request.
 
 ```php
 // ...
@@ -15,8 +15,8 @@ $response = $requestHandler->invoice($orderId, $nfKey);
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/faturar-um-pedido).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/faturar-um-pedido).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Cancelando um Pedido](CANCEL.md)
+[Continue: Cancelling an Order](CANCEL.md)

@@ -46,6 +46,6 @@ $response = $requestHandler->update('color', 'Color', [
 
 Para mais informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/attributes).
 
-[Voltar](../../../README.md)
+[Voltar](../../../../README.md)
 
 [Continuar: Produtos](PRODUCTS.md)

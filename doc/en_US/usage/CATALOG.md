@@ -1,7 +1,7 @@
-# Catálogo
+# Catalog
 
-Na próxima página você vai aprender como integrar seus atributos, produtos e categorias á SkyHub para que eles fiquem disponíveis para integração nos principais MarketPlaces do mercado, como [Americanas.com](https://www.americanas.com.br) e [Submarino](https://www.submarino.com.br), por exemplo.
+On the next page you will learn how to integrate your attributes, products and categories to SkyHub making them to be available into the main MarketPlaces, like [Americanas.com](https://www.americanas.com.br) and [Submarino](https://www.submarino.com.br), for example.  
 
-[Voltar](../../README.md)
+[Back](../../../README.en_US.md)
 
-[Continuar: Atributos de Produto](catalog/ATTRIBUTES.md)
+[Continue: Product Attributes](catalog/ATTRIBUTES.md)

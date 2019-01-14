@@ -1,17 +1,18 @@
-# Integration Credentials
+# Credentials for Integration
 
-To integrate to SkyHub API services you're required to contact the support team and request a new account to access the API services.
-The information below will be provided to you:
+To use this integration, it's necessary that you contact SkyHub's commercial and request an account to access the API.
 
-* Access E-mail
-* API Key
+Two pieces of informations will be made available:
 
-With this information you are now able to consume SkyHub API Services.
+* E-mail access;
+* API key;
 
-Read more in [official documentation](https://skyhub.gelato.io/docs/versions/1.0/autenticacao-e-formato-dos-dados).
+These informations are needed to integrate with SkyHub.
 
-You might contact the support team in the SkyHub's [contact page](https://skyhub.com.br/#form_contato).
+Read more at [official_documentation](https://skyhub.gelato.io/docs/versions/1.0/autenticacao-e-formato-dos-dados).
 
-[Back](../README.md)
+You can get in touch through [contact_page](https://skyhub.com.br/#form_contato).
+
+[Back](../../README.en_US.md)
 
 [Continue: Installation and Setup](INSTALLATION.md)

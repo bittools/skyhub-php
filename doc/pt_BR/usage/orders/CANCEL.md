@@ -15,6 +15,6 @@ $response = $requestHandler->cancel($orderId);
 
 Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/cancelar-um-pedido).
 
-[Voltar](../../../README.md)
+[Voltar](../../../../README.md)
 
 [Continuar: Adicionando um Tracking de Pedido](TRACKING.md)

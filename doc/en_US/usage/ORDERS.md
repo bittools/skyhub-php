@@ -1,9 +1,11 @@
-# Pedidos
+# Orders
 
-Nas documentações a seguir você vai aprender como fazer as integrações de pedidos.
+In the following documentations you will learn how to integrate orders.
 
-Para maiores informações acesso a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders).
 
-[Voltar](../../README.md)
+For more information, access [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders).
 
-[Continuar: Consultando Pedidos](orders/CONSULT.md)
+
+[Back](../../../README.en_US.md)
+
+[Continue: Searching Orders](orders/CONSULT.md)

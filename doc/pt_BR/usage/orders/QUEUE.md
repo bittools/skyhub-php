@@ -34,6 +34,6 @@ $response = $requestHandler->delete($orderId);
 
 Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/queues).
 
-[Voltar](../../../README.md)
+[Voltar](../../../../README.md)
 
 [Continuar: Faturando um Pedido](INVOICE.md)

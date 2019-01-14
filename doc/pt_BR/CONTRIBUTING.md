@@ -28,4 +28,4 @@ $ git checkout -b hotfix/ticket-number
 
 E por último, mas não menos importante: sempre comente seus códigos e commits. A mensagem do seu commit deve descrever o que o commit, quando aplicado, fará ao código.
  
-[Voltar](../README.md)
+[Voltar](../../README.md)

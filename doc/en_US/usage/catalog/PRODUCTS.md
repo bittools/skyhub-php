@@ -1,12 +1,13 @@
-# Produtos
+# Products
 
-Com os atributos de produtos integrados é hora de começar a integrar os produtos do seu catálogo.
+With the attributes products integrated, it's time to begin to integrate the products of your catalog.
 
-### Criando e Atualizando Produtos na SkyHub
 
-A criação de produtos na SkyHub necessita de várias informações como SKU, Nome, Descrição, etc.
+### Creating and Updating Products on SkyHub
 
-Para fazer a integração de um produto veja o exemplo abaixo:
+The products creation on SkyHub need a few informations like SKU, Name, Description, etc.
+
+To integrate a product, see the following example:
 
 ```php
 // ...
@@ -125,9 +126,9 @@ $response = $requestHandler->update(
 // ...
 ```
 
-### Deletando um Produto
+### Removing a Product
 
-Para deletar um produto basta utilizar o método abaixo.
+To delete a product, use the following method.
 
 ```php
 // ...
@@ -141,9 +142,9 @@ $response = $requestHandler->delete('sku123');
 // ...
 ```
 
-### Obter Informações de um Produto
+### Retrieving a Product Informations
 
-Você pode obter as inforamções de um único produto utlizando o trecho de código abaixo:
+You can retrieve informations of an unique product using the following code snippet:
 
 ```php
 // ...
@@ -157,9 +158,9 @@ $response = $requestHandler->product('sku123');
 // ...
 ```
 
-### Obter uma Lista de Produtos
+### Retrieving a Products List
 
-Você pode obter uma lista de produtos utlizando o trecho de código abaixo:
+You can retrieve a products list using the following code snippet:
 
 ```php
 // ...
@@ -173,9 +174,10 @@ $response = $requestHandler->products(['status' => 'foo']);
 // ...
 ```
 
-### Obter as URLs dos Produtos nos MarketPlaces
+### Retrieving Products URLs on MarketPlaces
 
-Você pode obter uma lista de produtos utlizando o trecho de código abaixo:
+
+You can retrieve a list of products URLs (marketplaces) using the following code snippet:
 
 ```php
 // ...
@@ -189,11 +191,11 @@ $response = $requestHandler->urls();
 // ...
 ```
 
-### Integrando Produtos de Forma Mais Simples
+### Simpler Way to Integrate Products
 
-Por mais que seja uma forma simples de criar um produto, você pode utlizar a camada de `EntityInterfaces` para simplificar ainda mais a criação de um produto, diminuindo assim a possibilidade de erros na hora de montar as informações.
+However it may be a simple way to create a product, you can call the layer `EntityInterfaces` to simplify even more the creation of the product, decreasing the chance to get errors on structure creation.
 
-A primeira coisa a se fazer é preencher todas as informações necessárias.
+The first thing to do is to fill all needed informations.
 
 ```php
 // ...
@@ -252,7 +254,7 @@ $response = $entityInterface->update();
 // ...
 ```
 
-Também é possível chamar os outros métodos através da `EntityInterface` de produtos.
+It's also possible to call other methods through product's `EntityInterface`.
 
 ```php
 // ...
@@ -287,7 +289,7 @@ $response = $entityInterface->urls();
 // ...
 ```
 
-Para o(s) método(s) abaixo não é necessário chamar nenhum setter, como no caso acima.
+To the following methods it's not necessary to call any `setter`, like above cases did.
 
 ```php
 // ...
@@ -306,8 +308,8 @@ $response = $entityInterface->products();
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/products).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/products).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Categorias](CATEGORIES.md)
+[Continue: Categories](CATEGORIES.md)

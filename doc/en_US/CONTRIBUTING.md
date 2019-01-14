@@ -1,31 +1,31 @@
-# Manual de Contribuição
+# Contribution Manual
 
-Se você deseja contribuir com o projeto para torná-lo melhor, sua ajuda é sempre bem-vinda.
-A contribuição é também uma ótima maneira de aprender mais sobre novas tecnologias e seu ecosistema para torná-la mais construtiva, livre de bugs e mantê-la sempre sempre atualizada.
+If you wish to contribute with the project and make it better, your help is welcome.
+The contribution is a great way to lean more about new technologies and it's ecosystem, make it more construtive, bugs free and keep it updated.
 
-### Como criar um pull request no Github
+### How to create a pull request at Github
 
-* Crie um fork deste projeto no Github para sua conta.
-* Faça o clone do seu fork em sua máquina local. O `remote` padrão do seu repositório (no caso o fork criado) será `origin`.
-* Adicione o repositório original, no caso este, como um novo `remote` chamado `upstream`.
+* In your account, create a fork of this project at Github.
+* Fork at your local machine. The default `remote` of your repository will be `origin`.
+* Add the original repository, as a new 'remote' named `upstream`.    
 ```bash
 $ git remote add upstream git@github.com:vendor/repository.git
 ```
-* Se você criou seu fork há algum tempo certifique-se de atualizar seu repositório com o código mais atualizado do repositório original.
-* Crie um novo branch no qual você vai fazer sua implementação. Crie a partir do branch `master`.
+* Make sure to frequently update your repository with the original. 
+* Create a new branch in which you are gonna make the implementation. Create from the `master` branch.
 ```bash
 $ git checkout -b hotfix/ticket-number
 ```
-* Implemente seu fix ou sua feature, não esquecendo de comentar seu código.
-* Siga o estilo de código que existe no projeto, incluindo as indentações corretas.
-* Execute todos os testes disponíveis para se certificar que nenhuma parte da SDK foi comprometida pelo novo código.
-* Escreva e adapte testes para seu código, caso necessário.
-* Inclua a documentação do seu código.
-* Dê um `push` do seu projeto para o seu fork no Github, o `remote origin`.
-* A partir do seu fork no Github, crie um novo `pull request` do branch. Aponte para o branch `develop` do projeto original.
-* Caso o mantenedor do projeto solicite alguma alteração no seu código, altere seu branch e dê um push para seu fork no Github. O Pull Request será atualizado automaticamente.
-* Uma vez que o código tenha sido aprovado e mergeado no projeto oficial, você pode atualizar seu remote `upstream` para sua máquina local e remover os branches que criou.
+* Implement your fix or feature, not forgetting to comment the code.
+* Follow the project code style, including the corrects identations. 
+* Execute all tests available to get certified that no part of the SDK was compromised by the new code.
+* Write and adapt tests to your code, if necessary.
+* Include a documentation of your code.
+* Do `git push` of your project to your Github fork, the `remote origin`.
+* At github, from your fork, create a new `pull request` from branch. Point to `develop` branch of the original project. 
+* If the maintainer of the project requests any change in the code, changeyour branch and give a `push` to your Github fork. The `pull request` will be updated automatically.
+* Once the code has been approved and merged in the oficial project, you can update your remote `upstream` to your local machine and remove the branches you have created.
 
-E por último, mas não menos importante: sempre comente seus códigos e commits. A mensagem do seu commit deve descrever o que o commit, quando aplicado, fará ao código.
+And finally, but not less important: always comment your codes and commits. The message of your commit must describe what it will do with the code.
  
-[Voltar](../README.md)
+[Back](../README.en_US.md)

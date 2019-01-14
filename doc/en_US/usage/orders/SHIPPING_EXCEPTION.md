@@ -1,6 +1,6 @@
-# Pedidos com Problemas de Entrega
+# Orders with Delivery Problems
 
-### Criando uma Exceção de Transporte para um Pedido
+### Creating a Transportation Exception to an Order
 
 ```php
 // ...
@@ -15,4 +15,6 @@ $response = $requestHandler->shipmentException($orderId);
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/excecao-de-transporte).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/excecao-de-transporte).
+
+[Back](../../../../README.en_US.md)

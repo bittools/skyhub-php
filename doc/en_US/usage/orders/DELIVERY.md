@@ -1,4 +1,4 @@
-# Confirmar Entrega de um Pedido
+# Confirming an Order Delivery
 
 ```php
 // ...
@@ -13,8 +13,8 @@ $response = $requestHandler->delivery($orderId);
 // ...
 ```
 
-Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/confirmar-entrega).
+For more information, access the [official_documentation](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/confirmar-entrega).
 
-[Voltar](../../../README.md)
+[Back](../../../../README.en_US.md)
 
-[Continuar: Obtendo Etiquetas de Pedidos](LABELS.md)
+[Continue: Getting Order Tags](LABELS.md)

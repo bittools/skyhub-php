@@ -1,8 +1,8 @@
-# Utilizando a API
+# Using the API
 
-A classe API utilizada na SDK é a proxy necessária para você ter acesso às qualquer outra funcionalidade da API. A utilização dela é realmente simples.
+The API class used in the SDK is the needed proxy class to have access to any other API functionality. It's usage is very simple.
 
-Primeiramente você precisa importar o autoload do Composer no seu arquivo PHP:
+First, you need to import the composer autoload in your php file:
 
 ```php
 <?php
@@ -12,7 +12,7 @@ Primeiramente você precisa importar o autoload do Composer no seu arquivo PHP:
     // ...
 ```
 
-Após isso você poderá instanciar uma nova classe API:
+After that, you can instantiate a new API class:
 
 ```php
 <?php
@@ -26,8 +26,8 @@ Após isso você poderá instanciar uma nova classe API:
     $api = new SkyHub\Api($email, $apiKey);
 ```
 
-Com isso você estará apto a utlizar qualquer funcionalidade da integração.
+Doing this, you will be allowed to use any integration functionality.
 
-[Voltar](../../README.md)
+[Back](../../../README.en_US.md)
 
-[Continuar: Catálogo](CATALOG.md)
+[Continue: Catalog](CATALOG.md)
