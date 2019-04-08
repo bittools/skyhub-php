@@ -108,14 +108,19 @@ class ProductHandler extends HandlerAbstract
 
     /**
      * @param null|string $status
+     * @param null|array $paging
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function products($status = null)
+    public function products($status = null, $paging = null)
     {
         $query = [
             'status' => $status
         ];
+        
+        if ($paging and is_array($paging)) {
+            $query = array_merge($query, $paging);
+        }
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->get($this->baseUrlPath(null, $query));
