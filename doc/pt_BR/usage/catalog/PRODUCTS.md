@@ -171,8 +171,11 @@ Você pode obter uma lista de produtos utlizando o trecho de código abaixo:
 /** @var \SkyHub\Api\Handler\Request\Catalog\ProductHandler $requestHandler */
 $requestHandler = $api->product();
 
+$status = 'enabled'; //Opcional
+$pagination = ['page' => 1, 'per_page' => 100]; //Opcional (valores padrão: valor mínimo page = 1; valor máximo per_page = 100)
+
 /** @var SkyHub\Api\Handler\Response\HandlerInterface $response */
-$response = $requestHandler->products(['status' => 'foo']);
+$response = $requestHandler->products($status, $pagination);
 
 // ...
 ```
