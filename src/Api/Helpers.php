@@ -69,7 +69,12 @@ trait Helpers
      */
     protected function arrayIsNotEmpty(array $data, $index)
     {
-        return (bool) ($this->arrayIndexExists($data, $index) && $data[$index]);
+
+        if($this->arrayIndexExists($data, $index) && is_numeric($data[$index])){
+            return true;
+        }
+
+        return (bool) ($this->arrayIndexExists($data, $index));
     }
     
     
