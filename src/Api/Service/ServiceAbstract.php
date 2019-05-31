@@ -160,7 +160,6 @@ abstract class ServiceAbstract implements ServiceInterface
 
             $logResponse = $this->getLoggerResponse()
                 ->importResponseExceptionHandler($responseHandler);
-
         } catch (\Exception $exception) {
 
             /** Service Request Exception */
@@ -168,7 +167,6 @@ abstract class ServiceAbstract implements ServiceInterface
 
             $logResponse = $this->getLoggerResponse()
                 ->importResponseExceptionHandler($responseHandler);
-
         }
     
         $this->clear();

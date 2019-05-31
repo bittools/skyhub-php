@@ -16,6 +16,7 @@
  */
 
 namespace SkyHub\Api\Log\TypeInterface;
+
 use SkyHub\Api\Exception\JsonDataConvert;
 
 abstract class TypeAbstract implements TypeInterface
