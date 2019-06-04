@@ -69,8 +69,7 @@ trait Helpers
      */
     protected function arrayIsNotEmpty(array $data, $index)
     {
-
-        if($this->arrayIndexExists($data, $index) && is_numeric($data[$index])){
+        if ($this->arrayIndexExists($data, $index) && is_numeric($data[$index])) {
             return true;
         }
 
