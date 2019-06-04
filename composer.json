@@ -36,6 +36,18 @@
         "email": "sdk@e-smart.com.br"
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "phpunit": [
+            "vendor/bin/phpunit -c ./phpunit.xml test/unit"
+        ],
+        "phpcs": [
+            "vendor/bin/phpcs --standard=PSR2 --severity=1 src"
+        ],
+        "tests": [
+            "@phpunit",
+            "@phpcs"
+        ]
+    }
 }
 
