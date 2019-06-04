@@ -1,0 +1,13 @@
+dist: trusty
+language: php
+env:
+  global:
+    - CODACY_PROJECT_TOKEN=91fd65821f1e47efab91113a9539de7e
+php:
+  - "5.4"
+  - "5.5"
+  - "5.6"
+before_script:
+  - composer install --no-interaction
+script:
+  - composer tests
