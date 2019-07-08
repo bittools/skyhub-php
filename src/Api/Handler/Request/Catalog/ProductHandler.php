@@ -25,6 +25,35 @@ use SkyHub\Api\DataTransformer\Catalog\Product\Update as UpdateTransformer;
 
 class ProductHandler extends HandlerAbstract
 {
+    /**
+     * @var string
+     */
+    const PRODUCT_FILTER_SKU = 'sku';
+
+    /**
+     * @var string
+     */
+    const PRODUCT_FILTER_NAME = 'name';
+
+    /**
+     * @var string
+     */
+    const PRODUCT_FILTER_STATUS = 'status';
+
+    /**
+     * @var string
+     */
+    const PRODUCT_FILTER_QTY_FROM = 'qty_from';
+
+    /**
+     * @var string
+     */
+    const PRODUCT_FILTER_QTY_TO = 'qty_to';
+
+    /**
+     * @var string
+     */
+    const PRODUCT_FILTER_CATEGORIES = 'categories';
 
     /** @var string */
     protected $baseUrlPath = '/products';
@@ -105,16 +134,40 @@ class ProductHandler extends HandlerAbstract
         return $responseHandler;
     }
 
-
     /**
-     * @param null|string $status
+     * @param int   $page
+     * @param int   $perPage
+     * @param array $filters
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function products($status = null)
+    public function products(int $page = 1, int $perPage = 100, array $filters = [])
     {
+        $allowedFilters = [
+            self::PRODUCT_FILTER_SKU,
+            self::PRODUCT_FILTER_NAME,
+            self::PRODUCT_FILTER_STATUS,
+            self::PRODUCT_FILTER_QTY_FROM,
+            self::PRODUCT_FILTER_QTY_TO,
+            self::PRODUCT_FILTER_CATEGORIES,
+        ];
+
+        $query = [];
+
+        foreach ($filters as $key => $value) {
+            if (!in_array($key, $allowedFilters)) {
+                continue;
+            }
+
+            $query[$key] = $value;
+        }
+
+        /**
+         * This needs to go here to override the values passed in $filters.
+         */
         $query = [
-            'status' => $status
+            'page' => (int) $page,
+            'per_page' => (int) $perPage,
         ];
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
