@@ -166,10 +166,8 @@ class ProductHandler extends HandlerAbstract
         /**
          * This needs to go here to override the values passed in $filters.
          */
-        $query = [
-            'page' => (int) $page,
-            'per_page' => (int) $perPage,
-        ];
+        $query['page']     = (int) $page;
+        $query['per_page'] = (int) $perPage;
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->get($this->baseUrlPath(null, $query));
