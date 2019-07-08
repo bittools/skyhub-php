@@ -55,9 +55,10 @@ class ProductHandler extends HandlerAbstract
      */
     const PRODUCT_FILTER_CATEGORIES = 'categories';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $baseUrlPath = '/products';
-
 
     /**
      * @param string $sku
@@ -141,7 +142,7 @@ class ProductHandler extends HandlerAbstract
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function products(int $page = 1, int $perPage = 100, array $filters = [])
+    public function products($page = 1, $perPage = 100, array $filters = [])
     {
         $allowedFilters = [
             self::PRODUCT_FILTER_SKU,
