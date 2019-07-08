@@ -55,9 +55,10 @@ class ProductHandler extends HandlerAbstract
      */
     const PRODUCT_FILTER_CATEGORIES = 'categories';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $baseUrlPath = '/products';
-
 
     /**
      * @param string $sku
