@@ -2,6 +2,7 @@
 
 # SkyHub - PHP SDK
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/495fe34059c642d381ad30d947ff3f67)](https://app.codacy.com/app/tiagoosampaio/skyhub-php?utm_source=github.com&utm_medium=referral&utm_content=bittools/skyhub-php&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/495fe34059c642d381ad30d947ff3f67)](https://app.codacy.com/app/tiagoosampaio/skyhub-php?utm_source=github.com&utm_medium=referral&utm_content=bittools/skyhub-php&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/bittools/skyhub-php.svg?branch=1.2-develop)](https://travis-ci.org/bittools/skyhub-php)
 
