@@ -54,7 +54,7 @@ class PlpHandler extends HandlerAbstract
         ];
         
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
-        $responseHandler = $this->service()->get($this->baseUrlPath('/to_group'), $query);
+        $responseHandler = $this->service()->get($this->baseUrlPath('/to_group', $query));
 
         return $responseHandler;
     }
