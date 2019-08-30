@@ -50,7 +50,7 @@ class PlpHandler extends HandlerAbstract
     public function ordersReadyToGroup(int $offset = 1)
     {
         $query = [
-            'offset'   => $offset
+            'offset'   => $offset > 0 ? $offset : 1
         ];
         
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
