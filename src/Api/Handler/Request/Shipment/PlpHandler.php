@@ -32,6 +32,16 @@ class PlpHandler extends HandlerAbstract
      * @var int
      */
     const OFFSET_LIMIT = 25;
+    
+    /**
+     * @var string
+     */
+    const TYPE_PLP_PDF = 'pdf';
+
+    /**
+     * @var string
+     */
+    const TYPE_PLP_JSON = 'json';
 
     /**
      * @var string
@@ -94,13 +104,20 @@ class PlpHandler extends HandlerAbstract
      *
      * @param string $id
      *
+     * @param string $type default json
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function viewFile($id)
+    public function viewFile($id, string $type = self::TYPE_PLP_JSON)
     {
         $query = [
             'plp_id' => $id
         ];
+        
+        if ($type === self::TYPE_PLP_PDF) {
+            $this->service()->setHeaders(['Accept' => 'application/pdf']);
+        } else if ($type === self::TYPE_PLP_JSON) {
+            $this->service()->setHeaders(['Accept' => 'application/json']);
+        }
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->get($this->baseUrlPath('/view', $query));
