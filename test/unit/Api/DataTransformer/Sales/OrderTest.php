@@ -11,7 +11,6 @@ use SkyHub\Api\DataTransformer\Sales\Order\Shipment;
 use SkyHub\Api\DataTransformer\Sales\Order\ShipmentException;
 use SkyHub\Api\DataTransformer\Sales\Order\Status\Create;
 use SkyHub\Api\DataTransformer\Sales\Order\Status\Update;
-use SkyHub\Api\Handler\Request\Sales\Order\StatusHandler;
 use SkyHub\Api\Handler\Request\Sales\OrderHandler;
 
 /**
@@ -34,9 +33,9 @@ class OrderTest extends TestCase
      */
     public function assertDataTransformerOrderCancel()
     {
-        $transformer = new Cancel(StatusHandler::TYPE_SHIPPED);
+        $transformer = new Cancel(OrderHandler::STATUS_CANCELLED);
         $expected = [
-            'status' => StatusHandler::TYPE_SHIPPED
+            'status' => OrderHandler::STATUS_CANCELLED
         ];
 
         $this->assertEquals($expected, $transformer->output());
@@ -48,9 +47,9 @@ class OrderTest extends TestCase
      */
     public function assertDataTransformerOrderDelivery()
     {
-        $transformer = new Delivery(StatusHandler::TYPE_SHIPPED);
+        $transformer = new Delivery(OrderHandler::STATUS_COMPLETE);
         $expected = [
-            'status' => StatusHandler::TYPE_SHIPPED
+            'status' => OrderHandler::STATUS_COMPLETE
         ];
 
         $this->assertEquals($expected, $transformer->output());
@@ -83,13 +82,15 @@ class OrderTest extends TestCase
         $orderId = '99';
         $datetime = '2018-01-20 16:00:00';
         $observation = 'This is a simple observation';
+        $status = OrderHandler::STATUS_SHIPMENT_EXCEPTION;
 
-        $transformer = new ShipmentException($orderId, $datetime, $observation);
+        $transformer = new ShipmentException($orderId, $datetime, $observation, $status);
         $expected = [
             'shipment_exception' => [
                 'occurrence_date' => $datetime,
                 'observation'     => $observation
-            ]
+            ],
+            'status' => $status
         ];
 
         $this->assertEquals($expected, $transformer->output());
