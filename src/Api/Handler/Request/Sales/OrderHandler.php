@@ -20,7 +20,6 @@ namespace SkyHub\Api\Handler\Request\Sales;
 use SkyHub\Api\EntityInterface\Sales\Order;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 
-use SkyHub\Api\DataTransformer\Sales\Order\ApproveTest as ApproveTestTransformer;
 use SkyHub\Api\DataTransformer\Sales\Order\Invoice as InvoiceTransformer;
 use SkyHub\Api\DataTransformer\Sales\Order\Cancel as CancelTransformer;
 use SkyHub\Api\DataTransformer\Sales\Order\Delivery as DeliveryTransformer;
@@ -30,10 +29,11 @@ use SkyHub\Api\DataTransformer\Sales\Order\ShipmentException as ShipmentExceptio
 class OrderHandler extends HandlerAbstract
 {
 
-    const STATUS_CANCELLED = 'order_canceled';
-    const STATUS_PAID      = 'payment_received';
-    const STATUS_COMPLETE  = 'complete';
-    const STATUS_SHIPPED   = 'order_shipped';
+    const STATUS_CANCELLED          = 'order_canceled';
+    const STATUS_PAID               = 'order_invoiced';
+    const STATUS_COMPLETE           = 'complete';
+    const STATUS_SHIPPED            = 'order_shipped';
+    const STATUS_SHIPMENT_EXCEPTION = 'shipment_exception';
 
 
     /** @var string */
@@ -88,55 +88,18 @@ class OrderHandler extends HandlerAbstract
         return $responseHandler;
     }
 
-
-    /**
-     * Creates a test order in SkyHub.
-     *
-     * @todo Finish this method afterwards.
-     *
-     * @param array ...$orderData
-     *
-     * @return \SkyHub\Api\Handler\Response\HandlerInterface
-     */
-    /*
-    public function createTest(...$orderData)
-    {
-        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler * /
-         $responseHandler = $this->service()->post($this->baseUrlPath());
-         return $responseHandler;
-    }
-    */
-
-
-    /**
-     * Updates and order with approval data. Just for tests.
-     *
-     * @var string $orderId
-     *
-     * @return \SkyHub\Api\Handler\Response\HandlerInterface
-     */
-    public function approveTest($orderId)
-    {
-        $transformer = new ApproveTestTransformer($orderId, self::STATUS_PAID);
-        $body        = $transformer->output();
-
-        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
-        $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/approval"), $body);
-        return $responseHandler;
-    }
-
-
     /**
      * Invoice an order in SkyHub.
      *
      * @var string $orderId
      * @var string $invoiceKey
+     * @var string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function invoice($orderId, $invoiceKey)
+    public function invoice($orderId, $invoiceKey, $status = null)
     {
-        $transformer = new InvoiceTransformer(self::STATUS_PAID, $invoiceKey);
+        $transformer = new InvoiceTransformer($status ?: self::STATUS_PAID, $invoiceKey);
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
@@ -149,12 +112,13 @@ class OrderHandler extends HandlerAbstract
      * Cancel an order in SkyHub.
      *
      * @var string $orderId
+     * @var string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function cancel($orderId)
+    public function cancel($orderId, $status = null)
     {
-        $transformer = new CancelTransformer(self::STATUS_CANCELLED);
+        $transformer = new CancelTransformer($status ?: self::STATUS_CANCELLED);
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
@@ -165,12 +129,13 @@ class OrderHandler extends HandlerAbstract
 
     /**
      * @var string $orderId
+     * @var string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function delivery($orderId)
+    public function delivery($orderId, $status = null)
     {
-        $transformer = new DeliveryTransformer(self::STATUS_COMPLETE);
+        $transformer = new DeliveryTransformer($status ?: self::STATUS_COMPLETE);
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
@@ -186,14 +151,15 @@ class OrderHandler extends HandlerAbstract
      * @param string $trackCarrier
      * @param string $trackMethod
      * @param string $trackUrl
+     * @var string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function shipment($orderId, array $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl)
+    public function shipment($orderId, array $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl, $status = null)
     {
         $transformer = new ShipmentTransformer(
             $orderId,
-            self::STATUS_SHIPPED,
+            $status ?: self::STATUS_SHIPPED,
             $items,
             $trackCode,
             $trackCarrier,
@@ -228,12 +194,18 @@ class OrderHandler extends HandlerAbstract
      * @param string $orderId
      * @param string $datetime
      * @param string $observation
+     * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function shipmentException($orderId, $datetime, $observation)
+    public function shipmentException($orderId, $datetime, $observation, $status = null)
     {
-        $transformer = new ShipmentExceptionTransformer($orderId, $datetime, $observation);
+        $transformer = new ShipmentExceptionTransformer(
+            $orderId,
+            $datetime,
+            $observation,
+            $status ?: self::STATUS_SHIPMENT_EXCEPTION
+        );
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
