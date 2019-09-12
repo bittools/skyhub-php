@@ -17,7 +17,28 @@
 
 namespace SkyHub\Api\DataTransformer\Sales\Order;
 
-class Delivery extends Cancel
-{
+use SkyHub\Api\DataTransformer\DataTransformerAbstract;
 
+class Delivery extends DataTransformerAbstract
+{
+    /**
+     * Delivery constructor.
+     *
+     * @param $status
+     * @param $date
+     */
+    public function __construct($status, $date = null)
+    {
+        $outputData = [
+            'status' => $status,
+        ];
+
+        if ($date) {
+            $outputData['delivered_date'] = $date;
+        }
+
+        $this->setOutputData($outputData);
+
+        parent::__construct();
+    }
 }
