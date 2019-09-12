@@ -12,6 +12,15 @@ $orderId = 'Marketplace-000000001';
 $response = $requestHandler->cancel($orderId);
 // ...
 ```
+Para enviar um status customizado, basta passá-lo no último parâmetro. Por exemplo:
+```php
+// ...
+
+/** @var SkyHub\Api\Handler\Response\HandlerInterface $response */
+$response = $requestHandler->cancel($orderId, 'order_canceled_custom');
+```
+
+*Observação: o status utilizado DEVE estar previamente cadastrado na SkyHub.* 
 
 Para maiores informações acesse a [documentação oficial](https://skyhub.gelato.io/docs/versions/1.1/resources/orders/endpoints/cancelar-um-pedido).
 
