@@ -129,13 +129,14 @@ class OrderHandler extends HandlerAbstract
 
     /**
      * @var string $orderId
+     * @param string $date
      * @var string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function delivery($orderId, $status = null)
+    public function delivery($orderId, $date = null, $status = null)
     {
-        $transformer = new DeliveryTransformer($status ?: self::STATUS_COMPLETE);
+        $transformer = new DeliveryTransformer($status ?: self::STATUS_COMPLETE, $date);
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */

@@ -45,7 +45,7 @@ class OrderTest extends TestCase
     /**
      * @test
      */
-    public function assertDataTransformerOrderDelivery()
+    public function assertDataTransformerOrderDeliveryWithoutDeliveryDate()
     {
         $transformer = new Delivery(OrderHandler::STATUS_COMPLETE);
         $expected = [
@@ -55,6 +55,19 @@ class OrderTest extends TestCase
         $this->assertEquals($expected, $transformer->output());
     }
 
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderDeliveryWithDeliveryDate()
+    {
+        $transformer = new Delivery(OrderHandler::STATUS_COMPLETE, '12/09/2019');
+        $expected = [
+            'status'        => OrderHandler::STATUS_COMPLETE,
+            'delivered_date'=> '12/09/2019'
+        ];
+
+        $this->assertEquals($expected, $transformer->output());
+    }
 
     /**
      * @test
