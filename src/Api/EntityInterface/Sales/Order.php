@@ -55,40 +55,44 @@ class Order extends EntityAbstract
     /**
      * @param string $orderId
      * @param string $invoiceKey
+     * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function invoice($orderId, $invoiceKey)
+    public function invoice($orderId, $invoiceKey, $status = null)
     {
         /** @var OrderHandler $handler */
         $handler = $this->requestHandler();
-        return $handler->invoice($orderId, $invoiceKey);
+        return $handler->invoice($orderId, $invoiceKey, $status);
     }
 
 
     /**
      * @param string $orderId
+     * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function cancel($orderId)
+    public function cancel($orderId, $status = null)
     {
         /** @var OrderHandler $handler */
         $handler = $this->requestHandler();
-        return $handler->cancel($orderId);
+        return $handler->cancel($orderId, $status);
     }
 
 
     /**
      * @param string $orderId
+     * @param string $date
+     * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function delivery($orderId)
+    public function delivery($orderId, $date = null, $status = null)
     {
         /** @var OrderHandler $handler */
         $handler = $this->requestHandler();
-        return $handler->delivery($orderId);
+        return $handler->delivery($orderId, $date, $status);
     }
 
 
@@ -112,14 +116,15 @@ class Order extends EntityAbstract
      * @param string $trackCarrier
      * @param string $trackMethod
      * @param string $trackUrl
+     * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function shipment($orderId, array $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl)
+    public function shipment($orderId, array $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl, $status = null)
     {
         /** @var OrderHandler $handler */
         $handler = $this->requestHandler();
-        return $handler->shipment($orderId, $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl);
+        return $handler->shipment($orderId, $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl, $status);
     }
     
     
@@ -127,13 +132,14 @@ class Order extends EntityAbstract
      * @param string $orderId
      * @param string $datetime
      * @param string $observation
+     * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function shipmentException($orderId, $datetime, $observation)
+    public function shipmentException($orderId, $datetime, $observation, $status = null)
     {
         /** @var OrderHandler $handler */
         $handler = $this->requestHandler();
-        return $handler->shipmentException($orderId, $datetime, $observation);
+        return $handler->shipmentException($orderId, $datetime, $observation, $status);
     }
 }
