@@ -152,7 +152,7 @@ class OrderHandler extends HandlerAbstract
      * @param string $trackCarrier
      * @param string $trackMethod
      * @param string $trackUrl
-     * @var string $status
+     * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
