@@ -99,7 +99,7 @@ class OrderHandler extends HandlerAbstract
      */
     public function invoice($orderId, $invoiceKey, $status = null)
     {
-        $transformer = new InvoiceTransformer($status ?: self::STATUS_PAID, $invoiceKey);
+        $transformer = new InvoiceTransformer($status, $invoiceKey);
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */

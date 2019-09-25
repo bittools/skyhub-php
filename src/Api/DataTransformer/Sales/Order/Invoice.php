@@ -30,12 +30,17 @@ class Invoice extends DataTransformerAbstract
      */
     public function __construct($status, $invoiceKey)
     {
-        $this->setOutputData([
-            'status'  => $status,
+        $param = [
             'invoice' => [
                 'key' => $invoiceKey
-            ],
-        ]);
+            ]
+        ];
+
+        if ($status && is_string($status)) {
+            $param['status'] = $status;
+        }
+
+        $this->setOutputData($param);
 
         parent::__construct();
     }

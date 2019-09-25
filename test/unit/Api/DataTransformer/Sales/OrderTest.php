@@ -86,6 +86,37 @@ class OrderTest extends TestCase
         $this->assertEquals($expected, $transformer->output());
     }
 
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderInvoiceWithStatusNull()
+    {
+        $invoiceKey = '999888777999888777';
+        $transformer = new Invoice(null, $invoiceKey);
+        $expected = [
+            'invoice' => [
+                'key' => $invoiceKey
+            ],
+        ];
+
+        $this->assertEquals($expected, $transformer->output());
+    }
+
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderInvoiceEmptyStatus()
+    {
+        $invoiceKey = '999888777999888777';
+        $transformer = new Invoice('', $invoiceKey);
+        $expected = [
+            'invoice' => [
+                'key' => $invoiceKey
+            ],
+        ];
+
+        $this->assertEquals($expected, $transformer->output());
+    }
 
     /**
      * @test
