@@ -20,6 +20,7 @@ namespace SkyHub\Api\Handler\Request\Shipment;
 use SkyHub\Api\EntityInterface\Shipment\Plp;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 use SkyHub\Api\DataTransformer\Shipment\Plp\Group as GroupTransformer;
+use SkyHub\Api\DataTransformer\Shipment\Order\Collect as CollectTransformer;
 
 /**
  * Class PlpHandler
@@ -132,5 +133,45 @@ class PlpHandler extends HandlerAbstract
     public function entityInterface()
     {
         return new Plp($this);
+    }
+
+    /**
+     * Retrieves a list of all orders collectables in SkyHub.
+     *
+     * @param bool $requested orders that have already had your pickup requested
+     * @param int|null $offset
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function collectables(bool $requested, int $offset = null)
+    {
+        $query['requested'] = $requested ? 'true' : 'false';
+
+        if ($offset !== null) {
+            $query['offset'] = min(max($offset, 1), self::OFFSET_LIMIT);
+        }
+
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
+        $responseHandler = $this->service()->get($this->baseUrlPath('/collectables', $query));
+
+        return $responseHandler;
+    }
+
+    /**
+     * Request collect multiple orders.
+     *
+     * @param array $orders
+     *
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function confirmCollection(array $orders)
+    {
+        $transformer = new CollectTransformer($orders);
+
+        $body = $transformer->output();
+
+        /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
+        $responseHandler = $this->service()->post($this->baseUrlPath('/confirm_collection'), $body);
+
+        return $responseHandler;
     }
 }
