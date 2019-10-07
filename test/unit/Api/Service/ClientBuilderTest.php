@@ -80,10 +80,10 @@ class ClientBuilderTest extends TestCase
     {
         $client = $this->builder->build($this->baseUri);
 
-        /** @var \GuzzleHttp\Psr7\Uri $baseUri */
+        /** @var \Psr\Http\Message\UriInterface $baseUri */
         $baseUri = $client->getConfig('base_uri');
 
-        $this->assertInstanceOf(\GuzzleHttp\Psr7\Uri::class, $baseUri);
+        $this->assertInstanceOf(\Psr\Http\Message\UriInterface::class, $baseUri);
         $this->assertEquals($this->scheme, $baseUri->getScheme());
         $this->assertEquals($this->host, $baseUri->getHost());
         $this->assertEquals($this->port, $baseUri->getPort());
