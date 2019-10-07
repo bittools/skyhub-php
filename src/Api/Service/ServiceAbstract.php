@@ -159,15 +159,9 @@ abstract class ServiceAbstract implements ServiceInterface
      *
      * @return Api\Handler\Response\HandlerInterfaceException|Api\Handler\Response\HandlerInterfaceSuccess
      */
-    public function request($method, $uri, $body = null, array $options = [], $debug = false)
+    public function request(string $method, string $uri, $body = null, array $options = [], $debug = false)
     {
-        $this->optionsBuilder
-            ->addOptions($options)
-            ->setTimeout($this->getTimeout())
-            ->setDebug((bool) $debug)
-            ->setBody($body)
-            ->getHeadersBuilder()
-            ->addHeaders($this->headers);
+        $this->prepareRequest($method, $uri, $body, $options, $debug);
 
         try {
             /** Log the request before sending it. */
@@ -211,6 +205,29 @@ abstract class ServiceAbstract implements ServiceInterface
     }
 
     /**
+     * @param        $method
+     * @param string $uri
+     * @param null   $body
+     * @param array  $options
+     * @param bool   $debug
+     *
+     * @return $this
+     */
+    private function prepareRequest($method, string $uri, $body = null, array $options = [], $debug = false)
+    {
+        $this->optionsBuilder
+            ->addOptions($options)
+            ->setTimeout($this->getTimeout())
+            ->setDebug((bool) $debug)
+            ->getHeadersBuilder()
+            ->addHeaders($this->headers);
+
+        $this->prepareRequestBody($body);
+
+        return $this;
+    }
+
+    /**
      * This method clears the unnecessary information after a request.
      *
      * @return $this
@@ -233,15 +250,30 @@ abstract class ServiceAbstract implements ServiceInterface
     }
 
     /**
-     * @param string|array $bodyData
-     * @param array        $options
-     *
-     * @return array
+     * @return $this
      */
-    protected function prepareRequestBody($bodyData, array &$options = [])
+    protected function prepareRequestHeaders()
     {
-        $options['body'] = $bodyData;
-        return $options;
+        return $this;
+    }
+
+    /**
+     * @param string|array $bodyData
+     *
+     * @return $this
+     */
+    protected function prepareRequestBody($bodyData)
+    {
+        $this->getOptionsBuilder()->setBody($bodyData);
+        return $this;
+    }
+
+    /**
+     * @return OptionsBuilderInterface
+     */
+    public function getOptionsBuilder() : OptionsBuilderInterface
+    {
+        return $this->optionsBuilder;
     }
 
     /**
@@ -318,18 +350,6 @@ abstract class ServiceAbstract implements ServiceInterface
     public function getTimeout()
     {
         return (int) $this->timeout;
-    }
-
-    /**
-     * @param integer $timeout
-     *
-     * @return $this
-     */
-    public function setTimeout($timeout)
-    {
-        $this->timeout = (int) $timeout;
-
-        return $this;
     }
 
     /**

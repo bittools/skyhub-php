@@ -19,37 +19,44 @@ namespace SkyHub\Api\Service;
 
 use SkyHub\Api\Log\TypeInterface\ResponsePdf;
 
+/**
+ * Class ServicePdf
+ *
+ * @package SkyHub\Api\Service
+ */
 class ServicePdf extends ServiceDefault
 {
-    
     /**
-     * Service constructor.
-     *
-     * @param string $baseUri
-     * @param array  $headers
-     * @param array  $options
+     * @var array
      */
-    public function __construct($baseUri, array $headers = [], array $options = [], $log = true)
+    private $headers = [
+        'Accept'       => 'application/pdf',
+        'Content-Type' => 'application/json'
+    ];
+
+    /**
+     * @return $this
+     */
+    protected function prepareRequestHeaders()
     {
-        $headers['Accept']       = 'application/pdf';
-        $headers['Content-Type'] = 'application/json';
+        $this->getOptionsBuilder()
+            ->setStream(true)
+            ->getHeadersBuilder()
+            ->addHeaders($this->headers);
 
-        $options['stream']       = true;
-
-        parent::__construct($baseUri, $headers, $options, $log);
+        return $this;
     }
-    
-    
+
     /**
      * @param array $bodyData
      * @param array $options
      *
-     * @return array
+     * @return $this
      */
-    protected function prepareRequestBody($bodyData, array &$options = [])
+    protected function prepareRequestBody($bodyData)
     {
-        $options['json'] = $bodyData;
-        return $options;
+        $this->getOptionsBuilder()->setBody($bodyData, OptionsBuilderInterface::BODY_TYPE_JSON);
+        return $this;
     }
 
 
