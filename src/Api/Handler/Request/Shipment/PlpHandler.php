@@ -129,18 +129,11 @@ class PlpHandler extends HandlerAbstract
     }
 
     /**
-     * @return Plp
-     */
-    public function entityInterface()
-    {
-        return new Plp($this);
-    }
-
-    /**
      * Retrieves a list of all orders collectables in SkyHub.
      *
-     * @param bool $requested orders that have already had your pickup requested
+     * @param bool     $requested orders that have already had your pickup requested
      * @param int|null $offset
+     *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
     public function collectables(bool $requested, int $offset = null)
@@ -174,5 +167,13 @@ class PlpHandler extends HandlerAbstract
         $responseHandler = $this->service()->post($this->baseUrlPath('/confirm_collection'), $body);
 
         return $responseHandler;
+    }
+
+    /**
+     * @return Plp
+     */
+    public function entityInterface()
+    {
+        return new Plp($this);
     }
 }
