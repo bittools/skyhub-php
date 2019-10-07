@@ -19,7 +19,6 @@ namespace SkyHub\Api\Service;
 
 class ServiceJson extends ServiceDefault
 {
-    
     /**
      * Service constructor.
      *
@@ -27,15 +26,14 @@ class ServiceJson extends ServiceDefault
      * @param array  $headers
      * @param array  $options
      */
-    public function __construct($baseUri, array $headers = [], array $options = [], $log = true)
+    public function __construct(string $baseUri, array $headers = [], array $options = [])
     {
         $headers['Accept']       = 'application/json';
         $headers['Content-Type'] = 'application/json';
-        
-        parent::__construct($baseUri, $headers, $options, $log);
+
+        parent::__construct($baseUri, $headers, $options);
     }
-    
-    
+
     /**
      * @param array $bodyData
      * @param array $options
@@ -45,6 +43,7 @@ class ServiceJson extends ServiceDefault
     protected function prepareRequestBody($bodyData, array &$options = [])
     {
         $options['json'] = $bodyData;
+
         return $options;
     }
 }

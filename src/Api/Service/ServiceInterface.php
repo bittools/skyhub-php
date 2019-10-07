@@ -31,7 +31,7 @@ interface ServiceInterface
      * @param array  $headers
      * @param array  $options
      */
-    public function __construct($baseUri, array $headers = [], array $options = []);
+    public function __construct(string $baseUri, array $headers = [], array $options = []);
     
     
     /**
@@ -41,7 +41,7 @@ interface ServiceInterface
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function post($uri, $body = null, array $options = []);
+    public function post(string $uri, $body = null, array $options = []);
     
     
     /**
@@ -51,7 +51,7 @@ interface ServiceInterface
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function put($uri, $body = null, array $options = []);
+    public function put(string $uri, $body = null, array $options = []);
 
 
     /**
@@ -61,7 +61,7 @@ interface ServiceInterface
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function patch($uri, $body = null, array $options = []);
+    public function patch(string $uri, $body = null, array $options = []);
     
     
     /**
@@ -70,7 +70,7 @@ interface ServiceInterface
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function get($uri, array $options = []);
+    public function get(string $uri, array $options = []);
 
 
     /**
@@ -80,7 +80,7 @@ interface ServiceInterface
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function delete($uri, $body = null, array $options = []);
+    public function delete(string $uri, $body = null, array $options = []);
     
     
     /**
@@ -89,7 +89,7 @@ interface ServiceInterface
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function head($uri, array $options = []);
+    public function head(string $uri, array $options = []);
     
     
     /**
@@ -100,15 +100,13 @@ interface ServiceInterface
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function request($method, $uri, $body = null, $options = []);
+    public function request($method, string $uri, $body = null, array $options = []);
 
 
     /**
      * @param array $headers
-     * @param bool  $append
-     * @param bool  $replaceExisting
      *
      * @return $this
      */
-    public function setHeaders(array $headers = [], $append = true, $replaceExisting = true);
+    public function setHeaders(array $headers = []);
 }

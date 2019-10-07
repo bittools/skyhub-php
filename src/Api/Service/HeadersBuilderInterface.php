@@ -12,6 +12,11 @@ namespace SkyHub\Api\Service;
 interface HeadersBuilderInterface
 {
     /**
+     * @return $this
+     */
+    public function reset();
+
+    /**
      * @param array $headers
      *
      * @return $this
