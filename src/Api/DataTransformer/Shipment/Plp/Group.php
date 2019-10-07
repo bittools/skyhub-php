@@ -27,7 +27,7 @@ class Group extends DataTransformerAbstract
      *
      * @param array $orders
      */
-    public function __construct($orders)
+    public function __construct(array $orders = [])
     {
         $this->setOutputData([
             'order_remote_codes' => $orders
