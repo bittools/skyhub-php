@@ -12,6 +12,16 @@ namespace SkyHub\Api\Service;
 interface OptionsBuilderInterface
 {
     /**
+     * @var string
+     */
+    const BODY_TYPE_DEFAULT = 'body';
+
+    /**
+     * @var string
+     */
+    const BODY_TYPE_JSON = 'json';
+
+    /**
      * @return $this
      */
     public function reset();
@@ -31,11 +41,12 @@ interface OptionsBuilderInterface
     public function setDebug(bool $flag);
 
     /**
-     * @param mixed $body
+     * @param mixed  $body
+     * @param string $type
      *
-     * @return $this
+     * @return mixed
      */
-    public function setBody($body);
+    public function setBody($body, string $type = self::BODY_TYPE_DEFAULT);
 
     /**
      * @param bool $body

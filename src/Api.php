@@ -26,20 +26,28 @@ use SkyHub\Api\Service\ServiceJson;
 
 class Api implements ApiInterface
 {
-    
     use RequestHandlerGetters, EntityInterfaceGetters;
-    
-    
-    const HEADER_USER_EMAIL          = 'X-User-Email';
-    const HEADER_API_KEY             = 'X-Api-Key';
+
+    /**
+     * @var string
+     */
+    const HEADER_USER_EMAIL = 'X-User-Email';
+
+    /**
+     * @var string
+     */
+    const HEADER_API_KEY = 'X-Api-Key';
+
+    /**
+     * @var string
+     */
     const HEADER_ACCOUNT_MANAGER_KEY = 'X-Accountmanager-Key';
-    
+
     /**
      * @var ServiceAbstract
      */
-    protected $service = null;
-    
-    
+    private $service = null;
+
     /**
      * @inheritdoc
      */
@@ -56,23 +64,17 @@ class Api implements ApiInterface
         if (empty($xAccountKey)) {
             $xAccountKey = '0I5dT7IC1h';
         }
-        
+
         $headers = [
             self::HEADER_USER_EMAIL          => $email,
             self::HEADER_API_KEY             => $apiKey,
             self::HEADER_ACCOUNT_MANAGER_KEY => $xAccountKey,
         ];
 
-        if (empty($apiService)) {
-            $apiService = new ServiceJson($baseUri);
-        }
-        
-        $apiService->setHeaders($headers, true, true);
-
-        $this->service = $apiService;
+        $this->initService($baseUri, $apiService);
+        $this->initHeaders($headers);
     }
-    
-    
+
     /**
      * Reset the authorization information and use the same instance of the API object to use different accounts.
      *
@@ -87,13 +89,12 @@ class Api implements ApiInterface
             self::HEADER_USER_EMAIL => $email,
             self::HEADER_API_KEY    => $apiKey,
         ];
-        
-        $this->service->setHeaders($headers, true, true);
-        
+
+        $this->initHeaders($headers);
+
         return $this;
     }
-    
-    
+
     /**
      * Gets a single connection instance.
      *
@@ -103,22 +104,35 @@ class Api implements ApiInterface
     {
         return $this->service;
     }
-    
-    
+
+    /**
+     * @param array $headers
+     *
+     * @return $this
+     */
+    private function initHeaders(array $headers = [])
+    {
+        $this->service()->getOptionsBuilder()
+            ->getHeadersBuilder()
+            ->addHeaders($headers);
+
+        return $this;
+    }
+
     /**
      * @param null                  $baseUri
      * @param ServiceInterface|null $apiService
      *
      * @return $this
      */
-    protected function initService($baseUri = null, ServiceInterface $apiService = null)
+    private function initService($baseUri = null, ServiceInterface $apiService = null)
     {
         if (empty($apiService)) {
             $apiService = new ServiceJson($baseUri);
         }
-        
+
         $this->service = $apiService;
-        
+
         return $this;
     }
 }
