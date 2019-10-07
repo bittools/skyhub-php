@@ -15,7 +15,7 @@ interface ClientBuilderInterface
      * @param string $baseUri
      * @param array  $defaults
      *
-     * @return \GuzzleHttp\Client
+     * @return \GuzzleHttp\ClientInterface
      */
     public function build($baseUri = null, array $defaults = []);
 }
