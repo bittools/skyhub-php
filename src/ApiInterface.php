@@ -21,7 +21,6 @@ use SkyHub\Api\Service\ServiceInterface;
 
 interface ApiInterface
 {
-    
     /**
      * ApiInterface constructor.
      *
@@ -32,14 +31,13 @@ interface ApiInterface
      * @param ServiceInterface|null $apiService
      */
     public function __construct(
-        $email,
-        $apiKey,
-        $xAccountKey = null,
-        $baseUri = null,
+        string $email,
+        string $apiKey,
+        string $xAccountKey = null,
+        string $baseUri = null,
         ServiceInterface $apiService = null
     );
-    
-    
+
     /**
      * @return \SkyHub\Api\Service\ServiceInterface
      */

@@ -23,17 +23,41 @@ use SkyHub\Api\Handler\Response\HandlerInterfaceSuccess;
 
 interface ServiceInterface
 {
-    
     /**
-     * ServiceInterface constructor.
-     *
-     * @param string $baseUri
-     * @param array  $headers
-     * @param array  $options
+     * @var string
      */
-    public function __construct(string $baseUri, array $headers = [], array $options = []);
-    
-    
+    const REQUEST_METHOD_GET = 'GET';
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_POST = 'POST';
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_PUT = 'PUT';
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_HEAD = 'HEAD';
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_DELETE = 'DELETE';
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_PATCH = 'PATCH';
+
+    /**
+     * @var string
+     */
+    const DEFAULT_SERVICE_BASE_URI = 'https://api.skyhub.com.br';
+
     /**
      * @param string $uri
      * @param string $body
@@ -42,8 +66,7 @@ interface ServiceInterface
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function post(string $uri, $body = null, array $options = []);
-    
-    
+
     /**
      * @param string $uri
      * @param string $body
@@ -53,7 +76,6 @@ interface ServiceInterface
      */
     public function put(string $uri, $body = null, array $options = []);
 
-
     /**
      * @param string $uri
      * @param string $body
@@ -62,8 +84,7 @@ interface ServiceInterface
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function patch(string $uri, $body = null, array $options = []);
-    
-    
+
     /**
      * @param string $uri
      * @param array  $options
@@ -71,7 +92,6 @@ interface ServiceInterface
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function get(string $uri, array $options = []);
-
 
     /**
      * @param string $uri
@@ -81,8 +101,7 @@ interface ServiceInterface
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function delete(string $uri, $body = null, array $options = []);
-    
-    
+
     /**
      * @param string $uri
      * @param array  $options
@@ -90,8 +109,7 @@ interface ServiceInterface
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function head(string $uri, array $options = []);
-    
-    
+
     /**
      * @param string       $method
      * @param string       $uri
@@ -102,6 +120,10 @@ interface ServiceInterface
      */
     public function request(string $method, string $uri, $body = null, array $options = []);
 
+    /**
+     * @return array
+     */
+    public function getHeaders() : array;
 
     /**
      * @param array $headers

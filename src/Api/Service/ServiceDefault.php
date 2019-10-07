@@ -22,7 +22,6 @@ use SkyHub\Api\Handler\Response\HandlerInterfaceSuccess;
 
 class ServiceDefault extends ServiceAbstract
 {
-    
     /**
      * @param string       $uri
      * @param array|string $body
@@ -34,8 +33,8 @@ class ServiceDefault extends ServiceAbstract
     {
         return $this->request(self::REQUEST_METHOD_POST, $uri, $body, $options);
     }
-    
-    
+
+
     /**
      * @param string $uri
      * @param string $body
@@ -60,8 +59,8 @@ class ServiceDefault extends ServiceAbstract
     {
         return $this->request(self::REQUEST_METHOD_PATCH, $uri, $body, $options);
     }
-    
-    
+
+
     /**
      * @param string $uri
      * @param array  $options
@@ -85,8 +84,8 @@ class ServiceDefault extends ServiceAbstract
     {
         return $this->request(self::REQUEST_METHOD_DELETE, $uri, $body, $options);
     }
-    
-    
+
+
     /**
      * @param $uri
      * @param $options
