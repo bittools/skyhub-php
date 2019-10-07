@@ -34,21 +34,43 @@ use SkyHub\Api\Handler\Response\HandlerException;
  */
 abstract class ServiceAbstract implements ServiceInterface
 {
-    
     use Loggerable, Helpers;
-    
-    
-    const REQUEST_METHOD_GET    = 'GET';
-    const REQUEST_METHOD_POST   = 'POST';
-    const REQUEST_METHOD_PUT    = 'PUT';
-    const REQUEST_METHOD_HEAD   = 'HEAD';
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_GET = 'GET';
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_POST = 'POST';
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_PUT = 'PUT';
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_HEAD = 'HEAD';
+
+    /**
+     * @var string
+     */
     const REQUEST_METHOD_DELETE = 'DELETE';
-    const REQUEST_METHOD_PATCH  = 'PATCH';
-    
-    /** @var string */
+
+    /**
+     * @var string
+     */
+    const REQUEST_METHOD_PATCH = 'PATCH';
+
+    /**
+     * @var string
+     */
     const DEFAULT_SERVICE_BASE_URI = 'https://api.skyhub.com.br';
 
-    
     /** @var HttpClient */
     protected $client = null;
 
@@ -67,21 +89,29 @@ abstract class ServiceAbstract implements ServiceInterface
     private $clientBuilder;
 
     /**
-     * Service constructor.
+     * @var OptionsBuilderInterface
+     */
+    private $optionsBuilder;
+
+    /**
+     * ServiceAbstract constructor.
      *
-     * @param string $baseUri
-     * @param array  $headers
-     * @param array  $options
+     * @param null                        $baseUri
+     * @param array                       $headers
+     * @param array                       $options
+     * @param bool                        $log
+     * @param ClientBuilderInterface|null $clientBuilder
      */
     public function __construct(
         $baseUri = null,
         array $headers = [],
         array $options = [],
         $log = true,
-        ClientBuilderInterface $clientBuilder = null
+        ClientBuilderInterface $clientBuilder = null,
+        OptionsBuilderInterface $optionsBuilder = null
     ) {
         $this->headers = array_merge($this->headers, $headers);
-        
+
         $defaults = [
             'headers' => $headers,
         ];
@@ -89,7 +119,7 @@ abstract class ServiceAbstract implements ServiceInterface
         if (empty($baseUri)) {
             $baseUri = $this->getDefaultBaseUri();
         }
-    
+
         foreach ($options as $key => $value) {
             $defaults[$key] = $value;
         }
@@ -97,13 +127,16 @@ abstract class ServiceAbstract implements ServiceInterface
         if (null === $clientBuilder) {
             $this->clientBuilder = new ClientBuilder();
         }
-        
+
+        if (null === $optionsBuilder) {
+            $this->optionsBuilder = new OptionsBuilder();
+        }
+
         $this->prepareHttpClient($baseUri, $defaults);
-    
+
         return $this;
     }
-    
-    
+
     /**
      * Returns the default base URI.
      *
@@ -113,8 +146,7 @@ abstract class ServiceAbstract implements ServiceInterface
     {
         return self::DEFAULT_SERVICE_BASE_URI;
     }
-    
-    
+
     /**
      * @param bool $renew
      *
@@ -125,11 +157,10 @@ abstract class ServiceAbstract implements ServiceInterface
         if (empty($this->requestId) || $renew) {
             $this->requestId = rand(1000000000000, 9999999999999);
         }
-        
+
         return $this->requestId;
     }
-    
-    
+
     /**
      * @param string $method
      * @param string $uri
@@ -140,10 +171,15 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     public function request($method, $uri, $body = null, $options = [], $debug = false)
     {
+        $this->optionsBuilder
+            ->setTimeout($this->getTimeout())
+            ->setDebug((bool) $debug)
+        ;
+
         $options['timeout'] = $this->getTimeout();
         $options['headers'] = $this->headers;
-        $options['debug']   = (bool) $debug;
-        
+        $options['debug'] = (bool) $debug;
+
         $options = $this->prepareRequestBody($body, $options);
 
         try {
@@ -161,26 +197,31 @@ abstract class ServiceAbstract implements ServiceInterface
 
             /** @var \Psr\Http\Message\ResponseInterface $request */
             $response = $this->httpClient()->request($method, $uri, $options);
-    
+
             /** @var Api\Handler\Response\HandlerInterfaceSuccess $responseHandler */
             $responseHandler = new HandlerDefault($response);
-    
+
             /** Log the request response. */
             $logResponse = $this->getLoggerResponse()->importResponseHandler($responseHandler);
-        } catch (\Exception $e) {
-            /** @var Api\Handler\Response\HandlerInterfaceException $responseHandler */
-            $responseHandler = new HandlerException($e);
-            
-            /** Log the request response. */
-            $logResponse = $this->getLoggerResponse()->importResponseExceptionHandler($responseHandler);
+        } catch (\GuzzleHttp\Exception\ClientException $clientException) {
+            /** Service Request Exception */
+            $responseHandler = new HandlerException($clientException);
+
+            $logResponse = $this->getLoggerResponse()
+                ->importResponseExceptionHandler($responseHandler);
+        } catch (\Exception $exception) {
+            /** Service Request Exception */
+            $responseHandler = new HandlerException($exception);
+
+            $logResponse = $this->getLoggerResponse()
+                ->importResponseExceptionHandler($responseHandler);
         }
 
         $this->clear();
         $this->logger()->logResponse($logResponse);
-        
+
         return $responseHandler;
     }
-
 
     /**
      * This method clears the unnecessary information after a request.
@@ -190,20 +231,20 @@ abstract class ServiceAbstract implements ServiceInterface
     protected function clear()
     {
         $this->clearRequestId();
+
         return $this;
     }
-    
-    
+
     /**
      * @return $this
      */
     protected function clearRequestId()
     {
         $this->requestId = null;
+
         return $this;
     }
 
-    
     /**
      * @param string|array $bodyData
      * @param array        $options
@@ -213,10 +254,10 @@ abstract class ServiceAbstract implements ServiceInterface
     protected function prepareRequestBody($bodyData, array &$options = [])
     {
         $options['body'] = $bodyData;
+
         return $options;
     }
-    
-    
+
     /**
      * A private __clone method prevents this class to be cloned by any other class.
      *
@@ -225,8 +266,7 @@ abstract class ServiceAbstract implements ServiceInterface
     private function __clone()
     {
     }
-    
-    
+
     /**
      * A private __wakeup method prevents this object to be unserialized.
      *
@@ -235,8 +275,7 @@ abstract class ServiceAbstract implements ServiceInterface
     private function __wakeup()
     {
     }
-    
-    
+
     /**
      * @return HttpClient
      */
@@ -244,8 +283,7 @@ abstract class ServiceAbstract implements ServiceInterface
     {
         return $this->client;
     }
-    
-    
+
     /**
      * @param null  $baseUri
      * @param array $defaults
@@ -257,11 +295,10 @@ abstract class ServiceAbstract implements ServiceInterface
         if (null === $this->client) {
             $this->client = $this->clientBuilder->build($baseUri, $defaults);
         }
-    
+
         return $this->client;
     }
-    
-    
+
     /**
      * @return array
      */
@@ -269,8 +306,7 @@ abstract class ServiceAbstract implements ServiceInterface
     {
         return (array) $this->headers;
     }
-    
-    
+
     /**
      * @param array $headers
      * @param bool  $append
@@ -282,22 +318,22 @@ abstract class ServiceAbstract implements ServiceInterface
     {
         if (!$append) {
             $this->headers = $headers;
+
             return $this;
         }
-        
+
         foreach ($headers as $key => $value) {
             /** If the header is already set then check if we can replace the value. */
             if (isset($this->headers[$key]) && (false == $replaceExisting)) {
                 continue;
             }
-            
+
             $this->headers[$key] = $value;
         }
-        
+
         return $this;
     }
-    
-    
+
     /**
      * @return int
      */
@@ -305,8 +341,7 @@ abstract class ServiceAbstract implements ServiceInterface
     {
         return (int) $this->timeout;
     }
-    
-    
+
     /**
      * @param integer $timeout
      *
@@ -315,10 +350,10 @@ abstract class ServiceAbstract implements ServiceInterface
     public function setTimeout($timeout)
     {
         $this->timeout = (int) $timeout;
+
         return $this;
     }
-    
-    
+
     /**
      * @param $options
      *
@@ -327,18 +362,17 @@ abstract class ServiceAbstract implements ServiceInterface
     protected function protectedOptions($options)
     {
         $headers = $this->arrayExtract($options, 'headers');
-        
+
         if (empty($headers)) {
             return $options;
         }
-    
+
         $headers = $this->protectedHeaders($headers);
         $options['headers'] = $headers;
-        
+
         return $options;
     }
-    
-    
+
     /**
      * @return array
      */
@@ -347,22 +381,21 @@ abstract class ServiceAbstract implements ServiceInterface
         if (empty($headers)) {
             $headers = $this->headers;
         }
-    
+
         if (isset($headers[Api::HEADER_USER_EMAIL])) {
             $headers[Api::HEADER_USER_EMAIL] = $this->protectString($headers[Api::HEADER_USER_EMAIL]);
         }
-    
+
         if (isset($headers[Api::HEADER_API_KEY])) {
             $headers[Api::HEADER_API_KEY] = $this->protectString($headers[Api::HEADER_API_KEY]);
         }
-    
+
         if (isset($headers[Api::HEADER_ACCOUNT_MANAGER_KEY])) {
             $headers[Api::HEADER_ACCOUNT_MANAGER_KEY] = $this->protectString($headers[Api::HEADER_ACCOUNT_MANAGER_KEY]);
         }
-        
+
         return $headers;
     }
-
 
     /**
      * @return \SkyHub\Api\Log\TypeInterface\TypeResponseInterface
