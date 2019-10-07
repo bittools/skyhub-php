@@ -42,7 +42,7 @@ interface OptionsBuilderInterface
      * @param mixed  $body
      * @param string $type
      *
-     * @return mixed
+     * @return $this
      */
     public function setBody($body, $type = self::BODY_TYPE_DEFAULT);
 

@@ -62,9 +62,9 @@ class OptionsBuilder implements OptionsBuilderInterface
     /**
      * @inheritDoc
      */
-    public function setBody($body)
+    public function setBody($body, string $type = self::BODY_TYPE_DEFAULT)
     {
-        $this->options['body'] = $body;
+        $this->options[$type] = $body;
         return $this;
     }
 

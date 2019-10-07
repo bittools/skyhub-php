@@ -22,7 +22,6 @@ use SkyHub\Api\Handler\Response\HandlerInterfaceSuccess;
 
 class ServiceDefault extends ServiceAbstract
 {
-    
     /**
      * @param string       $uri
      * @param array|string $body

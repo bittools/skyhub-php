@@ -36,46 +36,8 @@ abstract class ServiceAbstract implements ServiceInterface
 {
     use Loggerable, Helpers;
 
-    /**
-     * @var string
-     */
-    const REQUEST_METHOD_GET = 'GET';
-
-    /**
-     * @var string
-     */
-    const REQUEST_METHOD_POST = 'POST';
-
-    /**
-     * @var string
-     */
-    const REQUEST_METHOD_PUT = 'PUT';
-
-    /**
-     * @var string
-     */
-    const REQUEST_METHOD_HEAD = 'HEAD';
-
-    /**
-     * @var string
-     */
-    const REQUEST_METHOD_DELETE = 'DELETE';
-
-    /**
-     * @var string
-     */
-    const REQUEST_METHOD_PATCH = 'PATCH';
-
-    /**
-     * @var string
-     */
-    const DEFAULT_SERVICE_BASE_URI = 'https://api.skyhub.com.br';
-
     /** @var HttpClient */
     protected $client = null;
-
-    /** @var array */
-    protected $headers = [];
 
     /** @var int */
     protected $timeout = 15;
@@ -161,20 +123,8 @@ abstract class ServiceAbstract implements ServiceInterface
      */
     public function request($method, $uri, $body = null, array $options = [], $debug = false)
     {
-        $this->prepareRequest($method, $uri, $body, $options, $debug);
-
         try {
-            /** Log the request before sending it. */
-            $logRequest = new Request(
-                $this->getRequestId(),
-                $method,
-                $uri,
-                $body,
-                $this->protectedHeaders($this->headers),
-                $this->protectedOptions($options)
-            );
-
-            $this->logger()->logRequest($logRequest);
+            $this->prepareRequest($method, $uri, $body, $options, $debug);
 
             /** @var \Psr\Http\Message\ResponseInterface $request */
             $response = $this->httpClient()->request($method, $uri, $this->optionsBuilder->build());
@@ -219,10 +169,32 @@ abstract class ServiceAbstract implements ServiceInterface
             ->addOptions($options)
             ->setTimeout($this->getTimeout())
             ->setDebug((bool) $debug)
-            ->getHeadersBuilder()
-            ->addHeaders($this->headers);
+            ->getHeadersBuilder();
 
         $this->prepareRequestBody($body);
+
+        $protection = new HeadersProtection();
+        $protectedFields = [
+            Api::HEADER_USER_EMAIL,
+            Api::HEADER_API_KEY,
+            Api::HEADER_ACCOUNT_MANAGER_KEY
+        ];
+
+        $protection->protect($this->optionsBuilder->getHeadersBuilder()->getHeaders(), $protectedFields);
+        $options = $this->optionsBuilder->build();
+        unset($options['headers']);
+
+        /** Log the request before sending it. */
+        $logRequest = new Request(
+            $this->getRequestId(),
+            $method,
+            $uri,
+            $body,
+            $protection->export(),
+            $options
+        );
+
+        $this->logger()->logRequest($logRequest);
 
         return $this;
     }
@@ -324,9 +296,11 @@ abstract class ServiceAbstract implements ServiceInterface
     /**
      * @return array
      */
-    public function getHeaders()
+    public function getHeaders() : array
     {
-        return (array) $this->headers;
+        return (array) $this->getOptionsBuilder()
+            ->getHeadersBuilder()
+            ->getHeaders();
     }
 
     /**
@@ -350,49 +324,6 @@ abstract class ServiceAbstract implements ServiceInterface
     public function getTimeout()
     {
         return (int) $this->timeout;
-    }
-
-    /**
-     * @param $options
-     *
-     * @return mixed
-     */
-    protected function protectedOptions($options)
-    {
-        $headers = $this->arrayExtract($options, 'headers');
-
-        if (empty($headers)) {
-            return $options;
-        }
-
-        $headers = $this->protectedHeaders($headers);
-        $options['headers'] = $headers;
-
-        return $options;
-    }
-
-    /**
-     * @return array
-     */
-    protected function protectedHeaders(array $headers = [])
-    {
-        if (empty($headers)) {
-            $headers = $this->headers;
-        }
-
-        if (isset($headers[Api::HEADER_USER_EMAIL])) {
-            $headers[Api::HEADER_USER_EMAIL] = $this->protectString($headers[Api::HEADER_USER_EMAIL]);
-        }
-
-        if (isset($headers[Api::HEADER_API_KEY])) {
-            $headers[Api::HEADER_API_KEY] = $this->protectString($headers[Api::HEADER_API_KEY]);
-        }
-
-        if (isset($headers[Api::HEADER_ACCOUNT_MANAGER_KEY])) {
-            $headers[Api::HEADER_ACCOUNT_MANAGER_KEY] = $this->protectString($headers[Api::HEADER_ACCOUNT_MANAGER_KEY]);
-        }
-
-        return $headers;
     }
 
     /**
