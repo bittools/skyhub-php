@@ -75,6 +75,15 @@ class OptionsBuilder implements OptionsBuilderInterface
     /**
      * @inheritDoc
      */
+    public function addOptions(array $options = [])
+    {
+        $this->options = array_merge_recursive($this->options, $options);
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function build() : array
     {
         $this->options['headers'] = $this->getHeadersBuilder()->build();
