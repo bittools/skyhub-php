@@ -38,6 +38,13 @@ interface OptionsBuilderInterface
     public function setStream($flag);
 
     /**
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function addOptions(array $options = []);
+
+    /**
      * @return HeadersBuilderInterface
      */
     public function getHeadersBuilder();
