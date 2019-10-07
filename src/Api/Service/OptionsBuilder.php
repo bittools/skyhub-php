@@ -2,8 +2,6 @@
 
 namespace SkyHub\Api\Service;
 
-use SkyHub\Api\Helpers;
-
 /**
  * Class OptionsBuilder
  *
@@ -24,6 +22,15 @@ class OptionsBuilder implements OptionsBuilderInterface
     public function __construct()
     {
         $this->headersBuilder = new HeadersBuilder();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function reset()
+    {
+        $this->options = [];
+        return $this;
     }
 
     /**
@@ -75,6 +82,11 @@ class OptionsBuilder implements OptionsBuilderInterface
      */
     public function addOptions(array $options = [])
     {
+        $headers = isset($options['headers']) ? $options['headers'] : [];
+        $this->getHeadersBuilder()->addHeaders($headers);
+
+        unset($options['headers']);
+
         $this->options = array_merge_recursive($this->options, $options);
         return $this;
     }

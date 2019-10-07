@@ -21,6 +21,15 @@ class HeadersBuilder implements HeadersBuilderInterface
     /**
      * @inheritDoc
      */
+    public function reset()
+    {
+        $this->headers = [];
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function addHeaders(array $headers = [])
     {
         foreach ($headers as $key => $value) {

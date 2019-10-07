@@ -10,6 +10,11 @@ namespace SkyHub\Api\Service;
 interface OptionsBuilderInterface
 {
     /**
+     * @return $this
+     */
+    public function reset();
+
+    /**
      * @param int $timeout
      *
      * @return $this

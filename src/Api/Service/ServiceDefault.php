@@ -31,7 +31,7 @@ class ServiceDefault extends ServiceAbstract
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function post($uri, $body = null, array $options = [])
+    public function post(string $uri, $body = null, array $options = [])
     {
         return $this->request(self::REQUEST_METHOD_POST, $uri, $body, $options);
     }
@@ -43,7 +43,7 @@ class ServiceDefault extends ServiceAbstract
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function put($uri, $body = null, array $options = [])
+    public function put(string $uri, $body = null, array $options = [])
     {
         return $this->request(self::REQUEST_METHOD_PUT, $uri, $body, $options);
     }
@@ -56,7 +56,7 @@ class ServiceDefault extends ServiceAbstract
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function patch($uri, $body = null, array $options = [])
+    public function patch(string $uri, $body = null, array $options = [])
     {
         return $this->request(self::REQUEST_METHOD_PATCH, $uri, $body, $options);
     }
@@ -67,7 +67,7 @@ class ServiceDefault extends ServiceAbstract
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function get($uri, array $options = null)
+    public function get(string $uri, array $options = [])
     {
         return $this->request(self::REQUEST_METHOD_GET, $uri, null, $options);
     }
@@ -80,7 +80,7 @@ class ServiceDefault extends ServiceAbstract
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function delete($uri, $body = null, array $options = [])
+    public function delete(string $uri, $body = null, array $options = [])
     {
         return $this->request(self::REQUEST_METHOD_DELETE, $uri, $body, $options);
     }
@@ -91,7 +91,7 @@ class ServiceDefault extends ServiceAbstract
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function head($uri, array $options = null)
+    public function head(string $uri, array $options = [])
     {
         return $this->request(self::REQUEST_METHOD_HEAD, $uri, null, $options);
     }

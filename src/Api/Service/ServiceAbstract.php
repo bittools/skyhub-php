@@ -103,27 +103,12 @@ abstract class ServiceAbstract implements ServiceInterface
      * @param ClientBuilderInterface|null $clientBuilder
      */
     public function __construct(
-        $baseUri = null,
+        string $baseUri = null,
         array $headers = [],
         array $options = [],
-        $log = true,
         ClientBuilderInterface $clientBuilder = null,
         OptionsBuilderInterface $optionsBuilder = null
     ) {
-        $this->headers = array_merge($this->headers, $headers);
-
-        $defaults = [
-            'headers' => $headers,
-        ];
-
-        if (empty($baseUri)) {
-            $baseUri = $this->getDefaultBaseUri();
-        }
-
-        foreach ($options as $key => $value) {
-            $defaults[$key] = $value;
-        }
-
         if (null === $clientBuilder) {
             $this->clientBuilder = new ClientBuilder();
         }
@@ -132,7 +117,12 @@ abstract class ServiceAbstract implements ServiceInterface
             $this->optionsBuilder = new OptionsBuilder();
         }
 
-        $this->prepareHttpClient($baseUri, $defaults);
+        $this->optionsBuilder
+            ->addOptions($options)
+            ->getHeadersBuilder()
+            ->addHeaders($headers);
+
+        $this->prepareHttpClient($baseUri);
 
         return $this;
     }
@@ -169,18 +159,15 @@ abstract class ServiceAbstract implements ServiceInterface
      *
      * @return Api\Handler\Response\HandlerInterfaceException|Api\Handler\Response\HandlerInterfaceSuccess
      */
-    public function request($method, $uri, $body = null, $options = [], $debug = false)
+    public function request($method, $uri, $body = null, array $options = [], $debug = false)
     {
         $this->optionsBuilder
+            ->addOptions($options)
             ->setTimeout($this->getTimeout())
             ->setDebug((bool) $debug)
-        ;
-
-        $options['timeout'] = $this->getTimeout();
-        $options['headers'] = $this->headers;
-        $options['debug'] = (bool) $debug;
-
-        $options = $this->prepareRequestBody($body, $options);
+            ->setBody($body)
+            ->getHeadersBuilder()
+            ->addHeaders($this->headers);
 
         try {
             /** Log the request before sending it. */
@@ -196,7 +183,7 @@ abstract class ServiceAbstract implements ServiceInterface
             $this->logger()->logRequest($logRequest);
 
             /** @var \Psr\Http\Message\ResponseInterface $request */
-            $response = $this->httpClient()->request($method, $uri, $options);
+            $response = $this->httpClient()->request($method, $uri, $this->optionsBuilder->build());
 
             /** @var Api\Handler\Response\HandlerInterfaceSuccess $responseHandler */
             $responseHandler = new HandlerDefault($response);
@@ -254,7 +241,6 @@ abstract class ServiceAbstract implements ServiceInterface
     protected function prepareRequestBody($bodyData, array &$options = [])
     {
         $options['body'] = $bodyData;
-
         return $options;
     }
 
@@ -290,10 +276,14 @@ abstract class ServiceAbstract implements ServiceInterface
      *
      * @return HttpClient
      */
-    protected function prepareHttpClient($baseUri = null, array $defaults = [])
+    protected function prepareHttpClient($baseUri = null)
     {
+        if (empty($baseUri)) {
+            $baseUri = $this->getDefaultBaseUri();
+        }
+
         if (null === $this->client) {
-            $this->client = $this->clientBuilder->build($baseUri, $defaults);
+            $this->client = $this->clientBuilder->build($baseUri);
         }
 
         return $this->client;
@@ -310,26 +300,14 @@ abstract class ServiceAbstract implements ServiceInterface
     /**
      * @param array $headers
      * @param bool  $append
-     * @param bool  $replace
      *
-     * @return $this
+     * @return $this|ServiceInterface
      */
-    public function setHeaders(array $headers = [], $append = true, $replaceExisting = true)
+    public function setHeaders(array $headers = [])
     {
-        if (!$append) {
-            $this->headers = $headers;
-
-            return $this;
-        }
-
-        foreach ($headers as $key => $value) {
-            /** If the header is already set then check if we can replace the value. */
-            if (isset($this->headers[$key]) && (false == $replaceExisting)) {
-                continue;
-            }
-
-            $this->headers[$key] = $value;
-        }
+        $this->optionsBuilder
+            ->getHeadersBuilder()
+            ->addHeaders($headers);
 
         return $this;
     }
