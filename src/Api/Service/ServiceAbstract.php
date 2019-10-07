@@ -27,6 +27,11 @@ use SkyHub\Api\Log\TypeInterface\Request;
 use SkyHub\Api\Log\TypeInterface\Response;
 use SkyHub\Api\Handler\Response\HandlerException;
 
+/**
+ * Class ServiceAbstract
+ *
+ * @package SkyHub\Api\Service
+ */
 abstract class ServiceAbstract implements ServiceInterface
 {
     
@@ -55,8 +60,12 @@ abstract class ServiceAbstract implements ServiceInterface
 
     /** @var int */
     protected $requestId = null;
-    
-    
+
+    /**
+     * @var ClientBuilderInterface
+     */
+    private $clientBuilder;
+
     /**
      * Service constructor.
      *
@@ -64,8 +73,13 @@ abstract class ServiceAbstract implements ServiceInterface
      * @param array  $headers
      * @param array  $options
      */
-    public function __construct($baseUri = null, array $headers = [], array $options = [], $log = true)
-    {
+    public function __construct(
+        $baseUri = null,
+        array $headers = [],
+        array $options = [],
+        $log = true,
+        ClientBuilderInterface $clientBuilder = null
+    ) {
         $this->headers = array_merge($this->headers, $headers);
         
         $defaults = [
@@ -78,6 +92,10 @@ abstract class ServiceAbstract implements ServiceInterface
     
         foreach ($options as $key => $value) {
             $defaults[$key] = $value;
+        }
+
+        if (null === $clientBuilder) {
+            $this->clientBuilder = new ClientBuilder();
         }
         
         $this->prepareHttpClient($baseUri, $defaults);
@@ -237,11 +255,7 @@ abstract class ServiceAbstract implements ServiceInterface
     protected function prepareHttpClient($baseUri = null, array $defaults = [])
     {
         if (null === $this->client) {
-            $this->client = new HttpClient([
-                'base_uri' => $baseUri,
-                'base_url' => $baseUri,
-                'defaults' => $defaults
-            ]);
+            $this->client = $this->clientBuilder->build($baseUri, $defaults);
         }
     
         return $this->client;
