@@ -71,17 +71,8 @@ abstract class ServiceAbstract implements ServiceInterface
         ClientBuilderInterface $clientBuilder = null,
         OptionsBuilderInterface $optionsBuilder = null
     ) {
-        $this->clientBuilder = $clientBuilder;
-
-        if (null === $clientBuilder) {
-            $this->clientBuilder = new ClientBuilder();
-        }
-
-        $this->optionsBuilder = $optionsBuilder;
-
-        if (null === $optionsBuilder) {
-            $this->optionsBuilder = new OptionsBuilder();
-        }
+        $this->clientBuilder  = $clientBuilder  ?: new ClientBuilder();
+        $this->optionsBuilder = $optionsBuilder ?: new OptionsBuilder();
 
         $this->optionsBuilder
             ->addOptions($options)
