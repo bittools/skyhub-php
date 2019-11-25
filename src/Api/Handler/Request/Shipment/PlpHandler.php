@@ -142,7 +142,7 @@ class PlpHandler extends HandlerAbstract
      * @param int|null $offset
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function collectables(bool $requested, int $offset = null)
+    public function collectables($requested, $offset = null)
     {
         $query['requested'] = $requested ? 'true' : 'false';
 
