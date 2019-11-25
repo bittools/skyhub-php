@@ -18,7 +18,7 @@
 
 namespace SkyHub\Api\Handler\Response;
 
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Psr7\Response;
 
 class HandlerDefault extends HandlerAbstract implements HandlerInterfaceSuccess
 {
@@ -54,11 +54,7 @@ class HandlerDefault extends HandlerAbstract implements HandlerInterfaceSuccess
      */
     public function body()
     {
-        if (!$this->bodyContent) {
-            $this->bodyContent = $this->httpResponse()->getBody()->getContents();
-        }
-
-        return $this->bodyContent;
+        return $this->bodyString();
     }
     
     

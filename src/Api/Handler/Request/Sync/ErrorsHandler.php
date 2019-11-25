@@ -85,7 +85,9 @@ class ErrorsHandler extends HandlerAbstract
         ]
     ) {
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
-        $responseHandler = $this->service()->patch($this->baseUrlPath('products'));
+        $responseHandler = $this->service()->patch($this->baseUrlPath('products'), [
+            'errors' => $errors
+        ]);
         return $responseHandler;
     }
 
@@ -103,7 +105,9 @@ class ErrorsHandler extends HandlerAbstract
         ]
     ) {
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
-        $responseHandler = $this->service()->patch($this->baseUrlPath('orders'));
+        $responseHandler = $this->service()->patch($this->baseUrlPath('orders'), [
+            'errors' => $errors
+        ]);
         return $responseHandler;
     }
 

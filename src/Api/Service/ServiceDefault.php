@@ -35,8 +35,7 @@ class ServiceDefault extends ServiceAbstract
     {
         return $this->request(self::REQUEST_METHOD_POST, $uri, $body, $options);
     }
-    
-    
+
     /**
      * @param string $uri
      * @param string $body
@@ -61,11 +60,10 @@ class ServiceDefault extends ServiceAbstract
     {
         return $this->request(self::REQUEST_METHOD_PATCH, $uri, $body, $options);
     }
-    
-    
+
     /**
-     * @param $uri
-     * @param $options
+     * @param string $uri
+     * @param array  $options
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
@@ -86,8 +84,7 @@ class ServiceDefault extends ServiceAbstract
     {
         return $this->request(self::REQUEST_METHOD_DELETE, $uri, $body, $options);
     }
-    
-    
+
     /**
      * @param $uri
      * @param $options

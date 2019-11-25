@@ -21,32 +21,31 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger as MonologLogger;
 use SkyHub\Api\Log\TypeInterface\TypeRequestInterface;
 use SkyHub\Api\Log\TypeInterface\TypeResponseInterface;
+use SkyHub\Api\Exception\JsonDataConvert;
 
 class Logger extends LoggerAbstract
 {
-    
     /** @var bool */
     protected $allowLogs = false;
-    
+
     /** @var bool */
     protected $initialized = false;
-    
+
     /** @var string */
     protected $name = null;
-    
+
     /** @var string */
     protected $filename = null;
-    
+
     /** @var string */
     protected $logPath = null;
-    
+
     /** @var string */
     protected $level = null;
-    
+
     /** @var MonologLogger */
     protected $logger = null;
-    
-    
+
     /**
      * Logger constructor.
      *
@@ -61,11 +60,10 @@ class Logger extends LoggerAbstract
         $this->filename = $filename;
         $this->logPath  = $logPath;
         $this->level    = $level;
-    
+
         $this->allowLogs($allowLogs);
     }
-    
-    
+
     /**
      * @return $this
      */
@@ -74,18 +72,17 @@ class Logger extends LoggerAbstract
         if (true === $this->initialized) {
             return $this;
         }
-        
+
         $this->logger = new MonologLogger($this->name);
-        
+
         $streamHandler = new StreamHandler($this->logFilename($this->filename, $this->logPath), $this->level);
         $this->logger->pushHandler($streamHandler);
-    
+
         $this->initialized = true;
-        
+
         return $this;
     }
-    
-    
+
     /**
      * @param string $filename
      * @param string $filePath
@@ -96,17 +93,16 @@ class Logger extends LoggerAbstract
     {
         $filePath = trim(rtrim($filePath, "\/"));
         $filename = trim(trim($filename, "\/"));
-        
+
         $path = $filePath . DIRECTORY_SEPARATOR . $filename;
-        
+
         if (!realpath($path) || !file_exists($path)) {
             touch($path);
         }
-        
+
         return realpath($path);
     }
-    
-    
+
     /**
      * @param TypeRequestInterface $request
      *
@@ -118,12 +114,16 @@ class Logger extends LoggerAbstract
             return $this;
         }
 
-        $this->logger->log($this->level, (string) $request);
-        
+        $json = (string) $request;
+        if (empty($json)) {
+            throw new JsonDataConvert('SkyHub PHP: Array cannot be converted to json format.');
+        }
+
+        $this->logger->log($this->level, $json);
+
         return $this;
     }
-    
-    
+
     /**
      * @param TypeResponseInterface $response
      *
@@ -134,13 +134,17 @@ class Logger extends LoggerAbstract
         if (!$this->isLogsAllowed()) {
             return $this;
         }
-    
+
+        $json = (string) $response;
+        if (empty($json)) {
+            throw new JsonDataConvert('SkyHub PHP: Array cannot be converted to json format.');
+        }
+
         $this->logger->debug((string) $response);
         
         return $this;
     }
-    
-    
+
     /**
      * @return bool
      */
@@ -148,8 +152,7 @@ class Logger extends LoggerAbstract
     {
         return (bool) $this->allowLogs;
     }
-    
-    
+
     /**
      * @param null|bool $flag
      *

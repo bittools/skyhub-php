@@ -17,13 +17,14 @@
 
 namespace SkyHub\Api\Log\TypeInterface;
 
+use SkyHub\Api\Exception\JsonDataConvert;
+
 abstract class TypeAbstract implements TypeInterface
 {
-    
+
     /** @var array */
     protected $data = [];
-    
-    
+
     /**
      * Request constructor.
      *
@@ -35,21 +36,27 @@ abstract class TypeAbstract implements TypeInterface
     public function __construct($requestId, $body = null, array $headers = [], $protocolVersion = null)
     {
         $this->setRequestId($requestId)
-             ->setBody($body)
-             ->setHeaders($headers)
-             ->setProtocolVersion($protocolVersion);
+            ->setBody($body)
+            ->setHeaders($headers)
+            ->setProtocolVersion($protocolVersion);
     }
-    
-    
+
     /**
      * @return string
+     *
+     * @throws JsonDataConvert
      */
     public function __toString()
     {
-        return json_encode((array) $this->data);
+        try {
+            $data = json_encode((array) $this->data);
+        } catch (\Exception $exception) {
+            $data = '';
+        }
+
+        return $data;
     }
-    
-    
+
     /**
      * @param string|array $id
      *
@@ -60,8 +67,7 @@ abstract class TypeAbstract implements TypeInterface
         $this->data['request_id'] = $id;
         return $this;
     }
-    
-    
+
     /**
      * @param string|object|array $body
      *
@@ -72,12 +78,11 @@ abstract class TypeAbstract implements TypeInterface
         if (is_object($body)) {
             $body = (string) $body;
         }
-        
+
         $this->data['body'] = $body;
         return $this;
     }
-    
-    
+
     /**
      * @param string $message
      *
@@ -88,8 +93,7 @@ abstract class TypeAbstract implements TypeInterface
         $this->data['custom_message'] = (string) $message;
         return $this;
     }
-    
-    
+
     /**
      * @param array $headers
      */
@@ -98,8 +102,7 @@ abstract class TypeAbstract implements TypeInterface
         $this->data['headers'] = $headers;
         return $this;
     }
-    
-    
+
     /**
      * @param string $version
      */

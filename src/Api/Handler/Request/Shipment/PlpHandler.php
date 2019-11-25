@@ -21,12 +21,22 @@ use SkyHub\Api\EntityInterface\Shipment\Plp;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
 use SkyHub\Api\DataTransformer\Shipment\Plp\Group as GroupTransformer;
 
+/**
+ * Class PlpHandler
+ *
+ * @package SkyHub\Api\Handler\Request\Shipment
+ */
 class PlpHandler extends HandlerAbstract
 {
+    /**
+     * @var int
+     */
+    const OFFSET_LIMIT = 25;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $baseUrlPath = '/shipments/b2w';
-
 
     /**
      * Retrieves a list of all PLP's in SkyHub.
@@ -37,23 +47,28 @@ class PlpHandler extends HandlerAbstract
     {
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->get($this->baseUrlPath());
+
         return $responseHandler;
     }
-
 
     /**
      * Retrieves a list of all orders ready to be grouped in a PLP.
      *
+     * @param int $offset
+     *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function ordersReadyToGroup()
+    public function ordersReadyToGroup($offset = 1)
     {
+        $query = [
+            'offset' => min(max($offset, 1), self::OFFSET_LIMIT)
+        ];
+
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
-        $responseHandler = $this->service()->get($this->baseUrlPath('/to_group'));
+        $responseHandler = $this->service()->get($this->baseUrlPath('/to_group', $query));
 
         return $responseHandler;
     }
-
 
     /**
      * Group multiple orders in a PLP.
@@ -70,9 +85,9 @@ class PlpHandler extends HandlerAbstract
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->post($this->baseUrlPath(), $body);
+
         return $responseHandler;
     }
-
 
     /**
      * Get PLP file
@@ -84,7 +99,7 @@ class PlpHandler extends HandlerAbstract
     public function viewFile($id)
     {
         $query = [
-            'plp_id'   => $id
+            'plp_id' => $id
         ];
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
@@ -92,7 +107,6 @@ class PlpHandler extends HandlerAbstract
 
         return $responseHandler;
     }
-
 
     /**
      * Ungroup a PLP.
@@ -104,14 +118,13 @@ class PlpHandler extends HandlerAbstract
     public function ungroup($id)
     {
         $params = [
-            'plp_id'  => $id,
+            'plp_id' => $id,
         ];
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->delete($this->baseUrlPath(), $params);
         return $responseHandler;
     }
-
 
     /**
      * @return Plp

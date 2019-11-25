@@ -42,8 +42,7 @@ interface ServiceInterface
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
     public function post($uri, $body = null, array $options = []);
-    
-    
+
     /**
      * @param string $uri
      * @param string $body
