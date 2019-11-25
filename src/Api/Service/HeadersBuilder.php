@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace SkyHub\Api\Service;
 
 use SkyHub\Api\Helpers;
@@ -35,7 +33,7 @@ class HeadersBuilder implements HeadersBuilderInterface
     /**
      * @inheritDoc
      */
-    public function addHeader(string $key, $value)
+    public function addHeader($key, $value)
     {
         $this->headers[$key] = $value;
         return $this;
@@ -44,7 +42,7 @@ class HeadersBuilder implements HeadersBuilderInterface
     /**
      * @inheritDoc
      */
-    public function getHeader(string $key)
+    public function getHeader($key)
     {
         return $this->headers[$key];
     }
@@ -52,7 +50,7 @@ class HeadersBuilder implements HeadersBuilderInterface
     /**
      * @inheritDoc
      */
-    public function removeHeader(string $key)
+    public function removeHeader($key)
     {
         unset($this->headers[$key]);
         return $this;
@@ -61,7 +59,7 @@ class HeadersBuilder implements HeadersBuilderInterface
     /**
      * @inheritDoc
      */
-    public function getHeaders() : array
+    public function getHeaders()
     {
         return $this->headers;
     }
@@ -69,7 +67,7 @@ class HeadersBuilder implements HeadersBuilderInterface
     /**
      * @inheritDoc
      */
-    public function build() : array
+    public function build()
     {
         return $this->getHeaders();
     }

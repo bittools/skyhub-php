@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace SkyHub\Api\Service;
 
 use SkyHub\Api\Helpers;
@@ -31,7 +29,7 @@ class OptionsBuilder implements OptionsBuilderInterface
     /**
      * @inheritDoc
      */
-    public function getHeadersBuilder() : HeadersBuilderInterface
+    public function getHeadersBuilder()
     {
         return $this->headersBuilder;
     }
@@ -39,7 +37,7 @@ class OptionsBuilder implements OptionsBuilderInterface
     /**
      * @inheritDoc
      */
-    public function setTimeout(int $timeout)
+    public function setTimeout($timeout)
     {
         $this->options['timeout'] = (int) $timeout;
         return $this;
@@ -48,7 +46,7 @@ class OptionsBuilder implements OptionsBuilderInterface
     /**
      * @inheritDoc
      */
-    public function setDebug(bool $flag)
+    public function setDebug($flag)
     {
         $this->options['debug'] = (bool) $flag;
         return $this;
@@ -66,7 +64,7 @@ class OptionsBuilder implements OptionsBuilderInterface
     /**
      * @inheritDoc
      */
-    public function setStream(bool $flag)
+    public function setStream($flag)
     {
         $this->options['stream'] = (bool) $flag;
         return $this;
@@ -75,7 +73,7 @@ class OptionsBuilder implements OptionsBuilderInterface
     /**
      * @inheritDoc
      */
-    public function build() : array
+    public function build()
     {
         $this->options['headers'] = $this->getHeadersBuilder()->build();
         return $this->options;

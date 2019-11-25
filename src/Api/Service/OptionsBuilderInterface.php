@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace SkyHub\Api\Service;
 
 /**
@@ -16,14 +14,14 @@ interface OptionsBuilderInterface
      *
      * @return $this
      */
-    public function setTimeout(int $timeout);
+    public function setTimeout($timeout);
 
     /**
      * @param bool $flag
      *
      * @return $this
      */
-    public function setDebug(bool $flag);
+    public function setDebug($flag);
 
     /**
      * @param mixed $body
@@ -37,15 +35,15 @@ interface OptionsBuilderInterface
      *
      * @return $this
      */
-    public function setStream(bool $flag);
+    public function setStream($flag);
 
     /**
      * @return HeadersBuilderInterface
      */
-    public function getHeadersBuilder() : HeadersBuilderInterface;
+    public function getHeadersBuilder();
 
     /**
      * @return array
      */
-    public function build() : array;
+    public function build();
 }

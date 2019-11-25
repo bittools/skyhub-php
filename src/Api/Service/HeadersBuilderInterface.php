@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace SkyHub\Api\Service;
 
 /**
@@ -24,29 +22,29 @@ interface HeadersBuilderInterface
      *
      * @return $this
      */
-    public function addHeader(string $key, $value);
+    public function addHeader($key, $value);
 
     /**
      * @param string $key
      *
      * @return string
      */
-    public function getHeader(string $key);
+    public function getHeader($key);
 
     /**
      * @param string $key
      *
      * @return string
      */
-    public function removeHeader(string $key);
+    public function removeHeader($key);
 
     /**
      * @return array
      */
-    public function getHeaders() : array;
+    public function getHeaders();
 
     /**
      * @return array
      */
-    public function build() : array;
+    public function build();
 }
