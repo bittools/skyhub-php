@@ -3,7 +3,6 @@
 namespace SkyHubTest\Api\DataTransformer\Sales;
 
 use PHPUnit\Framework\TestCase;
-use SkyHub\Api\DataTransformer\Sales\Order\ApproveTest;
 use SkyHub\Api\DataTransformer\Sales\Order\Cancel;
 use SkyHub\Api\DataTransformer\Sales\Order\Delivery;
 use SkyHub\Api\DataTransformer\Sales\Order\Invoice;
@@ -219,23 +218,6 @@ class OrderTest extends TestCase
                 'label' => $label,
                 'type'  => $type
             ]
-        ];
-
-        $this->assertEquals($expected, $transformer->output());
-    }
-
-
-    /**
-     * @test
-     */
-    public function assertDataTransformerOrderApproveTest()
-    {
-        $orderId = '99';
-        $status  = 'NEW';
-
-        $transformer = new ApproveTest($orderId, $status);
-        $expected = [
-            'status' => $status
         ];
 
         $this->assertEquals($expected, $transformer->output());

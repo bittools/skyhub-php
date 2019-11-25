@@ -64,12 +64,6 @@ class Create extends DataTransformerAbstract
             'nbm'               => (string) $this->arrayExtract($data, 'nbm', ''),
         ];
         
-        /**
-        if ($promoPrice = $this->arrayExtract($data, 'promotional_price')) {
-            $product['promotional_price'] = (float) $promoPrice;
-        }
-         */
-
         /** Setup images. */
         $this->buildProductImages($product, $images);
 
