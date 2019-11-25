@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace SkyHubTest\unit\Api\Handler\Sales;
 
 use GuzzleHttp\Client;
