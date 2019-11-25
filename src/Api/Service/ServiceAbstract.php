@@ -159,7 +159,7 @@ abstract class ServiceAbstract implements ServiceInterface
      *
      * @return Api\Handler\Response\HandlerInterfaceException|Api\Handler\Response\HandlerInterfaceSuccess
      */
-    public function request(string $method, string $uri, $body = null, array $options = [], $debug = false)
+    public function request($method, $uri, $body = null, array $options = [], $debug = false)
     {
         $this->prepareRequest($method, $uri, $body, $options, $debug);
 
@@ -271,7 +271,7 @@ abstract class ServiceAbstract implements ServiceInterface
     /**
      * @return OptionsBuilderInterface
      */
-    public function getOptionsBuilder() : OptionsBuilderInterface
+    public function getOptionsBuilder()
     {
         return $this->optionsBuilder;
     }
