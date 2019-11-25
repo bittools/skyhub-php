@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace SkyHub\Api\Service;
 
 use SkyHub\Api\Helpers;
@@ -48,7 +46,7 @@ class HeadersProtection
     /**
      * @return array
      */
-    public function export() : array
+    public function export()
     {
         return $this->headers;
     }

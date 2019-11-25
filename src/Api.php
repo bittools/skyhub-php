@@ -52,10 +52,10 @@ class Api implements ApiInterface
      * @inheritdoc
      */
     public function __construct(
-        string $email,
-        string $apiKey,
-        string $xAccountKey = null,
-        string $baseUri = null,
+        $email,
+        $apiKey,
+        $xAccountKey = null,
+        $baseUri = null,
         ServiceInterface $apiService = null
     ) {
         /**

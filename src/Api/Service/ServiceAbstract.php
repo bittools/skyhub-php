@@ -296,7 +296,7 @@ abstract class ServiceAbstract implements ServiceInterface
     /**
      * @return array
      */
-    public function getHeaders() : array
+    public function getHeaders()
     {
         return (array) $this->getOptionsBuilder()
             ->getHeadersBuilder()

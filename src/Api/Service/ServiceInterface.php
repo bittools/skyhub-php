@@ -129,7 +129,7 @@ interface ServiceInterface
     /**
      * @return array
      */
-    public function getHeaders() : array;
+    public function getHeaders();
 
     /**
      * @param array $headers
