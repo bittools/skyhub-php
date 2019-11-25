@@ -158,7 +158,7 @@ abstract class ServiceAbstract implements ServiceInterface
      *
      * @return $this
      */
-    private function prepareRequest($method, string $uri, $body = null, array $options = [], $debug = false)
+    private function prepareRequest($method, $uri, $body = null, array $options = [], $debug = false)
     {
         $this->optionsBuilder
             ->addOptions($options)

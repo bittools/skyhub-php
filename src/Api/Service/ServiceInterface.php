@@ -58,9 +58,6 @@ interface ServiceInterface
      */
     const DEFAULT_SERVICE_BASE_URI = 'https://api.skyhub.com.br';
 
-    public function __construct($baseUri, array $headers = [], array $options = []);
-
-
     /**
      * @param string $uri
      * @param string $body
