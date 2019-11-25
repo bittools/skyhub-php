@@ -99,7 +99,7 @@ interface ServiceInterface
      *
      * @return HandlerInterfaceException|HandlerInterfaceSuccess
      */
-    public function request($method, $uri, $body = null, $options = []);
+    public function request($method, $uri, $body = null, array $options = []);
 
 
     /**

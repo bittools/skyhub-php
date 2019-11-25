@@ -29,7 +29,7 @@ class ServicePdf extends ServiceDefault
      * @param array  $headers
      * @param array  $options
      */
-    public function __construct(string $baseUri, array $headers = [], array $options = [], $log = true)
+    public function __construct($baseUri, array $headers = [], array $options = [], $log = true)
     {
         $headers['Accept']       = 'application/pdf';
         $headers['Content-Type'] = 'application/json';

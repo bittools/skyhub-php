@@ -103,7 +103,7 @@ abstract class ServiceAbstract implements ServiceInterface
      * @param ClientBuilderInterface|null $clientBuilder
      */
     public function __construct(
-        string $baseUri = null,
+        $baseUri = null,
         array $headers = [],
         array $options = [],
         ClientBuilderInterface $clientBuilder = null,

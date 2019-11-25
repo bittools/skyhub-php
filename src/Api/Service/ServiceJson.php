@@ -26,7 +26,7 @@ class ServiceJson extends ServiceDefault
      * @param array  $headers
      * @param array  $options
      */
-    public function __construct(string $baseUri, array $headers = [], array $options = [])
+    public function __construct($baseUri, array $headers = [], array $options = [])
     {
         $headers['Accept']       = 'application/json';
         $headers['Content-Type'] = 'application/json';
