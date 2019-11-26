@@ -163,9 +163,9 @@ abstract class ServiceAbstract implements ServiceInterface
         $this->optionsBuilder
             ->addOptions($options)
             ->setTimeout($this->getTimeout())
-            ->setDebug((bool) $debug)
-            ->getHeadersBuilder();
+            ->setDebug((bool) $debug);
 
+        $this->prepareRequestHeaders();
         $this->prepareRequestBody($body);
 
         $protection = new HeadersProtection();
