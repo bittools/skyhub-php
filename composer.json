@@ -3,8 +3,8 @@
     "description": "This is the official PHP SDK for integration with SkyHub.",
     "type": "library",
     "require": {
-        "php": ">=5.4",
-        "guzzlehttp/guzzle": "^5.3",
+        "php": ">=5.5",
+        "guzzlehttp/guzzle": "^6.4",
         "monolog/monolog": "^1.0"
     },
     "require-dev": {
