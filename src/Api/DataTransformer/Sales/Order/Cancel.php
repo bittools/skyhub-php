@@ -25,13 +25,13 @@ class Cancel extends DataTransformerAbstract
     /**
      * Attribute constructor.
      *
-     * @param string $status
+     * @param string|null $status
      */
-    public function __construct($status)
+    public function __construct($status = null)
     {
-        $this->setOutputData([
-            'status' => $status,
-        ]);
+        if ($status) {
+            $this->setOutputData(['status' => $status]);
+        }
 
         parent::__construct();
     }

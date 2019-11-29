@@ -25,10 +25,10 @@ class Invoice extends DataTransformerAbstract
     /**
      * Attribute constructor.
      *
-     * @param string $status
      * @param string $invoiceKey
+     * @param string $status
      */
-    public function __construct($status, $invoiceKey)
+    public function __construct($invoiceKey, $status = null)
     {
         $param = [
             'invoice' => [
@@ -36,7 +36,7 @@ class Invoice extends DataTransformerAbstract
             ]
         ];
 
-        if ($status && is_string($status)) {
+        if ($status) {
             $param['status'] = $status;
         }
 

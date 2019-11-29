@@ -24,14 +24,16 @@ class Delivery extends DataTransformerAbstract
     /**
      * Delivery constructor.
      *
-     * @param $status
-     * @param $date
+     * @param string|null $date
+     * @param string|null $status
      */
-    public function __construct($status, $date = null)
+    public function __construct($date = null, $status = null)
     {
-        $outputData = [
-            'status' => $status,
-        ];
+        $outputData = [];
+
+        if ($status) {
+            $outputData['status'] = $status;
+        }
 
         if ($date) {
             $outputData['delivered_date'] = $date;

@@ -28,9 +28,9 @@ class ShipmentException extends DataTransformerAbstract
      * @param string $orderId
      * @param string $datetime
      * @param string $observation
-     * @param string $status
+     * @param string|null $status
      */
-    public function __construct($orderId, $datetime, $observation, $status)
+    public function __construct($orderId, $datetime, $observation, $status = null)
     {
         /**
          * @todo Convert the $datetime to the correct format: '2012-10-06T04:13:00-03:00'
@@ -39,9 +39,12 @@ class ShipmentException extends DataTransformerAbstract
             'shipment_exception' => [
                 'occurrence_date' => $datetime,
                 'observation'     => $observation
-            ],
-            'status' => $status
+            ]
         ];
+
+        if ($status) {
+            $shipmentException['status'] = $status;
+        }
 
         $this->setOutputData($shipmentException);
 
