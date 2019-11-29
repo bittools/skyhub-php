@@ -128,9 +128,9 @@ class OrderHandler extends HandlerAbstract
 
 
     /**
-     * @var string $orderId
+     * @param string $orderId
      * @param string $date
-     * @var string $status
+     * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */

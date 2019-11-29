@@ -142,7 +142,7 @@ class Product extends EntityAbstract
         if (!is_null($price)) {
             $price = (float) $price;
         }
-        
+
         $this->setData('promotional_price', $price);
         return $this;
     }
@@ -324,7 +324,7 @@ class Product extends EntityAbstract
         if (empty($code) || empty($name)) {
             return $this;
         }
-        
+
         $data = (array) $this->getCategories();
         $data[] = [
             'code' => $code,

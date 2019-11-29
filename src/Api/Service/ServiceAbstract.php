@@ -113,7 +113,6 @@ abstract class ServiceAbstract implements ServiceInterface
      * @param string $uri
      * @param null   $body
      * @param array  $options
-     *
      * @param bool   $debug
      *
      * @return Api\Handler\Response\HandlerInterfaceException|Api\Handler\Response\HandlerInterfaceSuccess

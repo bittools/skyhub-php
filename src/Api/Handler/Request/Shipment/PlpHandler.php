@@ -131,9 +131,8 @@ class PlpHandler extends HandlerAbstract
     /**
      * Retrieves a list of all orders collectables in SkyHub.
      *
-     * @param bool     $requested orders that have already had your pickup requested
+     * @param bool $requested orders that have already had your pickup requested
      * @param int|null $offset
-     *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
     public function collectables(bool $requested, int $offset = null)

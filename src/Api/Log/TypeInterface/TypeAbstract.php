@@ -25,7 +25,6 @@ abstract class TypeAbstract implements TypeInterface
     /** @var array */
     protected $data = [];
 
-
     /**
      * Request constructor.
      *
@@ -41,7 +40,6 @@ abstract class TypeAbstract implements TypeInterface
             ->setHeaders($headers)
             ->setProtocolVersion($protocolVersion);
     }
-
 
     /**
      * @return string
@@ -59,7 +57,6 @@ abstract class TypeAbstract implements TypeInterface
         return $data;
     }
 
-
     /**
      * @param string|array $id
      *
@@ -70,7 +67,6 @@ abstract class TypeAbstract implements TypeInterface
         $this->data['request_id'] = $id;
         return $this;
     }
-
 
     /**
      * @param string|object|array $body
@@ -87,7 +83,6 @@ abstract class TypeAbstract implements TypeInterface
         return $this;
     }
 
-
     /**
      * @param string $message
      *
@@ -99,7 +94,6 @@ abstract class TypeAbstract implements TypeInterface
         return $this;
     }
 
-
     /**
      * @param array $headers
      */
@@ -108,7 +102,6 @@ abstract class TypeAbstract implements TypeInterface
         $this->data['headers'] = $headers;
         return $this;
     }
-
 
     /**
      * @param string $version

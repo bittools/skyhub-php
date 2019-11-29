@@ -63,7 +63,7 @@ class Create extends DataTransformerAbstract
             'ean'               => (string) $this->arrayExtract($data, 'ean', ''),
             'nbm'               => (string) $this->arrayExtract($data, 'nbm', ''),
         ];
-        
+
         /** Setup images. */
         $this->buildProductImages($product, $images);
 

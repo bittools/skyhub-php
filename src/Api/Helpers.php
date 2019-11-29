@@ -19,7 +19,6 @@ namespace SkyHub\Api;
 
 trait Helpers
 {
-    
     /**
      * @param string $value
      * @param string $char
@@ -43,7 +42,6 @@ trait Helpers
         return $value;
     }
     
-    
     /**
      * @param array                   $data
      * @param string                  $index
@@ -60,7 +58,6 @@ trait Helpers
         return $data[$index];
     }
     
-    
     /**
      * @param array  $data
      * @param string $index
@@ -71,7 +68,6 @@ trait Helpers
     {
         return (bool) ($this->arrayIndexExists($data, $index) && $data[$index]);
     }
-    
     
     /**
      * @param array  $data

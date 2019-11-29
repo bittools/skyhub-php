@@ -25,7 +25,6 @@ use SkyHub\Api\Exception\JsonDataConvert;
 
 class Logger extends LoggerAbstract
 {
-
     /** @var bool */
     protected $allowLogs = false;
 
@@ -47,7 +46,6 @@ class Logger extends LoggerAbstract
     /** @var MonologLogger */
     protected $logger = null;
 
-
     /**
      * Logger constructor.
      *
@@ -65,7 +63,6 @@ class Logger extends LoggerAbstract
 
         $this->allowLogs($allowLogs);
     }
-
 
     /**
      * @return $this
@@ -86,7 +83,6 @@ class Logger extends LoggerAbstract
         return $this;
     }
 
-
     /**
      * @param string $filename
      * @param string $filePath
@@ -106,7 +102,6 @@ class Logger extends LoggerAbstract
 
         return realpath($path);
     }
-
 
     /**
      * @param TypeRequestInterface $request
@@ -129,7 +124,6 @@ class Logger extends LoggerAbstract
         return $this;
     }
 
-
     /**
      * @param TypeResponseInterface $response
      *
@@ -150,8 +144,7 @@ class Logger extends LoggerAbstract
         
         return $this;
     }
-    
-    
+
     /**
      * @return bool
      */
@@ -159,8 +152,7 @@ class Logger extends LoggerAbstract
     {
         return (bool) $this->allowLogs;
     }
-    
-    
+
     /**
      * @param null|bool $flag
      *
