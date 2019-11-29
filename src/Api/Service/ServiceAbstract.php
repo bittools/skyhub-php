@@ -115,9 +115,9 @@ abstract class ServiceAbstract implements ServiceInterface
      * @param array  $options
      * @param bool   $debug
      *
-     * @return Api\Handler\Response\HandlerInterfaceException|Api\Handler\Response\HandlerInterfaceSuccess
-     *
+     * @throws Api\Exception\JsonDataConvert
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return Api\Handler\Response\HandlerInterfaceException|Api\Handler\Response\HandlerInterfaceSuccess
      */
     public function request(string $method, string $uri, $body = null, array $options = [], $debug = false)
     {
@@ -166,9 +166,9 @@ abstract class ServiceAbstract implements ServiceInterface
         $this->optionsBuilder
             ->addOptions($options)
             ->setTimeout($this->getTimeout())
-            ->setDebug((bool) $debug)
-            ->getHeadersBuilder();
+            ->setDebug((bool) $debug);
 
+        $this->prepareRequestHeaders();
         $this->prepareRequestBody($body);
 
         $protection = new HeadersProtection();

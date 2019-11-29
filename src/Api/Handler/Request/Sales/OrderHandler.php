@@ -118,7 +118,7 @@ class OrderHandler extends HandlerAbstract
      */
     public function cancel($orderId, $status = null)
     {
-        $transformer = new CancelTransformer($status ?: self::STATUS_CANCELLED);
+        $transformer = new CancelTransformer($status);
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
@@ -136,7 +136,7 @@ class OrderHandler extends HandlerAbstract
      */
     public function delivery($orderId, $date = null, $status = null)
     {
-        $transformer = new DeliveryTransformer($status ?: self::STATUS_COMPLETE, $date);
+        $transformer = new DeliveryTransformer($date, $status);
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
@@ -160,12 +160,12 @@ class OrderHandler extends HandlerAbstract
     {
         $transformer = new ShipmentTransformer(
             $orderId,
-            $status ?: self::STATUS_SHIPPED,
             $items,
             $trackCode,
             $trackCarrier,
             $trackMethod,
-            $trackUrl
+            $trackUrl,
+            $status
         );
 
         $body = $transformer->output();
@@ -205,9 +205,9 @@ class OrderHandler extends HandlerAbstract
             $orderId,
             $datetime,
             $observation,
-            $status ?: self::STATUS_SHIPMENT_EXCEPTION
+            $status
         );
-        $body        = $transformer->output();
+        $body = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
         $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/shipment_exception"), $body);

@@ -26,17 +26,16 @@ class Shipment extends DataTransformerAbstract
      * Shipment constructor.
      *
      * @param string $orderId
-     * @param string $status
-     * @param array  $items
+     * @param array $items
      * @param string $trackCode
      * @param string $trackCarrier
      * @param string $trackMethod
      * @param string $trackUrl
+     * @param string $status
      */
-    public function __construct($orderId, $status, array $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl)
+    public function __construct($orderId, array $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl, $status = null)
     {
         $shipment = [
-            'status'   => $status,
             'shipment' => [
                 'code'  => $orderId,
                 'track' => [
@@ -47,6 +46,10 @@ class Shipment extends DataTransformerAbstract
                 ]
             ]
         ];
+
+        if ($status) {
+            $shipment['status'] = $status;
+        }
 
         /** @var array $item */
         foreach ($items as $item) {

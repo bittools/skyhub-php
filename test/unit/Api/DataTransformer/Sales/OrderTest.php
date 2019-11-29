@@ -26,7 +26,6 @@ use SkyHub\Api\Handler\Request\Sales\OrderHandler;
  */
 class OrderTest extends TestCase
 {
-
     /**
      * @test
      */
@@ -40,13 +39,56 @@ class OrderTest extends TestCase
         $this->assertEquals($expected, $transformer->output());
     }
 
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderCancelWithEmptyStatus()
+    {
+        $transformer = new Cancel('');
+        $this->assertEquals([], $transformer->output());
+    }
+
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderCancelWithNullStatus()
+    {
+        $transformer = new Cancel();
+        $this->assertEquals([], $transformer->output());
+    }
+
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderDeliveryWithEmptyStatus()
+    {
+        $transformer = new Delivery('12/09/2019', '');
+        $expected = [
+            'delivered_date' => '12/09/2019'
+        ];
+
+        $this->assertEquals($expected, $transformer->output());
+    }
+
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderDeliveryWithNullStatus()
+    {
+        $transformer = new Delivery('12/09/2019');
+        $expected = [
+            'delivered_date' => '12/09/2019'
+        ];
+
+        $this->assertEquals($expected, $transformer->output());
+    }
 
     /**
      * @test
      */
     public function assertDataTransformerOrderDeliveryWithoutDeliveryDate()
     {
-        $transformer = new Delivery(OrderHandler::STATUS_COMPLETE);
+        $transformer = new Delivery(null, OrderHandler::STATUS_COMPLETE);
         $expected = [
             'status' => OrderHandler::STATUS_COMPLETE
         ];
@@ -57,12 +99,12 @@ class OrderTest extends TestCase
     /**
      * @test
      */
-    public function assertDataTransformerOrderDeliveryWithDeliveryDate()
+    public function assertDataTransformerOrderDeliveryWithAllArguments()
     {
-        $transformer = new Delivery(OrderHandler::STATUS_COMPLETE, '12/09/2019');
+        $transformer = new Delivery('12/09/2019', OrderHandler::STATUS_COMPLETE);
         $expected = [
-            'status'        => OrderHandler::STATUS_COMPLETE,
-            'delivered_date'=> '12/09/2019'
+            'delivered_date'=> '12/09/2019',
+            'status'        => OrderHandler::STATUS_COMPLETE
         ];
 
         $this->assertEquals($expected, $transformer->output());
@@ -74,7 +116,7 @@ class OrderTest extends TestCase
     public function assertDataTransformerOrderInvoice()
     {
         $invoiceKey = '999888777999888777';
-        $transformer = new Invoice(OrderHandler::STATUS_PAID, $invoiceKey);
+        $transformer = new Invoice($invoiceKey, OrderHandler::STATUS_PAID);
         $expected = [
             'status'  => OrderHandler::STATUS_PAID,
             'invoice' => [
@@ -91,7 +133,7 @@ class OrderTest extends TestCase
     public function assertDataTransformerOrderInvoiceWithStatusNull()
     {
         $invoiceKey = '999888777999888777';
-        $transformer = new Invoice(null, $invoiceKey);
+        $transformer = new Invoice($invoiceKey, null);
         $expected = [
             'invoice' => [
                 'key' => $invoiceKey
@@ -107,7 +149,7 @@ class OrderTest extends TestCase
     public function assertDataTransformerOrderInvoiceEmptyStatus()
     {
         $invoiceKey = '999888777999888777';
-        $transformer = new Invoice('', $invoiceKey);
+        $transformer = new Invoice($invoiceKey, '');
         $expected = [
             'invoice' => [
                 'key' => $invoiceKey
@@ -139,6 +181,45 @@ class OrderTest extends TestCase
         $this->assertEquals($expected, $transformer->output());
     }
 
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderShipmentExceptionWithNullStatus()
+    {
+        $orderId = '99';
+        $datetime = '2018-01-20 16:00:00';
+        $observation = 'This is a simple observation';
+
+        $transformer = new ShipmentException($orderId, $datetime, $observation);
+        $expected = [
+            'shipment_exception' => [
+                'occurrence_date' => $datetime,
+                'observation'     => $observation
+            ]
+        ];
+
+        $this->assertEquals($expected, $transformer->output());
+    }
+
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderShipmentExceptionWithEmptyStatus()
+    {
+        $orderId = '99';
+        $datetime = '2018-01-20 16:00:00';
+        $observation = 'This is a simple observation';
+
+        $transformer = new ShipmentException($orderId, $datetime, $observation, '');
+        $expected = [
+            'shipment_exception' => [
+                'occurrence_date' => $datetime,
+                'observation'     => $observation
+            ]
+        ];
+
+        $this->assertEquals($expected, $transformer->output());
+    }
 
     /**
      * @test
@@ -161,7 +242,7 @@ class OrderTest extends TestCase
             ]
         ];
 
-        $transformer = new Shipment($orderId, $status, $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl);
+        $transformer = new Shipment($orderId, $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl, $status);
         $expected = [
             'status'   => $status,
             'shipment' => [
@@ -179,6 +260,73 @@ class OrderTest extends TestCase
         $this->assertEquals($expected, $transformer->output());
     }
 
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderShipmentWithNullStatus()
+    {
+        $orderId = '12345';
+        $trackCode = 'SS987654321XX';
+        $trackCarrier = 'Correios';
+        $trackMethod = 'PAC';
+        $trackUrl = 'http://www.correios.com.br';
+        $items = [
+            [
+                'sku' => 'XYZ',
+                'qty' => '2',
+            ]
+        ];
+
+        $transformer = new Shipment($orderId, $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl);
+        $expected = [
+            'shipment' => [
+                'code'  => $orderId,
+                'track' => [
+                    'code'    => $trackCode,
+                    'carrier' => $trackCarrier,
+                    'method'  => $trackMethod,
+                    'url'     => $trackUrl,
+                ]
+            ],
+            'items' => $items
+        ];
+
+        $this->assertEquals($expected, $transformer->output());
+    }
+
+    /**
+     * @test
+     */
+    public function assertDataTransformerOrderShipmentWithEmptyStatus()
+    {
+        $orderId = '12345';
+        $trackCode = 'SS987654321XX';
+        $trackCarrier = 'Correios';
+        $trackMethod = 'PAC';
+        $trackUrl = 'http://www.correios.com.br';
+        $items = [
+            [
+                'sku' => 'XYZ',
+                'qty' => '2',
+            ]
+        ];
+
+        $transformer = new Shipment($orderId, $items, $trackCode, $trackCarrier, $trackMethod, $trackUrl, '');
+        $expected = [
+            'shipment' => [
+                'code'  => $orderId,
+                'track' => [
+                    'code'    => $trackCode,
+                    'carrier' => $trackCarrier,
+                    'method'  => $trackMethod,
+                    'url'     => $trackUrl,
+                ]
+            ],
+            'items' => $items
+        ];
+
+        $this->assertEquals($expected, $transformer->output());
+    }
 
     /**
      * @test
@@ -200,7 +348,6 @@ class OrderTest extends TestCase
 
         $this->assertEquals($expected, $transformer->output());
     }
-
 
     /**
      * @test
