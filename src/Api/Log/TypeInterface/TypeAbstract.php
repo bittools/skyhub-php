@@ -49,13 +49,14 @@ abstract class TypeAbstract implements TypeInterface
     public function __toString()
     {
         try {
-            return json_encode((array) $this->data);
+            $data = json_encode((array) $this->data);
         } catch (\Exception $exception) {
-            throw new JsonDataConvert('SkyHub PHP: Array cannot be converted to json format.');
+            $data = '';
         }
+
+        return $data;
     }
-    
-    
+
     /**
      * @param string|array $id
      *

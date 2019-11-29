@@ -113,7 +113,10 @@ abstract class ServiceAbstract implements ServiceInterface
      * @param string $uri
      * @param null   $body
      * @param array  $options
+     * @param bool   $debug
      *
+     * @throws Api\Exception\JsonDataConvert
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @return Api\Handler\Response\HandlerInterfaceException|Api\Handler\Response\HandlerInterfaceSuccess
      */
     public function request($method, $uri, $body = null, array $options = [], $debug = false)
