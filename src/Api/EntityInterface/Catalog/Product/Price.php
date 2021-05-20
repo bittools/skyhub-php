@@ -11,9 +11,8 @@
  * @category  SkyHub
  * @package   SkyHub
  *
- * @copyright Copyright (c) 2019 B2W Digital - BSeller Platform. (http://www.bseller.com.br).
+ * @copyright Copyright (c) 2021 B2W Digital - BSeller Platform. (http://www.bseller.com.br).
  *
- * @author    Bruno Gemelli <bruno.gemelli@e-smart.com.br>
  */
 
 namespace SkyHub\Api\EntityInterface\Catalog\Product;
