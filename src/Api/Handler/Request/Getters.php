@@ -28,6 +28,8 @@ use SkyHub\Api\Handler\Request\Sales\SystemHandler;
 use SkyHub\Api\Handler\Request\Shipment\PlpHandler;
 use SkyHub\Api\Handler\Request\Sync\ErrorsHandler;
 use SkyHub\Api\Handler\Request\Catalog\Product\VariationHandler;
+use SkyHub\Api\Handler\Request\Catalog\Product\StockHandler as ProductStockHandler;
+use SkyHub\Api\Handler\Request\Catalog\Product\PriceHandler as ProductPriceHandler;
 
 trait Getters
 {
@@ -119,5 +121,21 @@ trait Getters
     public function syncErrors()
     {
         return new ErrorsHandler($this);
+    }
+
+    /**
+     * @return productStockHandler
+     */
+    public function productStock()
+    {
+        return new ProductStockHandler($this);
+    }
+
+    /**
+     * @return productPriceHandler
+     */
+    public function productPrice()
+    {
+        return new ProductPriceHandler($this);
     }
 }
