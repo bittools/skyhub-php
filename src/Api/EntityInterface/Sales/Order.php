@@ -142,4 +142,33 @@ class Order extends EntityAbstract
         $handler = $this->requestHandler();
         return $handler->shipmentException($orderId, $datetime, $observation, $status);
     }
+
+    /**
+     * @param string $orderId
+     * @param string $volumeQty
+     * @param string $issueDate
+     * @param string $pathFile
+     * @param string $nameFile
+     * @param string $status
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function invoiceB2wDirect(
+        $orderId,
+        $volumeQty,
+        $issueDate,
+        $pathFile,
+        $fileName,
+        $status = null
+    ) {
+        /** @var OrderHandler $handler */
+        $handler = $this->requestHandler();
+        return $handler->invoiceB2wDirect(
+            $orderId,
+            $volumeQty,
+            $issueDate,
+            $pathFile,
+            $fileName,
+            $status
+        );
+    }
 }

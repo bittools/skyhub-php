@@ -11,8 +11,6 @@
  * @package   SkuHub
  *
  * @copyright Copyright (c) 2018 B2W Digital - BSeller Platform. (http://www.bseller.com.br).
- *
- * @author    Tiago Sampaio <tiago.sampaio@e-smart.com.br>
  */
 
 namespace SkyHub\Api\DataTransformer\Sales\Order;
