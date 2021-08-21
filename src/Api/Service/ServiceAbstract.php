@@ -19,6 +19,7 @@
 namespace SkyHub\Api\Service;
 
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Post\PostFile;
 use SkyHub\Api;
 use SkyHub\Api\Helpers;
 use SkyHub\Api\Handler\Response\HandlerDefault;
@@ -55,7 +56,9 @@ abstract class ServiceAbstract implements ServiceInterface
 
     /** @var int */
     protected $requestId = null;
-    
+
+    /** @var array */
+    protected $files = [];    
     
     /**
      * Service constructor.
@@ -96,6 +99,16 @@ abstract class ServiceAbstract implements ServiceInterface
         return self::DEFAULT_SERVICE_BASE_URI;
     }
     
+    /**
+     * add file to send
+     *
+     * @param PostFile $file
+     * @return void
+     */
+    public function addPostFile(PostFile $file)
+    {
+        $this->files[] = $file;
+    }
     
     /**
      * @param bool $renew
@@ -143,6 +156,13 @@ abstract class ServiceAbstract implements ServiceInterface
         try {
             /** @var \GuzzleHttp\Message\Request $request */
             $request = $this->httpClient()->createRequest($method, $uri, $options);
+
+            if ($this->files && $method == self::REQUEST_METHOD_POST) {
+                $postBody = $request->getBody();
+                foreach($this->files as $file) {
+                    $postBody->addFile($file);
+                }
+            }
 
             /** @var \GuzzleHttp\Message\Response $response */
             $response = $this->httpClient()->send($request);

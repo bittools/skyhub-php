@@ -17,14 +17,16 @@
 
 namespace SkyHub\Api\Handler\Request\Sales;
 
+use GuzzleHttp\Post\PostFile;
 use SkyHub\Api\EntityInterface\Sales\Order;
 use SkyHub\Api\Handler\Request\HandlerAbstract;
-
+use SkyHub\Api\Handler\Response\HandlerException;
 use SkyHub\Api\DataTransformer\Sales\Order\Invoice as InvoiceTransformer;
 use SkyHub\Api\DataTransformer\Sales\Order\Cancel as CancelTransformer;
 use SkyHub\Api\DataTransformer\Sales\Order\Delivery as DeliveryTransformer;
 use SkyHub\Api\DataTransformer\Sales\Order\Shipment as ShipmentTransformer;
 use SkyHub\Api\DataTransformer\Sales\Order\ShipmentException as ShipmentExceptionTransformer;
+use SkyHub\Api\DataTransformer\Sales\Order\B2WDirectInvoiced as B2WDirectInvoicedTransformer;
 
 class OrderHandler extends HandlerAbstract
 {
@@ -221,5 +223,53 @@ class OrderHandler extends HandlerAbstract
     public function entityInterface()
     {
         return new Order($this);
+    }
+
+    /**
+     * @param string $orderId
+     * @param string $volumeQty
+     * @param string $issueDate
+     * @param string $pathFile
+     * @param string $fileName
+     * @param string $status
+     * @return \SkyHub\Api\Handler\Response\HandlerInterface
+     */
+    public function invoiceB2wDirect(
+        $orderId,
+        $volumeQty,
+        $issueDate,
+        $pathFile,
+        $fileName,
+        $status = null
+    ) {
+        if (!$status) {
+            $status = self::STATUS_PAID;
+        }
+
+        try {
+            $transformer = new B2WDirectInvoicedTransformer(
+                $volumeQty,
+                $issueDate,
+                $pathFile,
+                $fileName,
+                $status
+            );
+            $body = $transformer->output();
+
+            $this->service()->addPostFile(
+                new PostFile(
+                    'file',
+                    $transformer->openFile($pathFile, $fileName),
+                    $fileName
+                )
+            );
+
+            /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
+            $responseHandler = $this->service()->post($this->baseUrlPath("$orderId/invoice"), $body);
+            return $responseHandler;
+        } catch (\Exception $e) {
+            $responseHandler = new HandlerException($e);
+            return $responseHandler;
+        }
     }
 }
