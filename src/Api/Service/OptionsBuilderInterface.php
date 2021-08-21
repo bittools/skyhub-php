@@ -22,6 +22,11 @@ interface OptionsBuilderInterface
     const BODY_TYPE_JSON = 'json';
 
     /**
+     * @var string
+     */
+    const BODY_TYPE_MULTIPART = 'multipart';
+
+    /**
      * @return $this
      */
     public function reset();
