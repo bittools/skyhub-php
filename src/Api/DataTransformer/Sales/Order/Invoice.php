@@ -26,9 +26,10 @@ class Invoice extends DataTransformerAbstract
      * Attribute constructor.
      *
      * @param string $invoiceKey
+     * @param string $volumeQty
      * @param string $status
      */
-    public function __construct($invoiceKey, $status = null)
+    public function __construct($invoiceKey, $volumeQty = null, $status = null)
     {
         $param = [
             'invoice' => [
@@ -38,6 +39,12 @@ class Invoice extends DataTransformerAbstract
 
         if ($status) {
             $param['status'] = $status;
+        }
+
+        if ($volumeQty && !empty($volumeQty) && is_string($volumeQty)) {
+            if ($volumeQty > 0) {
+                $param['invoice']['volume_qty'] = $volumeQty;
+            }
         }
 
         $this->setOutputData($param);

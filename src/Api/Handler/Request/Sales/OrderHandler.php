@@ -91,15 +91,16 @@ class OrderHandler extends HandlerAbstract
     /**
      * Invoice an order in SkyHub.
      *
-     * @var string $orderId
-     * @var string $invoiceKey
-     * @var string $status
+     * @param string $orderId
+     * @param string $invoiceKey
+     * @param string $volumeQty
+     * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function invoice($orderId, $invoiceKey, $status = null)
+    public function invoice($orderId, $invoiceKey, $volumeQty = null, $status = null)
     {
-        $transformer = new InvoiceTransformer($invoiceKey, $status);
+        $transformer = new InvoiceTransformer($invoiceKey, $volumeQty, $status);
         $body        = $transformer->output();
 
         /** @var \SkyHub\Api\Handler\Response\HandlerInterface $responseHandler */
