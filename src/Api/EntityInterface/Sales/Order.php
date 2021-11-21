@@ -55,15 +55,16 @@ class Order extends EntityAbstract
     /**
      * @param string $orderId
      * @param string $invoiceKey
+     * @param string $volumeQty
      * @param string $status
      *
      * @return \SkyHub\Api\Handler\Response\HandlerInterface
      */
-    public function invoice($orderId, $invoiceKey, $status = null)
+    public function invoice($orderId, $invoiceKey, $volumeQty = null, $status = null)
     {
         /** @var OrderHandler $handler */
         $handler = $this->requestHandler();
-        return $handler->invoice($orderId, $invoiceKey, $status);
+        return $handler->invoice($orderId, $invoiceKey, $volumeQty, $status);
     }
 
 
